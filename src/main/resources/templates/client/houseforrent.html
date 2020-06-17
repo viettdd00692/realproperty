@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="client/layout :: head">
+    <meta charset="UTF-8">
+    <title>Nhà đất thuê</title>
+</head>
+<body>
+<nav th:replace="client/layout :: header"></nav>
+<div class="container">
+    <div class="row">
+<div class="col-xs-12 choose-home">
+    <div class="homepage-title-section">
+        <span>Nhà đất cho thuê</span>
+    </div>
+    <div class="list-choose-home">
+        <div class="row">
+            <div class="col-sm-6 col-lg-3 thumbnail-choose-home clearfix">
+                <a class="slide-choose-home">
+                    <img class="img-full" src="img/client/vinhome.jpg" alt="Alternate Text" />
+                </a>
+                <div class="choose-home-summary">
+                    <a  class="txt-no-warp choose-home-name">
+                        Vinhome royal city
+                    </a>
+                    <div class="choose-home-detail float-left">
+                        <p>Phòng ngủ : 2 </p>
+                        <p>Hà Nội</p>
+                    </div>
+                    <div class="choose-home-price float-right">
+                        <span class="text-price-title" >Giá ước tính :</span>
+                        <p class="price">$ <span>1710</span>/<span style="font-size: 12px">tháng</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+</div>
+
+<footer th:replace="client/layout :: footer"></footer>
+
+</body>
+</html>

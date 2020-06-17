@@ -21,4 +21,14 @@ public class MainController {
         return "admin/403";
     }
 
+    @GetMapping("/houseforrent")
+    public String houseforrent() {
+        return "client/houseforrent";
+    }
+
+    @GetMapping("/houseforsell")
+    public String houseforsell() {
+        return "client/houseforsell";
+    }
+
 }

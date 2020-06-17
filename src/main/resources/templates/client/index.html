@@ -1,10 +1,360 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="client/layout :: head">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>User from T1804M</title>
 </head>
 <body>
-This Is Homepage.
+<nav th:replace="client/layout :: header"></nav>
+
+<div class="body-content">
+    <div class="container-fluid search-bar-section">
+
+        <!--        <img src="timecity.jpg" class="background-img" alt="Alternate Text" />-->
+        <img th:src="@{/img/client/vinhome.jpg}" class="background-img" alt="Alternate Text" />
+        <div style="position: absolute; top: 0;width: 100%">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8 search-bar">
+                        <div class="large-text-search-bar">
+                            <p>Property Plus</p>
+                            <p translate>Sống ở Hà Nội thật dễ dàng</p>
+                        </div>
+                        <form class="search-box box-shadow">
+                            <input type="text" name="search"  placeholder="Nhập vị trí hoặc từ khóa dự án" value="" />
+                            <button class="btn-search box-shadow" type="submit" >Tìm kiếm</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main-homepage container">
+        <div class="row">
+            <div class="col-xs-12 introducing">
+                <div class="homepage-title-section" >
+                    Câu chuyện của Real Property
+                </div>
+                <div style="margin-top: 30px;font-size: 19px;line-height: 2" >
+                    <span>Từ sâu trong trái tim, chúng tôi tin rằng, an cư lập nghiệp tại một đất nước mới nên là trải nghiệm tuyệt vời, đáng nhớ, và Property Plus luôn cố gắng đem đến cho những người bạn Quốc tế không gian sống đầy tiện nghi, sang trọng, thoải mái và cảm giác được đón chào ngay từ khoảnh khắc bước chân qua cánh cửa.</span><br>
+
+                    <span>Tại Property Plus, bạn có thể:</span><br>
+
+                    <span>Tận hưởng cuộc sống trong cơ sở hạ tầng sang trọng và tiện ích đẳng cấp với chi phí hợp lý.</span><br>
+
+                    <span>Đội ngũ nhân viên - kỹ thuật viên nhiều kinh nghiệm, nhiệt tình và được đào tạo chuyên nghiệp theo tiêu chuẩn 5 sao.</span><br>
+
+                    <span>Trải nghiệm cá nhân với không gian và dịch vụ phù hợp nhất với bạn.</span><br>
+
+                    <span>Dịch vụ với đội ngũ nhân viên - kỹ thuật viên nhiều kinh nghiệm, nhiệt tình và được đào tạo chuyên nghiệp theo tiêu chuẩn 5 sao.</span><br>
+
+                    <span>Cân bằng cuộc sống giữa công việc và hưởng thụ.</span>
+                </div>
+            </div>
+
+<!--            <div class="main-homepage container">-->
+<!--                <div class="row">-->
+<!--                    <div class="col-xs-12 introducing">-->
+<!--                        <div class="homepage-title-section" >-->
+<!--                            {{"menu_about_us" | translate}}-->
+<!--                        </div>-->
+<!--                        <div style="margin-top: 30px;font-size: 19px" >-->
+<!--                            <span ng-bind-html="'content_about_us' | translate"></span>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+<!--                    <div class="col-xs-12 project-have-service">-->
+<!--                        <div class="homepage-title-section">-->
+<!--                            <span translate="">project_have_our_service</span>-->
+<!--                        </div>-->
+<!--                        <div class="list-project similar-listing">-->
+<!--                            <div class="row owl-carousel owl-theme">-->
+<!--                                <div class="col-sm-12 item project" ng-repeat="project in listProject">-->
+<!--                                    <div class="project-thumbnail">-->
+<!--                                        <a style="display: block;height: 100%;width: 100%;"><img class="box-shadow" style="width:100%;height:100%;"  th:src="@{/img/client/vinhome.jpg}" alt="Alternate Text" /></a>-->
+<!--                                    </div>-->
+<!--                                    <div class="text-center project-name">-->
+<!--                                        {{project.Content.Name}}-->
+<!--                                    </div>-->
+<!--                                </div>-->
+
+
+<!--                            </div>-->
+
+<!--                        </div>-->
+<!--                        <div class="btn-explore-all">-->
+<!--                            <div class="row">-->
+<!--                                <div class="col-md-4 col-md-offset-4 col-xs-8 col-xs-offset-2">-->
+<!--                                    <a class="box-shadow" >explore_all</a>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+            <div class="col-xs-12 sevice-rating">
+            <div class="homepage-title-section">
+                Các dịch vụ tốt nhất của chúng tôi
+
+            </div>
+            <div class="content-service-rating">
+                <div class="list-service-rating col-md-12">
+                    <div class="col-md-1"></div>
+                    <div class="list-service-rating-main box-shadow col-md-10" style="margin-left: 100px;">
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10 ">
+                                <div class="row">
+                                    <div class="col-md-3 col-xs-3 service">
+                                        <div class="icon-service-rating ">
+                                            <img width="81.25" height="81.25" class="img-responsive"  th:src="@{/img/client/Standard-quality.svg}" />
+                                        </div>
+                                        <div class="title-service-rating" >
+                                            <span translate="">Tiêu chuẩn chất lượng</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-xs-3 service">
+                                        <div class="icon-service-rating ">
+                                            <img width="81.25" height="81.25" class="img-responsive" th:src="@{/img/client/Fast-service.svg}" />
+                                        </div>
+                                        <div class="title-service-rating" >
+                                            <span translate="">Dịch vụ nhanh</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-xs-3 service">
+                                        <div class="icon-service-rating ">
+                                            <img width="81.25" height="81.25" class="img-responsive" th:src="@{/img/client/Call-center.svg}" />
+                                        </div>
+                                        <div class="title-service-rating" >
+                                            <span translate="">Trung tâm cuộc gọi 24/7</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-xs-3 service">
+                                        <div class="icon-service-rating ">
+                                            <img style="height: 81.25px;display: block" class="img-responsive" th:src="@{/img/client/Translation.svg}" />
+                                        </div>
+                                        <div class="title-service-rating">
+                                            <div class="row" >
+                                                <span translate="">Hỗ trợ đa ngôn ngữ</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="sevice-rating-content">
+                    <div class="box-shadow section1">
+                        <img th:src="@{/img/client/vinhome.jpg}" class="background-img" alt="Alternate Text" />
+                        <a  class="btn box-shadow btn-service-rating" translate>Về các dịch vụ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+            <div class="col-xs-12 sevice-rating">
+                <div class="homepage-title-section">
+                    Công nghệ của chúng tôi
+
+                </div>
+                <div class="content-service-rating">
+                    <div class="list-service-rating col-md-12">
+                        <div class="col-md-1"></div>
+                        <div class="list-service-rating-main box-shadow col-md-10" style="margin-left: 100px;">
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-10 ">
+                                    <div class="row">
+                                        <div class="col-md-3 col-xs-3 service">
+                                            <div class="icon-service-rating ">
+                                                <img width="81.25" height="81.25" class="img-responsive"  th:src="@{/img/client/Apartment.svg}" />
+                                            </div>
+                                            <div class="title-service-rating" >
+                                                <span >Nền tảng tìm kiếm căn hộ</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-xs-3 service">
+                                            <div class="icon-service-rating ">
+                                                <img width="81.25" height="81.25" class="img-responsive" th:src="@{/img/client/Communication.svg}" />
+                                            </div>
+                                            <div class="title-service-rating" >
+                                                <span >Hệ thống truyền thông đa đảng</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-xs-3 service">
+                                            <div class="icon-service-rating ">
+                                                <img width="81.25" height="81.25" class="img-responsive" th:src="@{/img/client/Service.svg}" />
+                                            </div>
+                                            <div class="title-service-rating" >
+                                                <span >Dịch vụ và hệ thống quản lý</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-xs-3 service">
+                                            <div class="icon-service-rating ">
+                                                <img style="height: 81.25px;display: block" class="img-responsive" th:src="@{/img/client/Customer.svg}" />
+                                            </div>
+                                            <div class="title-service-rating">
+                                                <div class="row" >
+                                                    <span >Hệ thống quản lý quan hệ khách hàng</span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="sevice-rating-content">
+                        <div class="box-shadow section1">
+                            <img th:src="@{/img/client/vinhome.jpg}" class="background-img" alt="Alternate Text" />
+                            <a  class="btn box-shadow btn-service-rating" >Khám phá thêm</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 choose-home">
+                <div class="homepage-title-section">
+                    <span>Nhà đất cho thuê</span>
+                </div>
+                <div class="list-choose-home">
+                    <div class="row">
+                        <div class="col-sm-6 col-lg-3 thumbnail-choose-home clearfix">
+                            <a class="slide-choose-home">
+                                <img class="img-full" th:src="@{/img/client/vinhome.jpg}" alt="Alternate Text" />
+                            </a>
+                            <div class="choose-home-summary">
+                                <a  class="txt-no-warp choose-home-name">
+                                    Vinhome royal city
+                                </a>
+                                <div class="choose-home-detail float-left">
+                                    <p>Phòng ngủ : 2 </p>
+                                    <p>Hà Nội</p>
+                                </div>
+                                <div class="choose-home-price float-right">
+                                    <span class="text-price-title" >Giá ước tính :</span>
+                                    <p class="price">$ <span>1710</span>/<span style="font-size: 12px">tháng</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-see-more">
+                    <div class="row">
+                        <div class="col-md-4 col-xs-2"></div>
+                        <div class="col-md-4  col-xs-8 ">
+                            <a href="/houseforrent"  class="box-shadow">Xem thêm</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 choose-home">
+                <div class="homepage-title-section">
+                    <span>Nhà đất bán</span>
+                </div>
+                <div class="list-choose-home">
+                    <div class="row">
+                        <div class="col-sm-6 col-lg-3 thumbnail-choose-home clearfix">
+                            <a class="slide-choose-home">
+                                <img class="img-full" th:src="@{/img/client/vinhome.jpg}" alt="Alternate Text" />
+                            </a>
+                            <div class="choose-home-summary">
+                                <a  class="txt-no-warp choose-home-name">
+                                    Vinhome royal city
+                                </a>
+                                <div class="choose-home-detail float-left">
+                                    <p>Phòng ngủ : 2 </p>
+                                    <p>Hà Nội</p>
+                                </div>
+                                <div class="choose-home-price float-right">
+                                    <span class="text-price-title" >Giá ước tính :</span>
+                                    <p class="price">$ <span>1710</span>/<span style="font-size: 12px">tháng</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-see-more">
+                    <div class="row">
+                        <div class="col-md-4 col-xs-2"></div>
+                        <div class="col-md-4  col-xs-8 ">
+                            <a href="/houseforsell" class="box-shadow">Xem thêm</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 homepage-news">
+                <div class="homepage-title-section"><span>Blog</span></div>
+                <div class="list-news">
+                    <div class="row">
+                        <div class="col-md-6 big-news">
+                            <a style="display: block" class="big-news-thumbnail box-shadow">
+                                <img style="border-radius: 7px;" class="img-full" th:src="@{/img/client/vinhome.jpg}" alt="">
+                            </a>
+                            <a style="display: block" class="big-news-title">
+                                Kintsugi - Nghệ thuật mạ vàng gốm sứ
+                            </a>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-6 small-news">
+                                    <a style="display: block" class="small-news-thumbnail box-shadow">
+                                        <img style="border-radius: 7px;" class="img-full" th:src="@{/img/client/vinhome.jpg}" alt="">
+                                    </a>
+                                    <a  style="display: block" class="small-news-title txt-no-warp">
+                                        4 Best Night Markets in Hanoi to Visit
+                                    </a>
+                                </div>
+                                <div class="col-md-6 small-news">
+                                    <a  style="display: block" class="small-news-thumbnail box-shadow">
+                                        <img style="border-radius: 7px;" class="img-full" th:src="@{/img/client/vinhome.jpg}" alt="">
+                                    </a>
+                                    <a ui-sref="blogdetail({id:blogList[2].Id, title: replaceString(blogList[2].Content.Title)})" style="display: block" class="small-news-title txt-no-warp">
+                                        Lễ hội Hoa Anh đào Nhật Bản
+                                    </a>
+                                </div>
+                                <div class="col-xs-12 list-normal-news">
+                                    <ul>
+                                        <li><a  class="txt-no-warp">5 Reasons for Renting a Serviced Apartments</a> </li>
+                                        <li><a  class="txt-no-warp">Câu chuyện thành công của Real Property</a></li>
+                                        <li><a  class="txt-no-warp">Đến với Việt Nam - thiên đường nhiệt đới dành cho bạn</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+</div>
+</div>
+<footer th:replace="client/layout :: footer"></footer>
 </body>
 </html>
+
+<!--<script type="text/javascript">-->
+<!--    $('.list-project .owl-carousel').owlCarousel({-->
+<!--        margin: 30,-->
+<!--        autoplay: true,-->
+<!--        autoplayTimeout: 2500,-->
+<!--        autoplayHoverPause: true,-->
+<!--        loop: true,-->
+<!--        items: 3,-->
+<!--        nav: true,-->
+<!--        animateOut: 'fadeOut'-->
+<!--    });-->
+<!--</script>-->
