@@ -14,6 +14,34 @@
         <header class="main-header">
             <div th:replace="~{mainheader :: header}"></div>
         </header>
+        <aside class="main-sidebar">
+            <div th:replace="~{mainsidebar :: sidebar}"></div>
+        </aside>
+        <div class="content-wrapper">
+            <section class="content-header" layout:fragment="header"></section>
+
+            <section class="content">
+                <div th:if="${successFlash != null}" class="alert alert-success alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <p th:text="${successFlash}"></p>
+                </div>
+
+                <div th:if="${errorFlash != null}" class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <p th:text="${errorFlash}"></p>
+                </div>
+
+                <div th:if="${infoFlash != null}" class="alert alert-info alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <p th:text="${infoFlash}"></p>
+                </div>
+
+                <div layout:fragment="content"></div>
+            </section>
+        </div>
+        <footer class="main-footer">
+            <strong>Copyright &copy; 2020 Spring Boot - Real Property.</strong>
+        </footer>
     </div>
 </body>
 </html>
