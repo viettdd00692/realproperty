@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <title>Employee Management</title>
+</head>
+<body>
+    <div>
+        <h1>Employee Management</h1>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Fullname</th>
+                <th>Avatar</th>
+                <th>Action</th>
+            </tr>
+            <tr th:each="employee: ${listEmployee}">
+                <td th:text="${employee.id}"></td>
+                <td th:text="${employee.fullname}"></td>
+                <td th:text="${employee.avatar}"></td>
+                <td>
+                    <a th:href="@{'/admin/update-employee/' + ${employee.id}}">Edit</a>
+                </td>
+            </tr>
+        </table>
+        <a href="/admin/add-employee">Add Employee</a>
+    </div>
+</body>
+</html>

@@ -7,7 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @Controller
 public class EmployeeController {
@@ -27,10 +31,22 @@ public class EmployeeController {
         return "redirect:list-employee";
     }
 
-    @GetMapping("admin/list-employee")
+    @GetMapping("/admin/list-employee")
     private String list(Model model) {
         model.addAttribute("listEmployee", employeeService.getAllEmployee());
         return "admin/employee/listEmployee";
+    }
+
+    @GetMapping("/admin/update-employee/{id}")
+    private String update(Model model, @PathVariable(name = "id") int id) {
+        model.addAttribute("updateEmployeeForm", employeeService.getEmployeeByID(id));
+        return "admin/employee/updateEmployee";
+    }
+
+    @PostMapping("/admin/update-employee")
+    private void update(@ModelAttribute(name = "updateEmployeeForm") EmployeeDTO employeeDTO, HttpServletResponse response) throws IOException {
+        employeeService.updateEmployee(employeeDTO);
+        response.sendRedirect("/admin/list-employee");
     }
 
 }

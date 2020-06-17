@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">Layout Page</title>
+    <link rel="stylesheet" th:href="@{/css/admin/bootstrap/bootstrap.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" th:href="@{/css/admin/adminlte/AdminLTE.css}">
+    <link rel="stylesheet" th:href="@{/css/admin/adminlte/skins/skin-blue.css}">
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+        <header class="main-header">
+            <div th:replace="~{mainheader :: header}"></div>
+        </header>
+    </div>
+</body>
+</html>

@@ -11,4 +11,14 @@ public class MainController {
         return "client/index";
     }
 
+    @GetMapping("/login")
+    public String login() {
+        return "admin/login";
+    }
+
+    @GetMapping("/403")
+    public String accessDenied() {
+        return "admin/403";
+    }
+
 }
