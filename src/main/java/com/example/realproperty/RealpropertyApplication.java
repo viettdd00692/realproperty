@@ -25,7 +25,7 @@ public class RealpropertyApplication extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .and().formLogin().loginPage("/login")
-                .defaultSuccessUrl("/admin/list-employee")
+                .defaultSuccessUrl("/admin/dashboard")
                 .failureUrl("/login?error").permitAll()
                 .and().logout().permitAll()
                 .and().exceptionHandling().accessDeniedPage("/403");

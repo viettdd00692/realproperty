@@ -21,6 +21,11 @@ public class MainController {
         return "admin/403";
     }
 
+    @GetMapping("/admin/dashboard")
+    public String dashboard() {
+        return "admin/dashboard";
+    }
+
     @GetMapping("/houseforrent")
     public String houseforrent() {
         return "client/houseforrent";
