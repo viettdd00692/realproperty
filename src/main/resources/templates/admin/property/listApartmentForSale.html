@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="admin/layout">
+<head>
+    <title>Apartment For Sale</title>
+</head>
+<body>
+    <li class="nav-item has-treeview menu-open" layout:fragment="sb-property">
+        <a href="#" class="nav-link active">
+            <i class="nav-icon fas fa-building"></i>
+            <p>
+                Property
+                <i class="right fas fa-angle-left"></i>
+            </p>
+        </a>
+        <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="/admin/list-property" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>List Property</p>
+                </a>
+            </li>
+            <li class="nav-item has-treeview menu-open">
+                <a href="#" class="nav-link active">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>
+                        Filter
+                        <i class="right fas fa-angle-left"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="/admin/apartments-for-sale" class="nav-link active">
+                            <i class="far fa-dot-circle nav-icon"></i>
+                            <p>Apartments For Sale</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/admin/houses-for-sale" class="nav-link">
+                            <i class="far fa-dot-circle nav-icon"></i>
+                            <p>Houses For Sale</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/admin/apartments-for-rent" class="nav-link">
+                            <i class="far fa-dot-circle nav-icon"></i>
+                            <p>Apartments For Rent</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/admin/houses-for-rent" class="nav-link">
+                            <i class="far fa-dot-circle nav-icon"></i>
+                            <p>Houses For Rent</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="/admin/add-property" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Add New Property</p>
+                </a>
+            </li>
+        </ul>
+    </li>
+
+    <div layout:fragment="header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Apartment For Sale</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/admin/list-property">List Property</a></li>
+                        <li class="breadcrumb-item active">Apartment For Sale</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section layout:fragment="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <a href="/admin/apartments-for-sale" class="btn btn-primary">All</a>
+                                <a href="/admin/apartments-for-sale/appraise" class="btn btn-warning">Appraise</a>
+                                <a href="/admin/apartments-for-sale/available" class="btn btn-success">Available</a>
+                                <a href="/admin/apartments-for-sale/negotiation" class="btn btn-info">Negotiation</a>
+                                <a href="/admin/apartments-for-sale/sold" class="btn btn-danger">Sold</a>
+                            </h3>
+                            <a href="/admin/add-property" class="btn btn-default float-right"><i class="fas fa-plus"></i></a>
+                        </div>
+                        <div class="card-body">
+                            <table id="dataTable" class="table table-bordered table-striped" data-order="[[ 0, &quot;desc&quot; ]]">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Address</th>
+                                    <th>Price ($)</th>
+                                    <th>Type</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="property: ${listApartmentSale}">
+                                    <td th:text="${property.id}"></td>
+                                    <td th:text="${property.name}"></td>
+                                    <td th:text="${property.address}"></td>
+                                    <td th:text="${property.price}"></td>
+                                    <td th:text="${property.type}"></td>
+                                    <td><span class="badge" th:classappend="${(property.status == 'Appraise' ? 'badge-warning' : '' +
+                                                                                   property.status == 'Available' ? 'badge-success' : '' +
+                                                                                   property.status == 'Negotiation' ? 'badge-info' : '' +
+                                                                                   property.status == 'Sold' ? 'badge-danger' : '')}"><a th:text="${property.status}"></a></span></td>
+                                    <td>
+                                        <a th:href="@{'/admin/view-property/' + ${property.id}}"><button type="button" class="btn btn-info">View</button></a>
+                                        <a th:href="@{'/admin/update-property/' + ${property.id}}"><button type="button" class="btn btn-success">Edit</button></a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Address</th>
+                                    <th>Price ($)</th>
+                                    <th>Type</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

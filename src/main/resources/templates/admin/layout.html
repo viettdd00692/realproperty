@@ -4,75 +4,240 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Layout Page</title>
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <link rel="stylesheet" th:href="@{/css/admin/bootstrap/bootstrap.min.css}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-    <link rel="stylesheet" th:href="@{/css/admin/adminlte/AdminLTE.min.css}">
-    <link rel="stylesheet" th:href="@{/css/admin/adminlte/skins/_all-skins.css}">
-    <link rel="stylesheet" th:href="@{/css/admin/icheck/flat/blue.css}">
-    <link rel="stylesheet" th:href="@{/css/admin/morris/morris.css}">
-    <link rel="stylesheet" th:href="@{/css/admin/jvectormap/jquery-jvectormap-1.2.2.css}">
-    <link rel="stylesheet" th:href="@{/css/admin/datepicker/datepicker3.css}">
-    <link rel="stylesheet" th:href="@{/css/admin/daterangepicker/daterangepicker-bs3.css}">
-    <link rel="stylesheet" th:href="@{/css/admin/bootstrap-wysihtml5/bootstrap3-wysihtml5.css}">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/admin/fontawesome-free/css/all.min.css}">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" th:href="@{/css/admin/tempusdominus-bootstrap-4/tempusdominus-bootstrap-4.min.css}">
+    <link rel="stylesheet" th:href="@{/css/admin/icheck-bootstrap/icheck-bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/admin/jqvmap/jqvmap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/admin/datatables-bs4/dataTables.bootstrap4.min.css}">
+    <link rel="stylesheet" th:href="@{/css/admin/datatables-responsive/responsive.bootstrap4.min.css}">
+    <link rel="stylesheet" th:href="@{/css/admin/adminlte/adminlte.min.css}">
+    <link rel="stylesheet" th:href="@{/css/admin/overlayScrollbars/OverlayScrollbars.min.css}">
+    <link rel="stylesheet" th:href="@{/css/admin/daterangepicker/daterangepicker.css}">
+    <link rel="stylesheet" th:href="@{/css/admin/summernote/summernote-bs4.css}">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
-        <header th:replace="~{admin/mainheader :: header}">
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="/admin/dashboard" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="/logout" class="nav-link">Logout</a>
+                </li>
+            </ul>
 
-        </header>
-        <aside class="main-sidebar">
-            <div th:replace="~{admin/mainsidebar :: sidebar}"></div>
+            <form class="form-inline ml-3">
+                <div class="input-group input-group-sm">
+                    <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                    <div class="input-group-append">
+                        <button class="btn btn-navbar" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </nav>
+
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <a href="/admin/dashboard" class="brand-link">
+                <img th:src="@{/img/admin/AdminLTELogo.png}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+                     style="opacity: .8">
+                <span class="brand-text font-weight-light">Real Property</span>
+            </a>
+
+            <div class="sidebar">
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        <img th:src="@{/img/admin/tdviet.png}" class="img-circle elevation-2" alt="User Image">
+                    </div>
+                    <div class="info">
+                        <a href="" class="d-block">Tran Duc Viet</a>
+                    </div>
+                </div>
+
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <li class="nav-item" layout:fragment="sb-dashboard">
+                            <a href="/admin/dashboard" class="nav-link">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>
+                                    Dashboard
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item has-treeview" layout:fragment="sb-employee">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-user"></i>
+                                <p>
+                                    Employee
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="/admin/list-employee" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>List Employee</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/admin/add-employee" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Add Employee</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item has-treeview" layout:fragment="sb-property">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-building"></i>
+                                <p>
+                                    Property
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="/admin/list-property" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>List Property</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item has-treeview">
+                                    <a href="#" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>
+                                            Filter
+                                            <i class="right fas fa-angle-left"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <a href="/admin/apartments-for-sale" class="nav-link">
+                                                <i class="far fa-dot-circle nav-icon"></i>
+                                                <p>Apartments For Sale</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="/admin/houses-for-sale" class="nav-link">
+                                                <i class="far fa-dot-circle nav-icon"></i>
+                                                <p>Houses For Sale</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="/admin/apartments-for-rent" class="nav-link">
+                                                <i class="far fa-dot-circle nav-icon"></i>
+                                                <p>Apartments For Rent</p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="/admin/houses-for-rent" class="nav-link">
+                                                <i class="far fa-dot-circle nav-icon"></i>
+                                                <p>Houses For Rent</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/admin/add-property" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Add New Property</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-chart-pie"></i>
+                                <p>
+                                    Level 1
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Level 2</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Level 2</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
         </aside>
+
         <div class="content-wrapper">
-            <section class="content-header" layout:fragment="header"></section>
+            <div class="content-header" layout:fragment="header">
+                Page header
+            </div>
 
-            <section class="content">
-                <div th:if="${successFlash != null}" class="alert alert-success alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                    <p th:text="${successFlash}"></p>
-                </div>
-
-                <div th:if="${errorFlash != null}" class="alert alert-danger alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                    <p th:text="${errorFlash}"></p>
-                </div>
-
-                <div th:if="${infoFlash != null}" class="alert alert-info alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                    <p th:text="${infoFlash}"></p>
-                </div>
-
-                <div layout:fragment="content"></div>
+            <section class="content" layout:fragment="content">
+                Main content
             </section>
         </div>
+
         <footer class="main-footer">
-            <strong>Copyright &copy; 2020 Spring Boot - Real Property.</strong>
+            <strong>Copyright &copy; 2020 <a href="http://localhost:9191">Real Property</a>.</strong>
+            All rights reserved.
+            <div class="float-right d-none d-sm-inline-block">
+                <b>Version</b> 1.0.0
+            </div>
         </footer>
     </div>
-    <script th:src="@{/js/admin/jquery/jQuery-2.2.0.min.js}"></script>
-    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <script th:src="@{/js/admin/jquery/jquery.min.js}"></script>
+    <script th:src="@{/js/admin/jquery-ui/jquery-ui.min.js}"></script>
     <script>
-        $.widget.bridge('uibutton', $.ui.button);
+        $.widget.bridge('uibutton', $.ui.button)
     </script>
-    <script th:src="@{/js/admin/bootstrap/bootstrap.min.js}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-    <script th:src="@{/js/admin/morris/morris.min.js}"></script>
-    <script th:src="@{/js/admin/sparkline/jquery.sparkline.min.js}"></script>
-    <script th:src="@{/js/admin/jvectormap/jquery-jvectormap-1.2.2.min.js}"></script>
-    <script th:src="@{/js/admin/jvectormap/jquery-jvectormap-world-mill-en.js}"></script>
-    <script th:src="@{/js/admin/knob/jquery.knob.js}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+    <script th:src="@{/js/admin/bootstrap/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/js/admin/datatables/js/jquery.dataTables.min.js}"></script>
+    <script th:src="@{/js/admin/datatables-bs4/dataTables.bootstrap4.min.js}"></script>
+    <script th:src="@{/js/admin/datatables-responsive/dataTables.responsive.min.js}"></script>
+    <script th:src="@{/js/admin/datatables-responsive/responsive.bootstrap4.min.js}"></script>
+    <script th:src="@{/js/admin/chart.js/Chart.min.js}"></script>
+    <script th:src="@{/js/admin/sparklines/sparkline.js}"></script>
+    <script th:src="@{/js/admin/jqvmap/jquery.vmap.min.js}"></script>
+    <script th:src="@{/js/admin/jqvmap/maps/jquery.vmap.usa.js}"></script>
+    <script th:src="@{/js/admin/jquery-knob/jquery.knob.min.js}"></script>
+    <script th:src="@{/js/admin/moment/moment.min.js}"></script>
     <script th:src="@{/js/admin/daterangepicker/daterangepicker.js}"></script>
-    <script th:src="@{/js/admin/datepicker/bootstrap-datepicker.js}"></script>
-    <script th:src="@{/js/admin/validator.min.js}"></script>
-    <script th:src="@{/js/admin/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.js}"></script>
-    <script th:src="@{/js/admin/slimscroll/jquery.slimscroll.js}"></script>
-    <script th:src="@{/js/admin/fastclick/fastclick.js}"></script>
-    <script th:src="@{/js/admin/adminlte/app.js}"></script>
+    <script th:src="@{/js/admin/tempusdominus-bootstrap-4/tempusdominus-bootstrap-4.min.js}"></script>
+    <script th:src="@{/js/admin/summernote/summernote-bs4.min.js}"></script>
+    <script th:src="@{/js/admin/overlayScrollbars/jquery.overlayScrollbars.min.js}"></script>
+    <script th:src="@{/js/admin/bs-custom-file-input/js/bs-custom-file-input.min.js}"></script>
+    <script th:src="@{/js/admin/adminlte/adminlte.js}"></script>
     <script th:src="@{/js/admin/adminlte/pages/dashboard.js}"></script>
     <script th:src="@{/js/admin/adminlte/demo.js}"></script>
+    <script>
+        $(function () {
+            $("#dataTable").DataTable({
+                "responsive": true,
+                "autoWidth": false,
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            bsCustomFileInput.init();
+        });
+    </script>
 </body>
 </html>

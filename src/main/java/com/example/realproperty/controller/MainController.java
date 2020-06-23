@@ -1,10 +1,16 @@
 package com.example.realproperty.controller;
 
+import com.example.realproperty.service.EmployeeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class MainController {
+
+    @Autowired
+    private EmployeeService employeeService;
 
     @GetMapping("/")
     public String index() {
@@ -22,7 +28,9 @@ public class MainController {
     }
 
     @GetMapping("/admin/dashboard")
-    public String dashboard() {
+    public String dashboard(Model model) {
+        int count = employeeService.getAllEmployee().size();
+        model.addAttribute("number", count);
         return "admin/dashboard";
     }
 

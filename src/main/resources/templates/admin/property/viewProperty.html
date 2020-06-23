@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="admin/layout">
+<head>
+    <title>Property Information</title>
+</head>
+<body>
+    <div layout:fragment="header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Property Information</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/admin/list-property">List Property</a></li>
+                        <li class="breadcrumb-item active">Property Information</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section layout:fragment="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card card-primary">
+                        <div class="card-body box-profile">
+                            <strong><i class="fas fa-building mr-1"></i> Name</strong>
+                            <p class="text-muted" th:text="${getProperty.name}"></p>
+
+                            <hr>
+
+                            <strong><i class="fas fa-map-marker-alt mr-1"></i> Address</strong>
+                            <p class="text-muted" th:text="${getProperty.address}"></p>
+
+                            <hr>
+
+                            <strong><i class="fas fa-file-word mr-1"></i> Description</strong>
+                            <p class="text-muted" th:text="${getProperty.description}"></p>
+
+                            <hr>
+
+                            <strong><i class="fas fa-money-bill mr-1"></i> Price</strong>
+                            <p class="text-muted" th:text="${getProperty.price} + ' $'"></p>
+
+                            <hr>
+
+                            <strong><i class="fas fa-cog mr-1"></i> Option</strong>
+                            <p class="text-muted" th:text="${getProperty.option}"></p>
+
+                            <hr>
+
+                            <strong><i class="fas fa-clone mr-1"></i> Type</strong>
+                            <p class="text-muted" th:text="${getProperty.type}"></p>
+
+                            <hr>
+
+                            <strong><i class="fas fa-bed mr-1"></i> Bedroom</strong>
+                            <p class="text-muted" th:text="${getProperty.bedroom} + ' Phòng ngủ'"></p>
+
+                            <hr>
+
+                            <strong><i class="fas fa-bath mr-1"></i> Bathroom</strong>
+                            <p class="text-muted" th:text="${getProperty.bathroom} + ' Phòng tắm'"></p>
+
+                            <hr>
+
+                            <strong><i class="fas fa-square mr-1"></i> Area</strong>
+                            <p class="text-muted" th:text="${getProperty.area} + ' mét vuông'"></p>
+
+                            <hr>
+
+                            <strong><i class="fas fa-briefcase mr-1"></i> Status</strong>
+                            <p class="text-muted" th:text="${getProperty.status}"></p>
+
+                            <hr>
+
+                            <strong><i class="fas fa-calendar-check mr-1"></i> Created Date</strong>
+                            <p class="text-muted" th:text="${#dates.format(getProperty.createdAt, 'dd/MM/yyyy')}"></p>
+
+                            <hr>
+
+                            <strong><i class="fas fa-calendar-times mr-1"></i> Updated Date</strong>
+                            <p class="text-muted" th:text="${#dates.format(getProperty.updatedAt, 'dd/MM/yyyy')}"></p>
+
+                            <hr>
+
+                            <a th:href="@{'/admin/update-property/' + ${getProperty.id}}" class="btn btn-primary col-md-2"><b>Edit</b></a>
+                            <a href="/admin/list-property" class="btn btn-default col-md-2 float-right"><b>Back</b></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <img class="img-fluid" th:src="@{'/property-thumbnail/' + ${getProperty.id}}" alt="Thumbnail picture">
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

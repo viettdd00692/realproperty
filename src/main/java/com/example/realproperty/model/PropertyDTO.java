@@ -1,6 +1,7 @@
 package com.example.realproperty.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class PropertyDTO implements Serializable {
 
@@ -10,25 +11,29 @@ public class PropertyDTO implements Serializable {
 
     private String name;
 
-    private String type;
-
-    private String option;
-
     private String address;
-
-    private String image;
 
     private String description;
 
-    private int bedroom;
+    private Integer price;
 
-    private int bathroom;
+    private String option;
 
-    private int area;
+    private String type;
 
-    private double price;
+    private Integer bedroom;
+
+    private Integer bathroom;
+
+    private Integer area;
+
+    private String thumbnail;
 
     private String status;
+
+    private Date createdAt;
+
+    private Date updatedAt;
 
     public PropertyDTO() {
 
@@ -55,36 +60,12 @@ public class PropertyDTO implements Serializable {
         this.name = name;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getOption() {
-        return option;
-    }
-
-    public void setOption(String option) {
-        this.option = option;
-    }
-
     public String getAddress() {
         return address;
     }
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
     }
 
     public String getDescription() {
@@ -95,36 +76,60 @@ public class PropertyDTO implements Serializable {
         this.description = description;
     }
 
-    public int getBedroom() {
-        return bedroom;
-    }
-
-    public void setBedroom(int bedroom) {
-        this.bedroom = bedroom;
-    }
-
-    public int getBathroom() {
-        return bathroom;
-    }
-
-    public void setBathroom(int bathroom) {
-        this.bathroom = bathroom;
-    }
-
-    public int getArea() {
-        return area;
-    }
-
-    public void setArea(int area) {
-        this.area = area;
-    }
-
-    public double getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Integer price) {
         this.price = price;
+    }
+
+    public String getOption() {
+        return option;
+    }
+
+    public void setOption(String option) {
+        this.option = option;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Integer getBedroom() {
+        return bedroom;
+    }
+
+    public void setBedroom(Integer bedroom) {
+        this.bedroom = bedroom;
+    }
+
+    public Integer getBathroom() {
+        return bathroom;
+    }
+
+    public void setBathroom(Integer bathroom) {
+        this.bathroom = bathroom;
+    }
+
+    public Integer getArea() {
+        return area;
+    }
+
+    public void setArea(Integer area) {
+        this.area = area;
+    }
+
+    public String getThumbnail() {
+        return thumbnail;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
     }
 
     public String getStatus() {
@@ -133,6 +138,22 @@ public class PropertyDTO implements Serializable {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
 }

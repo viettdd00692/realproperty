@@ -1,26 +1,111 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="admin/layout">
 <head>
-    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
     <title>Update Employee</title>
+    <style>
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            margin: 0;
+        }
+    </style>
 </head>
 <body>
-    <div>
-        <h1>Update Employee</h1>
-        <form th:object="${updateEmployeeForm}" th:action="@{/admin/update-employee}" method="post">
-            <input type="hidden" th:field="*{id}">
-            <div>
-                <label th:text="Fullname" th:for="fullname"></label>
-                <input type="text" required="required" th:field="*{fullname}" placeholder="Fullname"/>
+    <div layout:fragment="header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Add New Employee</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/admin/list-employee">List Employee</a></li>
+                        <li class="breadcrumb-item active">Update Employee</li>
+                    </ol>
+                </div>
             </div>
-
-            <div>
-                <label th:text="Avatar" th:for="avatar"></label>
-                <input type="text" required="required" th:field="*{avatar}" placeholder="Avatar"/>
-            </div>
-
-            <input type="submit" value="Save"/>
-        </form>
+        </div>
     </div>
+
+    <section layout:fragment="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card card-primary">
+                        <form role="form" th:object="${updateEmployeeForm}" th:action="@{/admin/update-employee}" method="post" enctype="multipart/form-data">
+                            <div class="card-body">
+                                <input type="hidden" th:field="*{id}">
+                                <div class="form-group">
+                                    <label th:for="fullname">Full Name</label>
+                                    <input type="text" class="form-control" required="required" th:field="*{fullname}" placeholder="Enter full name">
+                                </div>
+                                <div class="form-group">
+                                    <label th:for="address">Address</label>
+                                    <input type="text" class="form-control" required="required" th:field="*{address}" placeholder="Enter address">
+                                </div>
+                                <div class="form-group">
+                                    <label th:for="phone">Phone</label>
+                                    <input type="number" class="form-control" required="required" th:field="*{phone}" placeholder="Enter phone number">
+                                </div>
+                                <div class="form-group">
+                                    <label th:for="email">Email</label>
+                                    <input type="email" class="form-control" required="required" th:field="*{email}" placeholder="Enter email">
+                                </div>
+                                <div class="form-group">
+                                    <label th:for="birthdate">Birthdate</label>
+                                    <input type="date" class="form-control" required="required" th:field="*{birthdate}" placeholder="Enter birthdate">
+                                </div>
+                                <div class="form-group">
+                                    <label th:for="position">Position</label>
+                                    <select class="form-control" required="required" th:field="*{position}">
+                                        <option th:value="''"></option>
+                                        <option th:value="'Quản lý'">Quản lý</option>
+                                        <option th:value="'Nhân viên'">Nhân viên</option>
+                                        <option th:value="'Thực tập'">Thực tập</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label th:for="salary">Salary</label>
+                                    <input type="number" class="form-control" required="required" th:field="*{salary}" placeholder="Enter salary">
+                                </div>
+                                <div class="form-group">
+                                    <label for="avatar">Avatar</label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" name="file" class="custom-file-input" id="avatar">
+                                            <label class="custom-file-label" for="avatar">Choose file</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label th:for="joinDate">Join Date</label>
+                                    <input type="date" class="form-control" required="required" th:field="*{joinDate}" placeholder="Enter join date">
+                                </div>
+                                <div class="form-group">
+                                    <label th:for="resignDate">Resign Date</label>
+                                    <input type="date" class="form-control" th:field="*{resignDate}" placeholder="Enter resign date">
+                                </div>
+                                <div class="form-group">
+                                    <label th:for="status">Status</label>
+                                    <select class="form-control" required="required" th:field="*{status}">
+                                        <option th:value="Standby">Standby</option>
+                                        <option th:value="Active">Active</option>
+                                        <option th:value="Resign">Resign</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <a href="/admin/list-employee" class="btn btn-default col-md-2 float-right"><b>Back</b></a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
