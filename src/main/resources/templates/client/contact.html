@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="client/layout :: head">
+    <meta charset="UTF-8">
+    <title>Nhà đất bán</title>
+</head>
+<body>
+<nav th:replace="client/layout :: header"></nav>
+
+<div class="container" style="margin-bottom:60px;">
+    <div class="row">
+
+
+
+        <div class="col-6">
+            <div class="row">
+                <div class="col-12">
+                    <span style="margin-bottom: 9px;">
+        <span style="font-size: 24px;
+    font-weight: 600;">Liên hệ</span>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3711.2229616809955!2d105.7808764295758!3d21.02838895670589!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313454b32ecb92db%3A0x3964e6238a3bd088!2zOCBUw7RuIFRo4bqldCBUaHV54bq_dCwgTeG7uSDEkMOsbmgsIEPhuqd1IEdp4bqleSwgSMOgIE7hu5lpLCBWaWV0bmFt!5e0!3m2!1sen!2s!4v1536909314057" class="padding-top-15" width="100%" height="370" frameborder="0" style="border:0" allowfullscreen></iframe>
+                </div>
+                <div class="col-12 padding-top-50" style="margin-top: 22px">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span class="lh-text">8 Tôn Thất Thuyết ,Hà Nội</span>
+                </div>
+
+                <div class="col-12 padding-top-15">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span class="lh-text">0123 456 789</span>
+                </div>
+
+                <div class="col-12 padding-top-15">
+                    <i class="fas fa-envelope"></i>
+                    <span class="lh-text">RealProperty@gmail.com</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="row" style="margin-left: 10px;">
+                <form>
+                <div class="col-12" style="margin-bottom: 9px;">
+                <span style="font-size: 24px;
+                    font-weight: 600;">Phản hồi của khách hàng</span>
+                </div>
+
+                <div class="col-12"style="">
+
+                        <span style="font-weight: 600;">Họ và tên</span><br>
+                        <input type="text" placeholder="Họ và tên" class="ph-item" style="margin-top: 10px;margin-bottom: 15px;padding-left:20px;" required="">
+                </div>
+                <div class="col-12">
+                    <span style="font-weight: 600;">Email</span><br>
+                    <input type="email" placeholder="Email" class="ph-item"style="margin-top: 10px;margin-bottom: 15px;padding-left:20px;" required="">
+                </div>
+                <div class="col-12">
+                    <span style="font-weight: 600;">Phản hồi của khách hàng</span><br>
+                    <input type="text"  class="ph-item"style="margin-top: 10px;padding-bottom: 75px;
+                         padding-left: 20px;">
+                </div>
+                <button class="lh-btn" type="submit" >Gửi</button>
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+<footer th:replace="client/layout :: footer"></footer>
+
+</body>
+</html>

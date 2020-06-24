@@ -1357,15 +1357,19 @@ footer hr {
 }
 
 .header-service {
+    /*background: #473E70;*/
+    /*height: 85px;*/
+    /*padding: 12.1px 26px;*/
     background: #473E70;
     height: 85px;
-    padding: 12.1px 26px;
+    text-align: center;
+    padding-top: 28px;
 }
 
 .body-service {
     background: white;
     border: 1px solid #473E70;
-    height: 780px;
+    height: 420px;
     padding: 20.6px 25px;
 }
 

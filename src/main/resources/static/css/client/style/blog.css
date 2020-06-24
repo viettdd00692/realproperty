@@ -1,0 +1,250 @@
+.phase1 {
+    border: 0px solid #707070;
+    width: 100%;
+    height: 640px;
+}
+
+.padding-top-60 {
+    padding-top: 60px;
+}
+
+
+
+.text {
+    font-family: 'Montserrat', sans-serif;
+    color: #484848;
+    font-size: 20px;
+    text-align: center;
+}
+
+.news {
+
+    float: left;
+    width: 125px;
+    height: 58px;
+    background-color: #fff;
+    border: 2px solid #464878;
+    border-radius: 25px;
+    margin-left: 130px;
+    margin-right: 15px;
+    white-space: nowrap;
+    display: block;
+    text-align: center;
+}
+
+.experience {
+    display: inline-block;
+    float: left;
+    width: 172px;
+    height: 58px;
+    background-color: #fff;
+    border: 2px solid #464878;
+    border-radius: 25px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.tips {
+    display: inline-block;
+    float: left;
+    width: 119px;
+    height: 58px;
+    background-color: #fff;
+    border: 2px solid #464878;
+    border-radius: 25px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.blogsearch-box {
+    display: inline-block;
+    text-align: left;
+    width: 344px;
+    height: 58px;
+    padding: 12px 0px;
+    padding-left: 11px;
+    border: 2px solid #464878;
+    border-radius: 25px;
+    top: 43px;
+    margin-left: 40px;
+}
+
+
+.blogsearch-box input {
+    display: inline-block;
+    float: left;
+    border: none;
+    width: calc(100% - 110px);
+    font-family: 'Montserrat', sans-serif;
+    color: #B7B7B7;
+    font-size: 20px;
+    padding-left: 25px;
+    padding-right: 15px;
+}
+
+.blogsearch-box button {
+    display: inline-block;
+    float: left;
+    width: 110px;
+    height: 58px;
+    border: 2px solid #464878;
+    background: #464878;
+    color: #fff;
+    border-radius: 0 25px 25px 0;
+    margin-top: -14px;
+}
+
+
+
+.padding-top-30 {
+    padding-top: 30px;
+}
+
+.blog-box {
+    border: 0px solid #707070;
+    width: 100%;
+    height: 292px;
+    background: #A7A4A4;
+    border-radius: 5px 5px 0 0;
+}
+
+.blog-box-below {
+    border: 0px solid #707070;
+    width: 100%;
+    height: 285px;
+    background: #F9F9F9;
+    border-radius: 0 0 15px 15px;
+}
+
+.text1 {
+    font-family: 'Montserrat', sans-serif;
+    color: #AAAAAA;
+    font-size: 17px;
+    text-align: center;
+}
+
+.text2 {
+    font-family: 'Montserrat', sans-serif;
+    color: #5B5959;
+    font-size: 16px;
+    text-align: left;
+    padding-left: 10px;
+}
+
+
+
+.padding-top-20 {
+    padding-top: 20px;
+}
+
+.blog-box-below button {
+    border: 0px solid #707070;
+    width: 117px;
+    height: 41px;
+    color: #fff;
+    font-size: 12px;
+    background: #464878;
+    border-radius: 5px;
+    margin-left: 118px;
+    margin-top: 20px;
+}
+
+.final button {
+    border: 1px solid #707070;
+    border-radius: 10px;
+    color: #fff;
+    background: #473D6F;
+    width: 100%;
+    height: 50px;
+    text-align: center;
+}
+
+
+.text-popup .text-show-day {
+    color: #ccc;
+    font-size: 11px;
+    font-style: italic;
+    padding-top: 90px;
+    padding-left: 32px;
+}
+
+.text-popup {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.blog-title {
+    color: #464878;
+    font-size: 20px;
+    font-weight: 700;
+    position: absolute;
+    padding: 30px;
+}
+
+.blog-intro {
+    font-size: 13px;
+    display: block;
+    margin-bottom: 10px;
+    line-height: 2;
+    color: #000;
+    font-weight: 500;
+    text-align: justify;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.blog-content {
+    font-size: 14px;
+    color: #000;
+    padding-top: 25px;
+    text-align: justify;
+    padding: 0 30px 30px 30px;
+    line-height: 2;
+}
+
+.model-content-img {
+    width: 90%;
+    display: block;
+    height: auto;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.blog-box img {
+    width: 100%;
+    height: 292px;
+    border-radius: 5px 5px 0 0;
+}
+
+.read-more-button {
+    border: 1px solid transparent;
+    background: #464878;
+    width: 117px;
+    height: 41px;
+    border-radius: 5px;
+    margin-left: 120px;
+    margin-top: 30px;
+}
+
+.read-more-button a {
+    font-size: 12px;
+    color: #fff !important;
+    text-align: center;
+    display: block;
+    padding-top: 10px;
+}
+
+.blogdetail {
+    background-color: #EBEBEB;
+}
+
+.text-popup {
+    width: 70%;
+    margin: 30px auto;
+    position: relative;
+    background-color: #fff;
+    top: 30px;
+}
+
+.padding-bottom-30 {
+    padding-bottom: 30px;
+}

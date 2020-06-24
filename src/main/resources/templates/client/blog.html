@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="client/layout :: head">
+    <meta charset="UTF-8">
+    <title>Nhà đất bán</title>
+</head>
+<body>
+<nav th:replace="client/layout :: header"></nav>
+
+<div class="phase1">
+    <img th:src="@{/img/client/vinhome.jpg}" class="background-img" alt="Alternate Text" />
+</div>
+
+<div class="container padding-top-60 blogBox">
+    <div class="row">
+        <div class="col-md-4" th:each="blog: ${blogs}" style="margin-bottom:50px;">
+            <div class="blog-box">
+                <img th:src="@{${'/img/client/' + blog.image}}" alt="#" class="img-fluid" />
+            </div>
+            <div class="blog-box-below">
+                <p class="text padding-top-20" th:text="${blog.title}"></p>
+                <p class="text2" th:text="${blog.des}"></p>
+               <div class="read-more-button"> <a th:href="@{/blogdetail?id={id}(id=${blog.id})}">Đọc tiếp</a></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="client/layout :: footer"></footer>
+
+</body>
+</html>
