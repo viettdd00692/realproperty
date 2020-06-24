@@ -44,4 +44,9 @@ public class MainController {
         return "client/houseforsell";
     }
 
+    @GetMapping("/contact")
+    public String contact() {
+        return "client/contact";
+    }
+
 }
