@@ -13,61 +13,67 @@
 <div class="container">
     <div class="row apartment-detail-body">
         <div class="col-md-7">
-            <div class="sm-text">Mã căn hộ</div>
+            <div class="sm-text" th:text="${getProperty.name}"></div>
 <!--            <div class="title-detail-apartment">-->
 <!--                Khu đô thị Royal City , Thượng Đình, Thanh Xuân, Hà Nội, Việt Nam-->
 <!--            </div>-->
-            <div class="address-detail-apartment">
-                Khu đô thị Royal City , Thượng Đình, Thanh Xuân, Hà Nội, Việt Nam
+            <div class="address-detail-apartment" th:text="${getProperty.address}">
+
             </div>
             <div class="facilities-detail-apartment">
                 <div class="facility-detail-apartment">
                     <img th:src="@{/img/client/canho.png}" class="thumbnail-facility" alt="Alternate Text"/>
-                    <p class="text-center facility-text">Căn hộ</p>
+                    <p class="text-center facility-text" th:text="${getProperty.type}"></p>
                 </div>
                 <div class="facility-detail-apartment">
                     <img th:src="@{/img/client/phongngu.png}" class="thumbnail-facility" alt="Alternate Text"/>
-                    <p class="text-center facility-text">2 phòng ngủ</p>
+                    <p class="text-center facility-text" th:text="${getProperty.bedroom} + ' phòng ngủ'"></p>
                 </div>
                 <div class="facility-detail-apartment">
                     <img th:src="@{/img/client/phongtam.png}" class="thumbnail-facility" alt="Alternate Text"/>
-                    <p class="text-center facility-text">2 phòng tắm</p>
+                    <p class="text-center facility-text" th:text="${getProperty.bathroom} + ' phòng tắm'"></p>
                 </div>
                 <div class="facility-detail-apartment">
                     <img th:src="@{/img/client/dientich.png}" class="thumbnail-facility" alt="Alternate Text"/>
-                    <p class="text-center facility-text">100 m<sup>2</sup></p>
+                    <p class="text-center facility-text"><span th:text="${getProperty.area}"></span> m<sup>2</sup></p>
                 </div>
 
             </div>
         </div>
 
-        <form class="col-md-5 apartment-detail-service" ng-submit="submitApartment()" ng-click="changeService()">
+        <form th:object="${addClientForm}" method="post">
             <div class="header-service">
                 <p class="label-service">Đăng ký tư vấn</p>
-
             </div>
             <div class="body-service">
                 <div class="row" style="margin-left: 10px;">
-                    <form>
+                    <div class="col-12">
+                        <span style="font-weight: 600;">Họ và tên</span><br>
+                        <input type="text" th:field="*{fullname}" placeholder="Họ và tên" class="ph-item" style="margin-top: 10px;margin-bottom: 15px;padding-left:20px;" required="">
+                    </div>
 
+                    <div class="col-12">
+                        <span style="font-weight: 600;">Email</span><br>
+                        <input type="email" th:field="*{email}" placeholder="Email" class="ph-item"style="margin-top: 10px;margin-bottom: 15px;padding-left:20px;" required="">
+                    </div>
 
-                        <div class="col-12">
+                    <div class="col-12">
+                        <span style="font-weight: 600;">Số điện thoại</span><br>
+                        <input type="number" th:field="*{phone}" placeholder="Số điện thoại" class="ph-item"style="margin-top: 10px;margin-bottom: 15px;padding-left:20px;" required="">
+                    </div>
 
-                            <span style="font-weight: 600;">Họ và tên</span><br>
-                            <input type="text" placeholder="Họ và tên" class="ph-item" style="margin-top: 10px;margin-bottom: 15px;padding-left:20px;" required="">
-                        </div>
-                        <div class="col-12">
-                            <span style="font-weight: 600;">Email</span><br>
-                            <input type="email" placeholder="Email" class="ph-item"style="margin-top: 10px;margin-bottom: 15px;padding-left:20px;" required="">
-                        </div>
-                        <div class="col-12">
-                            <span style="font-weight: 600;">Số điện thoại</span><br>
-                            <input type="phone" placeholder="Số điện thoại" class="ph-item"style="margin-top: 10px;margin-bottom: 15px;padding-left:20px;" required="">
-                        </div>
-                        <button class="lh-btn" type="submit" >Gửi yêu cầu tư vấn</button>
-                    </form>
+                    <div class="col-12">
+                        <span style="font-weight: 600;">Ngày hẹn</span><br>
+                        <input type="date" th:field="*{appointmentDate}" placeholder="Số điện thoại" class="ph-item"style="margin-top: 10px;margin-bottom: 15px;padding-left:20px;" required="">
+                    </div>
+
+                    <div class="col-12">
+                        <span style="font-weight: 600;">id</span><br>
+                        <input type="number" th:field="*{propertyId}" placeholder="id" class="ph-item"style="margin-top: 10px;margin-bottom: 15px;padding-left:20px;" required="">
+                    </div>
+
+                    <button class="lh-btn" type="submit" >Gửi yêu cầu tư vấn</button>
                 </div>
-
             </div>
         </form>
     </div>

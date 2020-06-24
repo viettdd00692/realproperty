@@ -40,14 +40,14 @@ public class MainController {
         return "admin/dashboard";
     }
 
-    @GetMapping("/houseforrent")
-    public String houseforrent() {
-        return "client/houseforrent";
+    @GetMapping("/property-for-rent")
+    public String propertyforrent() {
+        return "client/propertyforrent";
     }
 
-    @GetMapping("/houseforsell")
-    public String houseforsell() {
-        return "client/houseforsell";
+    @GetMapping("/property-for-sell")
+    public String propertyforsell() {
+        return "client/propertyforsell";
     }
 
     @GetMapping("/contact")
