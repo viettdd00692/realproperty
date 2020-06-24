@@ -1,6 +1,7 @@
 package com.example.realproperty.controller;
 
 import com.example.realproperty.model.EmployeeDTO;
+import com.example.realproperty.service.ClientService;
 import com.example.realproperty.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -24,6 +25,9 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
+    @Autowired
+    private ClientService clientService;
+
     private String UPLOAD_DIR = "D:\\SpringBoot\\realproperty\\src\\main\\resources\\static\\img\\admin\\";
 
     @InitBinder
@@ -46,6 +50,7 @@ public class EmployeeController {
 
     @GetMapping("/admin/add-employee")
     private String add(Model model) {
+        model.addAttribute("listClient", clientService.getAllClient());
         model.addAttribute("addEmployeeForm", new EmployeeDTO());
         return "admin/employee/addEmployee";
     }

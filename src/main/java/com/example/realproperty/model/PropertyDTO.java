@@ -36,7 +36,6 @@ public class PropertyDTO implements Serializable {
     private Date updatedAt;
 
     public PropertyDTO() {
-
     }
 
     public PropertyDTO(int id) {

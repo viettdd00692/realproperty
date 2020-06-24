@@ -55,6 +55,10 @@ public class Employee implements Serializable {
     @Column(name = "status")
     private String status;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "client_id")
+    private Client client;
+
     public Employee() {
         super();
     }
@@ -160,4 +164,11 @@ public class Employee implements Serializable {
         this.status = status;
     }
 
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
 }
