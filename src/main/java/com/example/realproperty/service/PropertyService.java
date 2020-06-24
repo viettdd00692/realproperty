@@ -30,4 +30,8 @@ public interface PropertyService {
     List<PropertyDTO> getHouseForRent();
 
     List<PropertyDTO> getHouseForRentByStatus(String status);
+
+    List<PropertyDTO> getSellProperty();
+
+    List<PropertyDTO> getHireProperty();
 }

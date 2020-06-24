@@ -1,6 +1,7 @@
 package com.example.realproperty.controller;
 
 import com.example.realproperty.service.EmployeeService;
+import com.example.realproperty.service.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,8 +13,13 @@ public class MainController {
     @Autowired
     private EmployeeService employeeService;
 
+    @Autowired
+    private PropertyService propertyService;
+
     @GetMapping("/")
-    public String index() {
+    public String index(Model model) {
+        model.addAttribute("listSellProperty", propertyService.getSellProperty());
+        model.addAttribute("listHireProperty", propertyService.getHireProperty());
         return "client/index";
     }
 

@@ -89,4 +89,26 @@ public class PropertyDaoImpl implements PropertyDao {
         return entityManager.createQuery(criteriaQuery).getResultList();
     }
 
+    @Override
+    public List<Property> getSellProperty() {
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Property> criteriaQuery = builder.createQuery(Property.class);
+        Root<Property> root = criteriaQuery.from(Property.class);
+        criteriaQuery.select(root);
+        criteriaQuery.where(builder.equal(root.get("option"), "Mua"));
+
+        return entityManager.createQuery(criteriaQuery).getResultList();
+    }
+
+    @Override
+    public List<Property> getHireProperty() {
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Property> criteriaQuery = builder.createQuery(Property.class);
+        Root<Property> root = criteriaQuery.from(Property.class);
+        criteriaQuery.select(root);
+        criteriaQuery.where(builder.equal(root.get("option"), "Thuê"));
+
+        return entityManager.createQuery(criteriaQuery).getResultList();
+    }
+
 }

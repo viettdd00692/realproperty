@@ -20,4 +20,8 @@ public interface PropertyDao {
     List<Property> getApartmentForRent();
 
     List<Property> getHouseForRent();
+
+    List<Property> getSellProperty();
+
+    List<Property> getHireProperty();
 }

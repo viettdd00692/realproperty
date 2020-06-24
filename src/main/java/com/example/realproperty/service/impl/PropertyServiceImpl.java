@@ -212,4 +212,28 @@ public class PropertyServiceImpl implements PropertyService {
         return propertyDTOs;
     }
 
+    @Override
+    public List<PropertyDTO> getSellProperty() {
+        List<Property> properties = propertyDao.getSellProperty();
+        List<PropertyDTO> propertyDTOs = new ArrayList<PropertyDTO>();
+        properties.forEach(property -> {
+            if (property.getStatus().equalsIgnoreCase("Available") || property.getStatus().equalsIgnoreCase("Negotiation")) {
+                propertyDTOs.add(toDto(property));
+            }
+        });
+        return propertyDTOs;
+    }
+
+    @Override
+    public List<PropertyDTO> getHireProperty() {
+        List<Property> properties = propertyDao.getHireProperty();
+        List<PropertyDTO> propertyDTOs = new ArrayList<PropertyDTO>();
+        properties.forEach(property -> {
+            if (property.getStatus().equalsIgnoreCase("Available") || property.getStatus().equalsIgnoreCase("Negotiation")) {
+                propertyDTOs.add(toDto(property));
+            }
+        });
+        return propertyDTOs;
+    }
+
 }
