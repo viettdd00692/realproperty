@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -36,9 +37,13 @@ public class ApartmentController {
         return "client/apartmentdetail";
     }
 
+
+
     @PostMapping("/apartment-detail/{id}")
-    private String add(@ModelAttribute(name = "addClientForm") ClientDTO clientDTO, @PathVariable(name = "id") int id) {
+    private String add(@ModelAttribute(name = "addClientForm") ClientDTO clientDTO, @PathVariable(name = "id") int id , RedirectAttributes redirect) {
+
         clientService.addClient(clientDTO);
+        redirect.addFlashAttribute("successMessage", "Saved contact successfully!");
         return "redirect:{id}";
     }
 }
