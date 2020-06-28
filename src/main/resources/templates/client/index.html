@@ -37,9 +37,9 @@
                     Câu chuyện của Real Property
                 </div>
                 <div style="margin-top: 30px;font-size: 19px;line-height: 2" >
-                    <span>Từ sâu trong trái tim, chúng tôi tin rằng, an cư lập nghiệp tại một đất nước mới nên là trải nghiệm tuyệt vời, đáng nhớ, và Property Plus luôn cố gắng đem đến cho những người bạn Quốc tế không gian sống đầy tiện nghi, sang trọng, thoải mái và cảm giác được đón chào ngay từ khoảnh khắc bước chân qua cánh cửa.</span><br>
+                    <span>Từ sâu trong trái tim, chúng tôi tin rằng, an cư lập nghiệp tại một đất nước mới nên là trải nghiệm tuyệt vời, đáng nhớ, và Real Property luôn cố gắng đem đến cho những người bạn Quốc tế không gian sống đầy tiện nghi, sang trọng, thoải mái và cảm giác được đón chào ngay từ khoảnh khắc bước chân qua cánh cửa.</span><br>
 
-                    <span>Tại Property Plus, bạn có thể:</span><br>
+                    <span>Tại Real Property, bạn có thể:</span><br>
 
                     <span>Tận hưởng cuộc sống trong cơ sở hạ tầng sang trọng và tiện ích đẳng cấp với chi phí hợp lý.</span><br>
 
@@ -228,7 +228,7 @@
 
                 <div  class="list-choose-home">
                     <div class="row">
-                        <div th:each="property: ${listSellProperty}" class="col-sm-6 col-lg-3 thumbnail-choose-home clearfix">
+                        <div th:each="property: ${listSellProperty}" th:if="${property.id >= listSellProperty.size() - 3}"  class="col-sm-6 col-lg-3 thumbnail-choose-home clearfix">
                             <a th:href="@{'/apartment-detail/' + ${property.id}}" class="slide-choose-home">
                                 <img class="img-full" th:src="@{${'/img/admin/' + property.thumbnail}}" alt="Alternate Text" />
                             </a>
@@ -254,7 +254,7 @@
                     <div class="row">
                         <div class="col-md-4 col-xs-2"></div>
                         <div class="col-md-4  col-xs-8 ">
-                            <a href="/houseforrent"  class="box-shadow">Xem thêm</a>
+                            <a href="/property-for-sell"  class="box-shadow">Xem thêm</a>
                         </div>
                     </div>
                 </div>
@@ -266,12 +266,12 @@
                 </div>
                 <div class="list-choose-home">
                     <div class="row">
-                        <div th:each="property: ${listHireProperty}" class="col-sm-6 col-lg-3 thumbnail-choose-home clearfix">
-                            <a class="slide-choose-home">
+                        <div th:each="property: ${listHireProperty}" th:if="${property.id >= listHireProperty.size() - 3}" class="col-sm-6 col-lg-3 thumbnail-choose-home clearfix">
+                            <a th:href="@{'/apartment-detail/' + ${property.id}}" class="slide-choose-home">
                                 <img class="img-full" th:src="@{${'/img/admin/' + property.thumbnail}}" alt="Alternate Text" />
                             </a>
                             <div class="choose-home-summary">
-                                <a  class="txt-no-warp choose-home-name">
+                                <a th:href="@{'/apartment-detail/' + ${property.id}}" class="txt-no-warp choose-home-name">
                                     <span th:text="${property.name}"></span>
                                 </a>
                                 <div class="choose-home-detail float-left">
@@ -291,7 +291,7 @@
                     <div class="row">
                         <div class="col-md-4 col-xs-2"></div>
                         <div class="col-md-4  col-xs-8 ">
-                            <a href="/houseforsell" class="box-shadow">Xem thêm</a>
+                            <a href="/property-for-rent" class="box-shadow">Xem thêm</a>
                         </div>
                     </div>
                 </div>

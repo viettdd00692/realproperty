@@ -14,28 +14,25 @@
     </div>
     <div class="list-choose-home">
         <div class="row">
-
-            <div class="col-sm-6 col-lg-3 thumbnail-choose-home clearfix">
-
-                <a href="/apartment-detail" class="slide-choose-home">
-                    <img class="img-full" src="img/client/vinhome.jpg" alt="Alternate Text" />
+            <div th:each="property: ${listHireProperty}" class="col-sm-6 col-lg-3 thumbnail-choose-home clearfix">
+                <a th:href="@{'/apartment-detail/' + ${property.id}}" class="slide-choose-home">
+                    <img class="img-full" th:src="@{${'/img/admin/' + property.thumbnail}}" alt="Alternate Text" />
                 </a>
                 <div class="choose-home-summary">
-                    <a href="/apartment-detail" class="txt-no-warp choose-home-name">
-                        Vinhome royal city
+                    <a th:href="@{'/apartment-detail/' + ${property.id}}" class="txt-no-warp choose-home-name">
+                        <span th:text="${property.name}"></span>
                     </a>
                     <div class="choose-home-detail float-left">
-                        <p>Phòng ngủ : 2 </p>
-                        <p>Hà Nội</p>
+                        <p>Phòng ngủ : <span th:text="${property.bedroom}"></span> </p>
+                        <p>Phòng tắm : <span th:text="${property.bathroom}"></span> </p>
+                        <!--                                    <p th:text="${property.address}"></p>-->
                     </div>
                     <div class="choose-home-price float-right">
                         <span class="text-price-title" >Giá ước tính :</span>
-                        <p class="price">$ <span>1710</span>/<span style="font-size: 12px">tháng</span></p>
+                        <p class="price">$ <span th:text="${property.price}"></span></p>
                     </div>
                 </div>
-
             </div>
-
         </div>
     </div>
 </div>

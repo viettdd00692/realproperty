@@ -18,6 +18,7 @@ public class MainController {
 
     @GetMapping("/")
     public String index(Model model) {
+
         model.addAttribute("listSellProperty", propertyService.getSellProperty());
         model.addAttribute("listHireProperty", propertyService.getHireProperty());
         return "client/index";
@@ -41,12 +42,14 @@ public class MainController {
     }
 
     @GetMapping("/property-for-rent")
-    public String propertyforrent() {
+    public String propertyforrent(Model model) {
+        model.addAttribute("listHireProperty", propertyService.getHireProperty());
         return "client/propertyforrent";
     }
 
     @GetMapping("/property-for-sell")
-    public String propertyforsell() {
+    public String propertyforsell(Model model) {
+        model.addAttribute("listSellProperty", propertyService.getSellProperty());
         return "client/propertyforsell";
     }
 

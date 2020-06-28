@@ -34,6 +34,8 @@ public class ApartmentController {
         model.addAttribute("getProperty", propertyService.getPropertyByID(id));
         model.addAttribute("listProperty", propertyService.getAllProperty());
         model.addAttribute("addClientForm", new ClientDTO());
+        model.addAttribute("listSellProperty", propertyService.getSellProperty());
+        model.addAttribute("listHireProperty", propertyService.getHireProperty());
         return "client/apartmentdetail";
     }
 
@@ -43,7 +45,7 @@ public class ApartmentController {
     private String add(@ModelAttribute(name = "addClientForm") ClientDTO clientDTO, @PathVariable(name = "id") int id , RedirectAttributes redirect) {
 
         clientService.addClient(clientDTO);
-        redirect.addFlashAttribute("successMessage", "Saved contact successfully!");
+        redirect.addFlashAttribute("successMessage", "Send contact successfully!");
         return "redirect:{id}";
     }
 }

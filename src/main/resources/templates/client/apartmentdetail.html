@@ -10,17 +10,23 @@
 <div class="container-fluid header-apartment-detail">
     <img th:src="@{/img/client/vinhome.jpg}" alt="Alternate Text" />
 </div>
+<div th:if="${successMessage}" class="alert alert-success alert-dismissible fade show" role="alert">
+    <span th:text="${successMessage}"></span>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
 <div class="container">
     <div class="row apartment-detail-body">
         <div class="col-md-7">
             <div class="sm-text" th:text="${getProperty.name}"></div>
-<!--            <div class="title-detail-apartment">-->
-<!--                Khu đô thị Royal City , Thượng Đình, Thanh Xuân, Hà Nội, Việt Nam-->
-<!--            </div>-->
-            <div class="address-detail-apartment" th:text="${getProperty.address}">
 
-            </div>
-            <div class="facilities-detail-apartment">
+            <div style="color: #a6a6a6;" class="address-detail-apartment" th:text="${getProperty.address}"></div>
+            <p style="margin-top: 20px;
+    font-size: 18px;"><span th:text="${(getProperty.option == 'Thuê' ? 'Giá thuê : ' : 'Giá bán : ' )}"></span>$<span th:text="${getProperty.price}"></span><span th:text="${(getProperty.option == 'Thuê' ? ' / tháng' : '' )}"></span></p>
+
+
+ <div class="facilities-detail-apartment">
                 <div class="facility-detail-apartment">
                     <img th:src="@{/img/client/canho.png}" class="thumbnail-facility" alt="Alternate Text"/>
                     <p class="text-center facility-text" th:text="${getProperty.type}"></p>
@@ -39,8 +45,10 @@
                 </div>
 
             </div>
-
-
+            <div class="box-widget">
+            <p class="widget-title">Giới thiệu</p>
+<p th:text="${getProperty.description}"></p>
+            </div>
         </div>
 <!--<div class="col-md-5 apartment-detail-service">-->
       <form class="col-md-5 apartment-detail-service" th:object="${addClientForm}" method="post">
@@ -48,7 +56,7 @@
                 <p class="label-service">Đăng ký tư vấn</p>
             </div>
 
-            <div class="body-service" style="margin-bottom: 100px">
+            <div class="body-service">
                 <div class="row" style="margin-left: 10px;">
                     <form th:object="${addClientForm}" method="post">
                     <div class="col-12">
@@ -71,29 +79,180 @@
                         <input type="date" th:field="*{appointmentDate}" placeholder="Số điện thoại" class="ph-item"style="margin-top: 10px;margin-bottom: 15px;padding-left:20px;" required="">
                     </div>
                         <input type="hidden" th:value="${getProperty.id}" name="propertyId" id="propertyId">
-<!--                    <div class="col-12">-->
-<!--                        <span style="font-weight: 600;">id</span><br>-->
-<!--                        <input type="number" th:field="*{propertyId}" placeholder="id" class="ph-item"style="margin-top: 10px;margin-bottom: 15px;padding-left:20px;" required="">-->
-<!--                    </div>-->
 
                     <button class="lh-btn" type="submit" >Gửi yêu cầu tư vấn</button>
                     </form>
-                    <div th:if="${successMessage}" class="alert alert-success alert-dismissible fade show" role="alert">
-                        <span th:text="${successMessage}"></span>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
+
                 </div>
             </div>
+      </form>
 
-     </form>
+        <div class="tour-this-home">
+            <div class="title-apartment-detail">THĂM QUAN NHÀ</div>
+        </div>
+        <div style="margin-bottom: 30px" class="w3-content w3-display-container">
+
+        <img class="mySlides" th:src="@{/img/client/vinhome.jpg}" style="width: 981px;
+    height: 400px;">
+            <img class="mySlides" th:src="@{${'/img/admin/' + getProperty.thumbnail}}" style="width: 981px;
+    height: 400px;">
+<!--            <img class="mySlides" th:src="@{/img/client/vinhome.jpg}" style="width:100%">-->
+<!--            <img class="mySlides" th:src="@{/img/client/chungcu.png}" style="width:100%">-->
+
+            <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+            <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+        </div>
+        <div class="amenities">
+            <div class="title-apartment-detail" >TIỆN NGHI</div>
+            <div  class="amenities-content text-center">
+                <img th:src="@{/img/client/pool.svg}" class="amenities-img" alt="Alternate Text" />
+                <span class="text-facilities m-t-5">Bể bơi</span>
+            </div>
+            <div  class="amenities-content text-center">
+                <img th:src="@{/img/client/atm.svg}" class="amenities-img" alt="Alternate Text" />
+                <span class="text-facilities m-t-5">Máy rút tiền</span>
+            </div>
+            <div  class="amenities-content text-center">
+                <img th:src="@{/img/client/bar.svg}" class="amenities-img" alt="Alternate Text" />
+                <span class="text-facilities m-t-5">Bar</span>
+            </div>
+            <div  class="amenities-content text-center">
+                <img th:src="@{/img/client/camera.svg}" class="amenities-img" alt="Alternate Text" />
+                <span class="text-facilities m-t-5">Camera quan sát</span>
+            </div>
+            <div  class="amenities-content text-center">
+                <img th:src="@{/img/client/cinema.svg}" class="amenities-img" alt="Alternate Text" />
+                <span class="text-facilities m-t-5">Rạp chiếu phim</span>
+            </div>
+            <div  class="amenities-content text-center">
+                <img th:src="@{/img/client/coffe.svg}" class="amenities-img" alt="Alternate Text" />
+                <span class="text-facilities m-t-5">Quán cà phê</span>
+            </div>
+            <div  class="amenities-content text-center">
+                <img th:src="@{/img/client/eleve.svg}" class="amenities-img" alt="Alternate Text" />
+                <span class="text-facilities m-t-5">Thang máy</span>
+            </div>
+            <div  class="amenities-content text-center">
+                <img th:src="@{/img/client/hospital.svg}" class="amenities-img" alt="Alternate Text" />
+                <span class="text-facilities m-t-5">Phòng khám</span>
+            </div>
+            <div  class="amenities-content text-center">
+                <img th:src="@{/img/client/indoor game.svg}" class="amenities-img" alt="Alternate Text" />
+                <span class="text-facilities m-t-5">Trò chơi trong nhà</span>
+            </div>
+            <div  class="amenities-content text-center">
+                <img th:src="@{/img/client/key.svg}" class="amenities-img" alt="Alternate Text" />
+                <span class="text-facilities m-t-5">Thẻ cư dân</span>
+            </div>
+            <div  class="amenities-content text-center">
+                <img th:src="@{/img/client/lounge.svg}" class="amenities-img" alt="Alternate Text" />
+                <span class="text-facilities m-t-5">Phòng chờ</span>
+            </div>
+            <div  class="amenities-content text-center">
+                <img th:src="@{/img/client/mall.svg}" class="amenities-img" alt="Alternate Text" />
+                <span class="text-facilities m-t-5">Trung tâm thương mại</span>
+            </div>
+            <div  class="amenities-content text-center">
+                <img th:src="@{/img/client/market.svg}" class="amenities-img" alt="Alternate Text" />
+                <span class="text-facilities m-t-5">Siêu thị</span>
+            </div>
+            <div  class="amenities-content text-center">
+                <img th:src="@{/img/client/parking.svg}" class="amenities-img" alt="Alternate Text" />
+                <span class="text-facilities m-t-5">Bãi đỗ xe</span>
+            </div>
+            <div  class="amenities-content text-center">
+                <img th:src="@{/img/client/playground.svg}" class="amenities-img" alt="Alternate Text" />
+                <span class="text-facilities m-t-5">Khu vui chơi</span>
+            </div>
+            <div  class="amenities-content text-center">
+                <img th:src="@{/img/client/restaurant.svg}" class="amenities-img" alt="Alternate Text" />
+                <span class="text-facilities m-t-5">Nhà hàng</span>
+            </div>
+            <div  class="amenities-content text-center">
+                <img th:src="@{/img/client/staff.svg}" class="amenities-img" alt="Alternate Text" />
+                <span class="text-facilities m-t-5">Lễ tân</span>
+            </div>
+
+        </div>
+        <div class="col-xs-12 similar-listing">
+            <div class="title-apartment-detail">DANH SÁCH TƯƠNG TỰ</div>
+<div class="row" th:if="${getProperty.option == 'Mua' }">
+    <div th:each="property: ${listSellProperty}" th:if="${property.id >= listSellProperty.size() - 3}"  class="col-sm-6 col-lg-3 thumbnail-choose-home clearfix">
+        <a th:href="@{'/apartment-detail/' + ${property.id}}" class="slide-choose-home">
+            <img class="img-full" th:src="@{${'/img/admin/' + property.thumbnail}}" alt="Alternate Text" />
+        </a>
+        <div class="choose-home-summary">
+            <a th:href="@{'/apartment-detail/' + ${property.id}}" class="txt-no-warp choose-home-name">
+                <span th:text="${property.name}"></span>
+            </a>
+            <div class="choose-home-detail float-left">
+                <p>Phòng ngủ : <span th:text="${property.bedroom}"></span> </p>
+                <p>Phòng tắm : <span th:text="${property.bathroom}"></span> </p>
+                <!--                                    <p th:text="${property.address}"></p>-->
+            </div>
+            <div class="choose-home-price float-right">
+                <span class="text-price-title" >Giá ước tính :</span>
+                <p class="price">$ <span th:text="${property.price}"></span></p>
+            </div>
+        </div>
+    </div>
+
+</div>
+            <div class="row" th:if="${getProperty.option == 'Thuê' }">
+                <div th:each="property: ${listHireProperty}" th:if="${property.id >= listHireProperty.size() - 3}" class="col-sm-6 col-lg-3 thumbnail-choose-home clearfix">
+                    <a th:href="@{'/apartment-detail/' + ${property.id}}" class="slide-choose-home">
+                        <img class="img-full" th:src="@{${'/img/admin/' + property.thumbnail}}" alt="Alternate Text" />
+                    </a>
+                    <div class="choose-home-summary">
+                        <a th:href="@{'/apartment-detail/' + ${property.id}}" class="txt-no-warp choose-home-name">
+                            <span th:text="${property.name}"></span>
+                        </a>
+                        <div class="choose-home-detail float-left">
+                            <p>Phòng ngủ : <span th:text="${property.bedroom}"></span> </p>
+                            <p>Phòng tắm : <span th:text="${property.bathroom}"></span> </p>
+                            <!--                                    <p th:text="${property.address}"></p>-->
+                        </div>
+                        <div class="choose-home-price float-right">
+                            <span class="text-price-title" >Giá ước tính :</span>
+                            <p class="price">$ <span th:text="${property.price}"></span></p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
     </div>
 
 </div>
 
 
-<footer th:replace="client/layout :: footer"></footer>
+<footer th:replace="client/layout :: footer">
+
+</footer>
+
+<script>
+    var slideIndex = 1;
+    showDivs(slideIndex);
+
+    function plusDivs(n) {
+        showDivs(slideIndex += n);
+    }
+
+    function showDivs(n) {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        if (n > x.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = x.length}
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        x[slideIndex-1].style.display = "block";
+    }
+    $(".alert-success").fadeTo(2000, 500).slideUp(500, function() {
+        $(".alert-success").slideUp(500);
+    })
+</script>
 
 </body>
 </html>
