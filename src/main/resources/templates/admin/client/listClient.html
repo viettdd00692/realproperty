@@ -74,7 +74,7 @@
                                     <td th:text="${client.email}"></td>
                                     <td th:text="${client.phone}"></td>
                                     <td th:text="${client.appointmentDate}"></td>
-                                    <td th:text="${client.propertyName}"></td>
+                                    <td><a th:if="${client.propertyId != null}" th:href="@{'/admin/view-property/' + ${client.propertyId}}" th:text="${client.propertyId} + ' - ' + ${client.propertyName}"></a></td>
                                     <td><span class="badge" th:classappend="${(client.status == 'Waiting' ? 'badge-warning' : '' +
                                                                                    client.status == 'Ongoing' ? 'badge-info' : '' +
                                                                                    client.status == 'Fulfill' ? 'badge-success' : '' +

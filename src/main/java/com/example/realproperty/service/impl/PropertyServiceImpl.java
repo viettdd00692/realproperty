@@ -80,7 +80,17 @@ public class PropertyServiceImpl implements PropertyService {
     }
 
     @Override
-    public PropertyDTO getPropertyByID(int id) {
+    public void updatePropertyStatus(PropertyDTO propertyDTO) {
+        Property property = propertyDao.getPropertyByID(propertyDTO.getId());
+        if (property != null) {
+            property.setStatus(propertyDTO.getStatus());
+
+            propertyDao.updateProperty(property);
+        }
+    }
+
+    @Override
+    public PropertyDTO getPropertyByID(Integer id) {
         Property property = propertyDao.getPropertyByID(id);
         PropertyDTO propertyDTO = new PropertyDTO();
 

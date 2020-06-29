@@ -31,7 +31,7 @@ public class PropertyDaoImpl implements PropertyDao {
     }
 
     @Override
-    public Property getPropertyByID(int id) {
+    public Property getPropertyByID(Integer id) {
         return entityManager.find(Property.class, id);
     }
 

@@ -7,7 +7,7 @@ public class EmployeeDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private int id;
+    private Integer id;
 
     private String fullname;
 
@@ -31,23 +31,23 @@ public class EmployeeDTO implements Serializable {
 
     private String status;
 
-    private int clientId;
+    private Integer clientId;
 
     private String clientName;
 
     public EmployeeDTO() {
     }
 
-    public EmployeeDTO(int id) {
+    public EmployeeDTO(Integer id) {
         super();
         this.id = id;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -139,11 +139,11 @@ public class EmployeeDTO implements Serializable {
         this.status = status;
     }
 
-    public int getClientId() {
+    public Integer getClientId() {
         return clientId;
     }
 
-    public void setClientId(int clientId) {
+    public void setClientId(Integer clientId) {
         this.clientId = clientId;
     }
 

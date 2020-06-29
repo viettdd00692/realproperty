@@ -180,6 +180,24 @@
                             </ul>
                         </li>
 
+                        <li class="nav-item has-treeview" layout:fragment="sb-contract">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-file-word"></i>
+                                <p>
+                                    Contract
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="/admin/list-contract" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>List Contract</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-chart-pie"></i>
@@ -262,6 +280,24 @@
         $(document).ready(function () {
             bsCustomFileInput.init();
         });
+    </script>
+    <script type="text/javascript">
+        function calculate()
+        {
+            var dur = $('#duration').val();
+            var option = $('#propertyOption').val();
+            var price = $('#propertyPrice').val();
+            if(option == 'Thuê')
+            {
+                if (dur <= 12) {
+                    var total = (price * 2);
+                    $('#commission').val(total);
+                } else {
+                    var total = (price * 3);
+                    $('#commission').val(total);
+                }
+            }
+        }
     </script>
 </body>
 </html>

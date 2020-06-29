@@ -14,7 +14,7 @@ public class Employee implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(name = "fullname")
     private String fullname;
@@ -63,16 +63,16 @@ public class Employee implements Serializable {
         super();
     }
 
-    public Employee(int id) {
+    public Employee(Integer id) {
         super();
         this.id = id;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -171,4 +171,5 @@ public class Employee implements Serializable {
     public void setClient(Client client) {
         this.client = client;
     }
+
 }

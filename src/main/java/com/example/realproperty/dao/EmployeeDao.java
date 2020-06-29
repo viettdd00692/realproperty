@@ -9,7 +9,9 @@ public interface EmployeeDao {
 
     void updateEmployee(Employee employee);
 
-    Employee getEmployeeByID(int id);
+    Employee getEmployeeByID(Integer id);
 
     List<Employee> getAllEmployee();
+
+    List<Employee> getEmployeeByClientID(Integer id);
 }

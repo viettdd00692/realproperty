@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="admin/layout">
 <head>
-    <title>Profile</title>
+    <title>Employee Profile</title>
 </head>
 <body>
     <div layout:fragment="header">
@@ -14,7 +14,7 @@
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
                         <li class="breadcrumb-item"><a href="/admin/list-employee">List Employee</a></li>
-                        <li class="breadcrumb-item active">Profile</li>
+                        <li class="breadcrumb-item active">Employee Profile</li>
                     </ol>
                 </div>
             </div>
@@ -66,6 +66,12 @@
                             <p class="text-muted" th:text="${getEmployee.salary}"></p>
 
                             <hr>
+
+                            <div th:style="${getEmployee.clientId == null ? 'display:none' : 'display:block'}">
+                                <strong><i class="fas fa-user-alt mr-1"></i> Client</strong>
+                                <p class="text-muted" th:text="${getEmployee.clientName}"></p>
+
+                            <hr></div>
 
                             <strong><i class="fas fa-calendar-check mr-1"></i> Join Date</strong>
                             <p class="text-muted" th:text="${#dates.format(getEmployee.joinDate, 'dd/MM/yyyy')}"></p>

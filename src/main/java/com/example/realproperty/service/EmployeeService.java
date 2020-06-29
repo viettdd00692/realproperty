@@ -9,7 +9,9 @@ public interface EmployeeService {
 
     void updateEmployee(EmployeeDTO employeeDTO);
 
-    EmployeeDTO getEmployeeByID(int id);
+    EmployeeDTO getEmployeeByID(Integer id);
 
     List<EmployeeDTO> getAllEmployee();
+
+    Integer countEmployeeHasClientID(Integer id);
 }

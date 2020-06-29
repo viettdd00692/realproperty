@@ -26,7 +26,9 @@ public class ClientServiceImpl implements ClientService {
         client.setEmail(clientDTO.getEmail());
         client.setPhone(clientDTO.getPhone());
         client.setAppointmentDate(clientDTO.getAppointmentDate());
-        client.setProperty(new Property(clientDTO.getPropertyId()));
+        if (clientDTO.getPropertyId() != null) {
+            client.setProperty(new Property(clientDTO.getPropertyId()));
+        }
         client.setStatus(clientDTO.getStatus());
 
         clientDao.addClient(client);
@@ -41,7 +43,11 @@ public class ClientServiceImpl implements ClientService {
             client.setEmail(clientDTO.getEmail());
             client.setPhone(clientDTO.getPhone());
             client.setAppointmentDate(clientDTO.getAppointmentDate());
-            client.setProperty(new Property(clientDTO.getPropertyId()));
+            if (clientDTO.getPropertyId() != null) {
+                client.setProperty(new Property(clientDTO.getPropertyId()));
+            } else {
+                client.setProperty(null);
+            }
             client.setStatus(clientDTO.getStatus());
 
             clientDao.updateClient(client);
@@ -49,15 +55,7 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public void deleteClient(int id) {
-        Client client = clientDao.getClientByID(id);
-        if (client != null) {
-            clientDao.deleteClient(client);
-        }
-    }
-
-    @Override
-    public ClientDTO getClientByID(int id) {
+    public ClientDTO getClientByID(Integer id) {
         Client client = clientDao.getClientByID(id);
         ClientDTO clientDTO = new ClientDTO();
 
@@ -66,7 +64,10 @@ public class ClientServiceImpl implements ClientService {
         clientDTO.setEmail(client.getEmail());
         clientDTO.setPhone(client.getPhone());
         clientDTO.setAppointmentDate(client.getAppointmentDate());
-        clientDTO.setPropertyId(client.getProperty().getId());
+        if (client.getProperty() != null) {
+            clientDTO.setPropertyId(client.getProperty().getId());
+            clientDTO.setPropertyName(client.getProperty().getName());
+        }
         clientDTO.setStatus(client.getStatus());
 
         return clientDTO;
@@ -84,8 +85,10 @@ public class ClientServiceImpl implements ClientService {
             clientDTO.setEmail(client.getEmail());
             clientDTO.setPhone(client.getPhone());
             clientDTO.setAppointmentDate(client.getAppointmentDate());
-            clientDTO.setPropertyId(client.getProperty().getId());
-            clientDTO.setPropertyName(client.getProperty().getName());
+            if (client.getProperty() != null) {
+                clientDTO.setPropertyId(client.getProperty().getId());
+                clientDTO.setPropertyName(client.getProperty().getName());
+            }
             clientDTO.setStatus(client.getStatus());
 
             clientDTOs.add(clientDTO);

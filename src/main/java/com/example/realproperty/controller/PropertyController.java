@@ -93,7 +93,7 @@ public class PropertyController {
     }
 
     @GetMapping("/admin/view-property/{id}")
-    private String view(Model model, @PathVariable(name = "id") int id) {
+    private String view(Model model, @PathVariable(name = "id") Integer id) {
         model.addAttribute("getProperty", propertyService.getPropertyByID(id));
         return "admin/property/viewProperty";
     }
@@ -124,7 +124,7 @@ public class PropertyController {
     }
 
     @GetMapping("/property-thumbnail/{id}")
-    public ResponseEntity<byte[]> download(@PathVariable("id") int id) throws IOException {
+    public ResponseEntity<byte[]> download(@PathVariable("id") Integer id) throws IOException {
         PropertyDTO propertyDTO = propertyService.getPropertyByID(id);
         File fileToUpload = new File(UPLOAD_DIR + "\\" + propertyDTO.getThumbnail());
         InputStream inputImage = new FileInputStream(fileToUpload);
@@ -146,7 +146,7 @@ public class PropertyController {
     }
 
     @GetMapping("/admin/update-property/{id}")
-    private String update(Model model, @PathVariable(name = "id") int id) {
+    private String update(Model model, @PathVariable(name = "id") Integer id) {
         model.addAttribute("updatePropertyForm", propertyService.getPropertyByID(id));
         return "admin/property/updateProperty";
     }

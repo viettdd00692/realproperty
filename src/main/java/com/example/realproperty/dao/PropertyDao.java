@@ -9,7 +9,7 @@ public interface PropertyDao {
 
     void updateProperty(Property property);
 
-    Property getPropertyByID(int id);
+    Property getPropertyByID(Integer id);
 
     List<Property> getAllProperty();
 

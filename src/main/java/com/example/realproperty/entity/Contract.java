@@ -7,11 +7,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 @Entity
-@Table(name = "client")
-public class Client implements Serializable {
+@Table(name = "contract")
+public class Contract implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -19,19 +18,16 @@ public class Client implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "fullname")
-    private String fullname;
-
-    @Column(name = "email")
-    private String email;
-
-    @Column(name = "phone")
-    private String phone;
-
-    @Column(name = "appointment_date")
+    @Column(name = "start_date")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
-    private Date appointmentDate;
+    private Date startDate;
+
+    @Column(name = "duration")
+    private Integer duration;
+
+    @Column(name = "commission")
+    private Integer commission;
 
     @Column(name = "status")
     private String status;
@@ -49,20 +45,18 @@ public class Client implements Serializable {
     private Date updatedAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "client_id")
+    private Client client;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "property_id")
     private Property property;
 
-    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Employee> employees;
-
-    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Contract> contracts;
-
-    public Client() {
+    public Contract() {
         super();
     }
 
-    public Client(Integer id) {
+    public Contract(Integer id) {
         super();
         this.id = id;
     }
@@ -75,36 +69,28 @@ public class Client implements Serializable {
         this.id = id;
     }
 
-    public String getFullname() {
-        return fullname;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
-    public String getEmail() {
-        return email;
+    public Integer getDuration() {
+        return duration;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setDuration(Integer duration) {
+        this.duration = duration;
     }
 
-    public String getPhone() {
-        return phone;
+    public Integer getCommission() {
+        return commission;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public Date getAppointmentDate() {
-        return appointmentDate;
-    }
-
-    public void setAppointmentDate(Date appointmentDate) {
-        this.appointmentDate = appointmentDate;
+    public void setCommission(Integer commission) {
+        this.commission = commission;
     }
 
     public String getStatus() {
@@ -131,28 +117,20 @@ public class Client implements Serializable {
         this.updatedAt = updatedAt;
     }
 
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
     public Property getProperty() {
         return property;
     }
 
     public void setProperty(Property property) {
         this.property = property;
-    }
-
-    public List<Employee> getEmployees() {
-        return employees;
-    }
-
-    public void setEmployees(List<Employee> employees) {
-        this.employees = employees;
-    }
-
-    public List<Contract> getContracts() {
-        return contracts;
-    }
-
-    public void setContracts(List<Contract> contracts) {
-        this.contracts = contracts;
     }
 
 }

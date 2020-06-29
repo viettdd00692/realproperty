@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="admin/layout">
+<head>
+    <title>List Contract</title>
+</head>
+<body>
+    <li class="nav-item has-treeview menu-open" layout:fragment="sb-contract">
+        <a href="#" class="nav-link active">
+            <i class="nav-icon fas fa-file-word"></i>
+            <p>
+                Contract
+                <i class="right fas fa-angle-left"></i>
+            </p>
+        </a>
+        <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="/admin/list-contract" class="nav-link active">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>List Contract</p>
+                </a>
+            </li>
+        </ul>
+    </li>
+
+    <div layout:fragment="header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">List Contract</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
+                        <li class="breadcrumb-item active">List Contract</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section layout:fragment="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Contract</h3>
+                            <a href="/admin/add-contract" class="btn btn-default float-right"><i class="fas fa-plus"></i></a>
+                        </div>
+                        <div class="card-body">
+                            <table id="dataTable" class="table table-bordered table-striped" data-order="[[ 0, &quot;desc&quot; ]]">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Start Date</th>
+                                    <th>Duration</th>
+                                    <th>Commission</th>
+                                    <th>Status</th>
+                                    <th>Client</th>
+                                    <th>Property</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="contract: ${listContract}">
+                                    <td th:text="${contract.id}"></td>
+                                    <td th:text="${contract.startDate}"></td>
+                                    <td th:text="${contract.duration}"></td>
+                                    <td th:text="${contract.commission}"></td>
+                                    <td><span class="badge" th:classappend="${(contract.status == 'Pending' ? 'badge-warning' : '' +
+                                                                               contract.status == 'Complete' ? 'badge-success' : '' +
+                                                                               contract.status == 'Cancel' ? 'badge-danger' : '')}"><a th:text="${contract.status}"></a></span></td>
+                                    <td th:text="${contract.clientName}"></td>
+                                    <td th:text="${contract.propertyName}"></td>
+                                    <td>
+                                        <a th:href="@{'/admin/update-contract/' + ${contract.id}}"><button type="button" class="btn btn-success">Edit</button></a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Start Date</th>
+                                    <th>Duration</th>
+                                    <th>Commission</th>
+                                    <th>Status</th>
+                                    <th>Client</th>
+                                    <th>Property</th>
+                                    <th>Action</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

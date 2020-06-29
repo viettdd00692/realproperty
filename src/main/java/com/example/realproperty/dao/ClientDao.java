@@ -9,9 +9,7 @@ public interface ClientDao {
 
     void updateClient(Client client);
 
-    void deleteClient(Client client);
-
-    Client getClientByID(int id);
+    Client getClientByID(Integer id);
 
     List<Client> getAllClient();
 }

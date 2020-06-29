@@ -30,7 +30,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee.setPosition(employeeDTO.getPosition());
         employee.setSalary(employeeDTO.getSalary());
         employee.setAvatar(employeeDTO.getAvatar());
-        employee.setClient(new Client(employeeDTO.getClientId()));
+        if (employeeDTO.getClientId() != null) {
+            employee.setClient(new Client(employeeDTO.getClientId()));
+        }
         employee.setJoinDate(employeeDTO.getJoinDate());
         employee.setResignDate(employeeDTO.getResignDate());
         employee.setStatus(employeeDTO.getStatus());
@@ -53,6 +55,11 @@ public class EmployeeServiceImpl implements EmployeeService {
             if (!employeeDTO.getAvatar().isEmpty()) {
                 employee.setAvatar(employeeDTO.getAvatar());
             }
+            if (employeeDTO.getClientId() != null) {
+                employee.setClient(new Client(employeeDTO.getClientId()));
+            } else {
+                employee.setClient(null);
+            }
             employee.setJoinDate(employeeDTO.getJoinDate());
             employee.setResignDate(employeeDTO.getResignDate());
             employee.setStatus(employeeDTO.getStatus());
@@ -62,7 +69,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public EmployeeDTO getEmployeeByID(int id) {
+    public EmployeeDTO getEmployeeByID(Integer id) {
         Employee employee = employeeDao.getEmployeeByID(id);
         EmployeeDTO employeeDTO = new EmployeeDTO();
 
@@ -75,6 +82,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeDTO.setPosition(employee.getPosition());
         employeeDTO.setSalary(employee.getSalary());
         employeeDTO.setAvatar(employee.getAvatar());
+        if (employee.getClient() != null) {
+            employeeDTO.setClientId(employee.getClient().getId());
+            employeeDTO.setClientName(employee.getClient().getFullname());
+        }
         employeeDTO.setJoinDate(employee.getJoinDate());
         employeeDTO.setResignDate(employee.getResignDate());
         employeeDTO.setStatus(employee.getStatus());
@@ -98,8 +109,10 @@ public class EmployeeServiceImpl implements EmployeeService {
             employeeDTO.setPosition(employee.getPosition());
             employeeDTO.setSalary(employee.getSalary());
             employeeDTO.setAvatar(employee.getAvatar());
-            employeeDTO.setClientId(employee.getClient().getId());
-            employeeDTO.setClientName(employee.getClient().getFullname());
+            if (employee.getClient() != null) {
+                employeeDTO.setClientId(employee.getClient().getId());
+                employeeDTO.setClientName(employee.getClient().getFullname());
+            }
             employeeDTO.setJoinDate(employee.getJoinDate());
             employeeDTO.setResignDate(employee.getResignDate());
             employeeDTO.setStatus(employee.getStatus());
@@ -107,6 +120,12 @@ public class EmployeeServiceImpl implements EmployeeService {
             employeeDTOs.add(employeeDTO);
         });
         return employeeDTOs;
+    }
+
+    @Override
+    public Integer countEmployeeHasClientID(Integer id) {
+        List<Employee> employees = employeeDao.getEmployeeByClientID(id);
+        return employees.size();
     }
 
 }

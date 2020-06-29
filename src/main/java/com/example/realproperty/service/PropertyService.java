@@ -9,7 +9,9 @@ public interface PropertyService {
 
     void updateProperty(PropertyDTO propertyDTO);
 
-    PropertyDTO getPropertyByID(int id);
+    void updatePropertyStatus(PropertyDTO propertyDTO);
+
+    PropertyDTO getPropertyByID(Integer id);
 
     List<PropertyDTO> getAllProperty();
 

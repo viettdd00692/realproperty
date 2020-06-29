@@ -17,7 +17,7 @@ public class Property implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(name = "name")
     private String name;
@@ -67,20 +67,23 @@ public class Property implements Serializable {
     @OneToMany(mappedBy = "property", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Client> clients;
 
+    @OneToMany(mappedBy = "property", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Contract> contracts;
+
     public Property() {
         super();
     }
 
-    public Property(int id) {
+    public Property(Integer id) {
         super();
         this.id = id;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -194,6 +197,14 @@ public class Property implements Serializable {
 
     public void setClients(List<Client> clients) {
         this.clients = clients;
+    }
+
+    public List<Contract> getContracts() {
+        return contracts;
+    }
+
+    public void setContracts(List<Contract> contracts) {
+        this.contracts = contracts;
     }
 
 }

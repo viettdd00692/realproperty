@@ -43,14 +43,13 @@ public class EmployeeController {
     }
 
     @GetMapping("/admin/view-employee/{id}")
-    private String view(Model model, @PathVariable(name = "id") int id) {
+    private String view(Model model, @PathVariable(name = "id") Integer id) {
         model.addAttribute("getEmployee", employeeService.getEmployeeByID(id));
         return "admin/employee/viewEmployee";
     }
 
     @GetMapping("/admin/add-employee")
     private String add(Model model) {
-        model.addAttribute("listClient", clientService.getAllClient());
         model.addAttribute("addEmployeeForm", new EmployeeDTO());
         return "admin/employee/addEmployee";
     }
@@ -75,7 +74,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/employee-avatar/{id}")
-    public ResponseEntity<byte[]> download(@PathVariable("id") int id) throws IOException {
+    public ResponseEntity<byte[]> download(@PathVariable("id") Integer id) throws IOException {
         EmployeeDTO employeeDTO = employeeService.getEmployeeByID(id);
         File fileToUpload = new File(UPLOAD_DIR + "\\" + employeeDTO.getAvatar());
         InputStream inputImage = new FileInputStream(fileToUpload);
@@ -97,7 +96,8 @@ public class EmployeeController {
     }
 
     @GetMapping("/admin/update-employee/{id}")
-    private String update(Model model, @PathVariable(name = "id") int id) {
+    private String update(Model model, @PathVariable(name = "id") Integer id) {
+        model.addAttribute("listClient", clientService.getAllClient());
         model.addAttribute("updateEmployeeForm", employeeService.getEmployeeByID(id));
         return "admin/employee/updateEmployee";
     }
@@ -112,9 +112,23 @@ public class EmployeeController {
                 destinationFile.createNewFile();
                 inputFile.transferTo(destinationFile);
                 employeeDTO.setAvatar(originalFilename);
+                if (!employeeDTO.getStatus().equalsIgnoreCase("Resign")) {
+                    if (employeeDTO.getClientId() == null) {
+                        employeeDTO.setStatus("Standby");
+                    } else {
+                        employeeDTO.setStatus("Active");
+                    }
+                }
                 employeeService.updateEmployee(employeeDTO);
             } else {
                 employeeDTO.setAvatar(originalFilename);
+                if (!employeeDTO.getStatus().equalsIgnoreCase("Resign")) {
+                    if (employeeDTO.getClientId() == null) {
+                        employeeDTO.setStatus("Standby");
+                    } else {
+                        employeeDTO.setStatus("Active");
+                    }
+                }
                 employeeService.updateEmployee(employeeDTO);
             }
 
@@ -122,6 +136,13 @@ public class EmployeeController {
 
         } else {
             employeeDTO.setAvatar("");
+            if (!employeeDTO.getStatus().equalsIgnoreCase("Resign")) {
+                if (employeeDTO.getClientId() == null) {
+                    employeeDTO.setStatus("Standby");
+                } else {
+                    employeeDTO.setStatus("Active");
+                }
+            }
             employeeService.updateEmployee(employeeDTO);
         }
 

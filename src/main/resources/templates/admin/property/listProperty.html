@@ -103,6 +103,7 @@
                                     <th>Address</th>
                                     <th>Price ($)</th>
                                     <th>Type</th>
+                                    <th>Option</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -114,6 +115,7 @@
                                     <td th:text="${property.address}"></td>
                                     <td th:text="${property.price}"></td>
                                     <td th:text="${property.type}"></td>
+                                    <td th:text="${property.option}"></td>
                                     <td><span class="badge" th:classappend="${(property.status == 'Appraise' ? 'badge-warning' : '' +
                                                                                property.status == 'Available' ? 'badge-success' : '' +
                                                                                property.status == 'Negotiation' ? 'badge-info' : '' +
@@ -131,6 +133,7 @@
                                     <th>Address</th>
                                     <th>Price ($)</th>
                                     <th>Type</th>
+                                    <th>Option</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>

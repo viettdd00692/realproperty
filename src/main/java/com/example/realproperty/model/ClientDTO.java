@@ -7,7 +7,7 @@ public class ClientDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private int id;
+    private Integer id;
 
     private String fullname;
 
@@ -23,23 +23,23 @@ public class ClientDTO implements Serializable {
 
     private Date updatedAt;
 
-    private int propertyId;
+    private Integer propertyId;
 
     private String propertyName;
 
     public ClientDTO() {
     }
 
-    public ClientDTO(int id) {
+    public ClientDTO(Integer id) {
         super();
         this.id = id;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -99,11 +99,11 @@ public class ClientDTO implements Serializable {
         this.updatedAt = updatedAt;
     }
 
-    public int getPropertyId() {
+    public Integer getPropertyId() {
         return propertyId;
     }
 
-    public void setPropertyId(int propertyId) {
+    public void setPropertyId(Integer propertyId) {
         this.propertyId = propertyId;
     }
 

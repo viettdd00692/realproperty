@@ -6,7 +6,7 @@ public class UserDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private int id;
+    private Integer id;
 
     private String username;
 
@@ -17,16 +17,16 @@ public class UserDTO implements Serializable {
     public UserDTO() {
     }
 
-    public UserDTO(int id) {
+    public UserDTO(Integer id) {
         super();
         this.id = id;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

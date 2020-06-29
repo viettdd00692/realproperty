@@ -9,9 +9,7 @@ public interface ClientService {
 
     void updateClient(ClientDTO clientDTO);
 
-    void deleteClient(int id);
-
-    ClientDTO getClientByID(int id);
+    ClientDTO getClientByID(Integer id);
 
     List<ClientDTO> getAllClient();
 }

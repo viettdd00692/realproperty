@@ -31,7 +31,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
     }
 
     @Override
-    public Employee getEmployeeByID(int id) {
+    public Employee getEmployeeByID(Integer id) {
         return entityManager.find(Employee.class, id);
     }
 
@@ -43,6 +43,17 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
         TypedQuery<Employee> typedQuery = entityManager.createQuery(criteriaQuery.select(root));
         return typedQuery.getResultList();
+    }
+
+    @Override
+    public List<Employee> getEmployeeByClientID(Integer id) {
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Employee> criteriaQuery = builder.createQuery(Employee.class);
+        Root<Employee> root = criteriaQuery.from(Employee.class);
+        criteriaQuery.select(root);
+        criteriaQuery.where(builder.equal(root.get("client"), id));
+
+        return entityManager.createQuery(criteriaQuery).getResultList();
     }
 
 }
