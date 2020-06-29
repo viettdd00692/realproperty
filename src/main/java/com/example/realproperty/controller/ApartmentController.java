@@ -43,7 +43,7 @@ public class ApartmentController {
 
     @PostMapping("/apartment-detail/{id}")
     private String add(@ModelAttribute(name = "addClientForm") ClientDTO clientDTO, @PathVariable(name = "id") int id , RedirectAttributes redirect) {
-
+        clientDTO.setStatus("Waiting");
         clientService.addClient(clientDTO);
         redirect.addFlashAttribute("successMessage", "Send contact successfully!");
         return "redirect:{id}";
