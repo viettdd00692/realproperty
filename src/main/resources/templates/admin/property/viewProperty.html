@@ -42,8 +42,8 @@
 
                             <hr>
 
-                            <strong><i class="fas fa-money-bill mr-1"></i> Price</strong>
-                            <p class="text-muted" th:text="${getProperty.price} + ' $'"></p>
+                            <strong><i class="fas fa-clone mr-1"></i> Type</strong>
+                            <p class="text-muted" th:text="${getProperty.type}"></p>
 
                             <hr>
 
@@ -52,10 +52,18 @@
 
                             <hr>
 
-                            <strong><i class="fas fa-clone mr-1"></i> Type</strong>
-                            <p class="text-muted" th:text="${getProperty.type}"></p>
+                            <strong><i class="fas fa-money-bill mr-1"></i> Price</strong>
+                            <p class="text-muted" th:text="${getProperty.price} + ' $'"></p>
 
                             <hr>
+
+                            <span th:if="${getProperty.rate != null}">
+                                <strong><i class="fas fa-percentage mr-1"></i> Rate</strong>
+                                <p class="text-muted" th:text="${(getProperty.option == 'Mua' ? getProperty.rate + ' %' : '' +
+                                                                  getProperty.option == 'Thuê' ? getProperty.rate + ' month(s)' : '')}"></p>
+
+                                <hr>
+                            </span>
 
                             <strong><i class="fas fa-bed mr-1"></i> Bedroom</strong>
                             <p class="text-muted" th:text="${getProperty.bedroom} + ' Phòng ngủ'"></p>

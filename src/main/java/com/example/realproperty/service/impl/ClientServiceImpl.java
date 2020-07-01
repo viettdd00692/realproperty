@@ -1,7 +1,9 @@
 package com.example.realproperty.service.impl;
 
 import com.example.realproperty.dao.ClientDao;
+import com.example.realproperty.dao.EmployeeDao;
 import com.example.realproperty.entity.Client;
+import com.example.realproperty.entity.Employee;
 import com.example.realproperty.entity.Property;
 import com.example.realproperty.model.ClientDTO;
 import com.example.realproperty.service.ClientService;
@@ -95,4 +97,5 @@ public class ClientServiceImpl implements ClientService {
         });
         return clientDTOs;
     }
+
 }

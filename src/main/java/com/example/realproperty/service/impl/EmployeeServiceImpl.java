@@ -124,7 +124,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Integer countEmployeeHasClientID(Integer id) {
-        List<Employee> employees = employeeDao.getEmployeeByClientID(id);
+        List<Employee> employees = employeeDao.getAllEmployeeByClientID(id);
         return employees.size();
     }
 

@@ -1,6 +1,7 @@
 package com.example.realproperty.service.impl;
 
 import com.example.realproperty.dao.PropertyDao;
+import com.example.realproperty.entity.Owner;
 import com.example.realproperty.entity.Property;
 import com.example.realproperty.model.PropertyDTO;
 import com.example.realproperty.service.PropertyService;
@@ -25,6 +26,7 @@ public class PropertyServiceImpl implements PropertyService {
         propertyDTO.setAddress(property.getAddress());
         propertyDTO.setDescription(property.getDescription());
         propertyDTO.setPrice(property.getPrice());
+        propertyDTO.setRate(property.getRate());
         propertyDTO.setOption(property.getOption());
         propertyDTO.setType(property.getType());
         propertyDTO.setBedroom(property.getBedroom());
@@ -34,6 +36,10 @@ public class PropertyServiceImpl implements PropertyService {
         propertyDTO.setStatus(property.getStatus());
         propertyDTO.setCreatedAt(property.getCreatedAt());
         propertyDTO.setUpdatedAt(property.getUpdatedAt());
+        if (property.getOwner() != null) {
+            propertyDTO.setOwnerId(property.getOwner().getId());
+            propertyDTO.setOwnerName(property.getOwner().getFullname());
+        }
         return propertyDTO;
     }
 
@@ -45,6 +51,7 @@ public class PropertyServiceImpl implements PropertyService {
         property.setAddress(propertyDTO.getAddress());
         property.setDescription(propertyDTO.getDescription());
         property.setPrice(propertyDTO.getPrice());
+        property.setRate(propertyDTO.getRate());
         property.setOption(propertyDTO.getOption());
         property.setType(propertyDTO.getType());
         property.setBedroom(propertyDTO.getBedroom());
@@ -52,6 +59,9 @@ public class PropertyServiceImpl implements PropertyService {
         property.setArea(propertyDTO.getArea());
         property.setThumbnail(propertyDTO.getThumbnail());
         property.setStatus(propertyDTO.getStatus());
+        if (propertyDTO.getOwnerId() != null) {
+            property.setOwner(new Owner(propertyDTO.getOwnerId()));
+        }
 
         propertyDao.addProperty(property);
         propertyDTO.setId(property.getId());
@@ -65,6 +75,7 @@ public class PropertyServiceImpl implements PropertyService {
             property.setAddress(propertyDTO.getAddress());
             property.setDescription(propertyDTO.getDescription());
             property.setPrice(propertyDTO.getPrice());
+            property.setRate(propertyDTO.getRate());
             property.setOption(propertyDTO.getOption());
             property.setType(propertyDTO.getType());
             property.setBedroom(propertyDTO.getBedroom());
@@ -74,6 +85,11 @@ public class PropertyServiceImpl implements PropertyService {
                 property.setThumbnail(propertyDTO.getThumbnail());
             }
             property.setStatus(propertyDTO.getStatus());
+            if (propertyDTO.getOwnerId() != null) {
+                property.setOwner(new Owner(propertyDTO.getOwnerId()));
+            } else {
+                property.setOwner(null);
+            }
 
             propertyDao.updateProperty(property);
         }
@@ -99,6 +115,7 @@ public class PropertyServiceImpl implements PropertyService {
         propertyDTO.setAddress(property.getAddress());
         propertyDTO.setDescription(property.getDescription());
         propertyDTO.setPrice(property.getPrice());
+        propertyDTO.setRate(property.getRate());
         propertyDTO.setOption(property.getOption());
         propertyDTO.setType(property.getType());
         propertyDTO.setBedroom(property.getBedroom());
@@ -108,6 +125,10 @@ public class PropertyServiceImpl implements PropertyService {
         propertyDTO.setStatus(property.getStatus());
         propertyDTO.setCreatedAt(property.getCreatedAt());
         propertyDTO.setUpdatedAt(property.getUpdatedAt());
+        if (property.getOwner() != null) {
+            propertyDTO.setOwnerId(property.getOwner().getId());
+            propertyDTO.setOwnerName(property.getOwner().getFullname());
+        }
 
         return propertyDTO;
     }
@@ -128,6 +149,18 @@ public class PropertyServiceImpl implements PropertyService {
         List<PropertyDTO> propertyDTOs = new ArrayList<PropertyDTO>();
         properties.forEach(property -> {
             if (property.getStatus().equalsIgnoreCase(status)) {
+                propertyDTOs.add(toDto(property));
+            }
+        });
+        return propertyDTOs;
+    }
+
+    @Override
+    public List<PropertyDTO> getAllPropertyByOwner(Integer ownerId) {
+        List<Property> properties = propertyDao.getAllProperty();
+        List<PropertyDTO> propertyDTOs = new ArrayList<PropertyDTO>();
+        properties.forEach(property -> {
+            if (property.getOwner().getId() == ownerId) {
                 propertyDTOs.add(toDto(property));
             }
         });

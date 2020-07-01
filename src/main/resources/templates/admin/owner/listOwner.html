@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="admin/layout">
+<head>
+    <title>List Owner</title>
+</head>
+<body>
+    <li class="nav-item has-treeview" layout:fragment="sb-owner">
+        <a href="#" class="nav-link active">
+            <i class="nav-icon fas fa-key"></i>
+            <p>
+                Owner
+                <i class="right fas fa-angle-left"></i>
+            </p>
+        </a>
+        <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="/admin/list-owner" class="nav-link active">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>List Owner</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/admin/add-owner" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Register Owner</p>
+                </a>
+            </li>
+        </ul>
+    </li>
+
+    <div layout:fragment="header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">List Owner</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
+                        <li class="breadcrumb-item active">List Owner</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section layout:fragment="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Owner</h3>
+                            <a href="/admin/add-owner" class="btn btn-default float-right"><i class="fas fa-plus"></i></a>
+                        </div>
+                        <div class="card-body">
+                            <table id="dataTable" class="table table-bordered table-striped" data-order="[[ 0, &quot;desc&quot; ]]">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Full Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Address</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="owner: ${listOwner}">
+                                    <td th:text="${owner.id}"></td>
+                                    <td th:text="${owner.fullname}"></td>
+                                    <td th:text="${owner.email}"></td>
+                                    <td th:text="${owner.phone}"></td>
+                                    <td th:text="${owner.address}"></td>
+                                    <td><span class="badge" th:classappend="${(owner.status == 'Waiting' ? 'badge-warning' : '' +
+                                                                               owner.status == 'Onsales' ? 'badge-info' : '' +
+                                                                               owner.status == 'Fulfill' ? 'badge-success' : '' +
+                                                                               owner.status == 'Remove' ? 'badge-danger' : '')}"><a th:text="${owner.status}"></a></span></td>
+                                    <td>
+                                        <a th:href="@{'/admin/view-owner/' + ${owner.id}}"><button type="button" class="btn btn-info">View</button></a>
+                                        <a th:href="@{'/admin/update-owner/' + ${owner.id}}"><button type="button" class="btn btn-success">Edit</button></a>
+                                        <a th:href="@{'/admin/add-property/' + ${owner.id}}"><button type="button" class="btn btn-primary">Property</button></a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Full Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Address</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

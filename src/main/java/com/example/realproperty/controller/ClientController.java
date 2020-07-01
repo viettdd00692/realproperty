@@ -1,6 +1,7 @@
 package com.example.realproperty.controller;
 
 import com.example.realproperty.model.ClientDTO;
+import com.example.realproperty.model.EmployeeDTO;
 import com.example.realproperty.model.PropertyDTO;
 import com.example.realproperty.service.ClientService;
 import com.example.realproperty.service.EmployeeService;

@@ -100,10 +100,11 @@
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Address</th>
-                                    <th>Price ($)</th>
-                                    <th>Type</th>
+                                    <th style="width: 20%">Name</th>
+                                    <th style="width: 25%">Address</th>
+                                    <th>Price</th>
+                                    <th>Rate</th>
+                                    <th>Owner</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -113,8 +114,9 @@
                                     <td th:text="${property.id}"></td>
                                     <td th:text="${property.name}"></td>
                                     <td th:text="${property.address}"></td>
-                                    <td th:text="${property.price}"></td>
-                                    <td th:text="${property.type}"></td>
+                                    <td th:text="'$' + ${#numbers.formatDecimal(property.price, 0, 'COMMA', 0, 'POINT')}"></td>
+                                    <td th:text="${property.rate != null ? property.rate + ' %' : ''}"></td>
+                                    <td><a th:href="@{'/admin/view-owner/' + ${property.ownerId}}" th:text="${property.ownerName}"></a></td>
                                     <td><span class="badge" th:classappend="${(property.status == 'Appraise' ? 'badge-warning' : '' +
                                                                                            property.status == 'Available' ? 'badge-success' : '' +
                                                                                            property.status == 'Negotiation' ? 'badge-info' : '' +
@@ -130,8 +132,9 @@
                                     <th>ID</th>
                                     <th>Name</th>
                                     <th>Address</th>
-                                    <th>Price ($)</th>
-                                    <th>Type</th>
+                                    <th>Price</th>
+                                    <th>Rate</th>
+                                    <th>Owner</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>

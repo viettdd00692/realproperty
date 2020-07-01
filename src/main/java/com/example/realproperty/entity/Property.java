@@ -31,6 +31,9 @@ public class Property implements Serializable {
     @Column(name = "price")
     private Integer price;
 
+    @Column(name = "rate")
+    private Integer rate;
+
     @Column(name = "option")
     private String option;
 
@@ -63,6 +66,10 @@ public class Property implements Serializable {
     @Temporal(TemporalType.DATE)
     @UpdateTimestamp
     private Date updatedAt;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "owner_id")
+    private Owner owner;
 
     @OneToMany(mappedBy = "property", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Client> clients;
@@ -117,6 +124,14 @@ public class Property implements Serializable {
 
     public void setPrice(Integer price) {
         this.price = price;
+    }
+
+    public Integer getRate() {
+        return rate;
+    }
+
+    public void setRate(Integer rate) {
+        this.rate = rate;
     }
 
     public String getOption() {
@@ -189,6 +204,14 @@ public class Property implements Serializable {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
 
     public List<Client> getClients() {

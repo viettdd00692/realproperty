@@ -23,11 +23,18 @@ public class ContractDTO implements Serializable {
     private String propertyAddress;
     private String propertyDescription;
     private Integer propertyPrice;
+    private Integer propertyRate;
     private String propertyOption;
     private String propertyType;
     private Integer propertyBedroom;
     private Integer propertyBathroom;
     private Integer propertyArea;
+    private Integer ownerId;
+    private String ownerName;
+    private String ownerEmail;
+    private String ownerPhone;
+    private String ownerAddress;
+    private Integer ownerRate;
 
     public ContractDTO() {
         super();
@@ -166,6 +173,14 @@ public class ContractDTO implements Serializable {
         this.propertyPrice = propertyPrice;
     }
 
+    public Integer getPropertyRate() {
+        return propertyRate;
+    }
+
+    public void setPropertyRate(Integer propertyRate) {
+        this.propertyRate = propertyRate;
+    }
+
     public String getPropertyOption() {
         return propertyOption;
     }
@@ -204,6 +219,54 @@ public class ContractDTO implements Serializable {
 
     public void setPropertyArea(Integer propertyArea) {
         this.propertyArea = propertyArea;
+    }
+
+    public Integer getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(Integer ownerId) {
+        this.ownerId = ownerId;
+    }
+
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
+
+    public String getOwnerEmail() {
+        return ownerEmail;
+    }
+
+    public void setOwnerEmail(String ownerEmail) {
+        this.ownerEmail = ownerEmail;
+    }
+
+    public String getOwnerPhone() {
+        return ownerPhone;
+    }
+
+    public void setOwnerPhone(String ownerPhone) {
+        this.ownerPhone = ownerPhone;
+    }
+
+    public String getOwnerAddress() {
+        return ownerAddress;
+    }
+
+    public void setOwnerAddress(String ownerAddress) {
+        this.ownerAddress = ownerAddress;
+    }
+
+    public Integer getOwnerRate() {
+        return ownerRate;
+    }
+
+    public void setOwnerRate(Integer ownerRate) {
+        this.ownerRate = ownerRate;
     }
 
 }

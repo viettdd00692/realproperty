@@ -17,6 +17,8 @@ public class PropertyDTO implements Serializable {
 
     private Integer price;
 
+    private Integer rate;
+
     private String option;
 
     private String type;
@@ -34,6 +36,10 @@ public class PropertyDTO implements Serializable {
     private Date createdAt;
 
     private Date updatedAt;
+
+    private Integer ownerId;
+
+    private String ownerName;
 
     public PropertyDTO() {
     }
@@ -81,6 +87,14 @@ public class PropertyDTO implements Serializable {
 
     public void setPrice(Integer price) {
         this.price = price;
+    }
+
+    public Integer getRate() {
+        return rate;
+    }
+
+    public void setRate(Integer rate) {
+        this.rate = rate;
     }
 
     public String getOption() {
@@ -153,6 +167,22 @@ public class PropertyDTO implements Serializable {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public Integer getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(Integer ownerId) {
+        this.ownerId = ownerId;
+    }
+
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
     }
 
 }

@@ -17,6 +17,8 @@ public interface PropertyService {
 
     List<PropertyDTO> getAllPropertyByStatus(String status);
 
+    List<PropertyDTO> getAllPropertyByOwner(Integer ownerId);
+
     List<PropertyDTO> getApartmentForSale();
 
     List<PropertyDTO> getApartmentForSaleByStatus(String status);

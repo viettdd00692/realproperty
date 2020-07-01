@@ -100,10 +100,11 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
-                                    <th>Address</th>
-                                    <th>Price ($)</th>
+                                    <th>Price</th>
+                                    <th>Rate</th>
                                     <th>Type</th>
                                     <th>Option</th>
+                                    <th>Owner</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -112,10 +113,13 @@
                                 <tr th:each="property: ${listProperty}">
                                     <td th:text="${property.id}"></td>
                                     <td th:text="${property.name}"></td>
-                                    <td th:text="${property.address}"></td>
-                                    <td th:text="${property.price}"></td>
+                                    <td th:text="'$' + ${#numbers.formatDecimal(property.price, 0, 'COMMA', 0, 'POINT')}"></td>
+                                    <td th:text="${(property.rate == null ? '' : '' +
+                                                    property.rate != null && property.option == 'Mua' ? property.rate + ' %' : '' +
+                                                    property.rate != null && property.option == 'Thuê' ? property.rate + ' month(s)' : '')}"></td>
                                     <td th:text="${property.type}"></td>
                                     <td th:text="${property.option}"></td>
+                                    <td><a th:href="@{'/admin/view-owner/' + ${property.ownerId}}" th:text="${property.ownerName}"></a></td>
                                     <td><span class="badge" th:classappend="${(property.status == 'Appraise' ? 'badge-warning' : '' +
                                                                                property.status == 'Available' ? 'badge-success' : '' +
                                                                                property.status == 'Negotiation' ? 'badge-info' : '' +
@@ -130,10 +134,11 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
-                                    <th>Address</th>
                                     <th>Price ($)</th>
+                                    <th>Rate</th>
                                     <th>Type</th>
                                     <th>Option</th>
+                                    <th>Owner</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>

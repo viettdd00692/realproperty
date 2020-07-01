@@ -52,6 +52,10 @@ public class Contract implements Serializable {
     @JoinColumn(name = "property_id")
     private Property property;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "owner_id")
+    private Owner owner;
+
     public Contract() {
         super();
     }
@@ -133,4 +137,11 @@ public class Contract implements Serializable {
         this.property = property;
     }
 
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
+    }
 }

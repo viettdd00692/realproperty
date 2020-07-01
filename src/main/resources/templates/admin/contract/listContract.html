@@ -55,9 +55,9 @@
                                     <th>Start Date</th>
                                     <th>Duration</th>
                                     <th>Commission</th>
-                                    <th>Status</th>
                                     <th>Client</th>
                                     <th>Property</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -67,11 +67,11 @@
                                     <td th:text="${contract.startDate}"></td>
                                     <td th:text="${contract.duration}"></td>
                                     <td th:text="${contract.commission}"></td>
+                                    <td><a th:if="${contract.clientId != null}" th:href="@{'/admin/view-client/' + ${contract.clientId}}" th:text="${contract.clientId} + ' - ' +${contract.clientName}"></a></td>
+                                    <td><a th:if="${contract.propertyId != null}" th:href="@{'/admin/view-property/' + ${contract.propertyId}}" th:text="${contract.propertyId} + ' - ' + ${contract.propertyName}"></a></td>
                                     <td><span class="badge" th:classappend="${(contract.status == 'Pending' ? 'badge-warning' : '' +
                                                                                contract.status == 'Complete' ? 'badge-success' : '' +
                                                                                contract.status == 'Cancel' ? 'badge-danger' : '')}"><a th:text="${contract.status}"></a></span></td>
-                                    <td th:text="${contract.clientName}"></td>
-                                    <td th:text="${contract.propertyName}"></td>
                                     <td>
                                         <a th:href="@{'/admin/update-contract/' + ${contract.id}}"><button type="button" class="btn btn-success">Edit</button></a>
                                     </td>
@@ -83,9 +83,9 @@
                                     <th>Start Date</th>
                                     <th>Duration</th>
                                     <th>Commission</th>
-                                    <th>Status</th>
                                     <th>Client</th>
                                     <th>Property</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                                 </tfoot>

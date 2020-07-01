@@ -80,12 +80,4 @@ public class ContractController {
         response.sendRedirect("/admin/list-contract");
     }
 
-//    @PostMapping("/admin/add-contract")
-//    private String add(@ModelAttribute(name = "addContractForm") ContractDTO contractDTO, @ModelAttribute(name = "getClient") ClientDTO clientDTO) {
-//        contractService.addContract(contractDTO);
-//        clientDTO.setStatus("Fulfill");
-//        clientService.updateClient(clientDTO);
-//        return "redirect:list-contract";
-//    }
-
 }

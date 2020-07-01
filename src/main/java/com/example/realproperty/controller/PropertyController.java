@@ -1,6 +1,7 @@
 package com.example.realproperty.controller;
 
 import com.example.realproperty.model.PropertyDTO;
+import com.example.realproperty.service.OwnerService;
 import com.example.realproperty.service.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -23,6 +24,9 @@ public class PropertyController {
 
     @Autowired
     private PropertyService propertyService;
+
+    @Autowired
+    private OwnerService ownerService;
 
     private String UPLOAD_DIR = "D:\\SpringBoot\\realproperty\\src\\main\\resources\\static\\img\\admin\\";
 
@@ -100,6 +104,16 @@ public class PropertyController {
 
     @GetMapping("/admin/add-property")
     private String add(Model model) {
+        model.addAttribute("listOwner", ownerService.getAllOwner());
+        model.addAttribute("request", 1);
+        model.addAttribute("addPropertyForm", new PropertyDTO());
+        return "admin/property/addProperty";
+    }
+
+    @GetMapping("/admin/add-property/{id}")
+    private String add(Model model, @PathVariable(name = "id") Integer id) {
+        model.addAttribute("getOwner", ownerService.getOwnerByID(id));
+        model.addAttribute("request", 2);
         model.addAttribute("addPropertyForm", new PropertyDTO());
         return "admin/property/addProperty";
     }
@@ -147,6 +161,7 @@ public class PropertyController {
 
     @GetMapping("/admin/update-property/{id}")
     private String update(Model model, @PathVariable(name = "id") Integer id) {
+        model.addAttribute("listOwner", ownerService.getAllOwner());
         model.addAttribute("updatePropertyForm", propertyService.getPropertyByID(id));
         return "admin/property/updateProperty";
     }

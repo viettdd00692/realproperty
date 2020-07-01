@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -46,7 +47,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
     }
 
     @Override
-    public List<Employee> getEmployeeByClientID(Integer id) {
+    public List<Employee> getAllEmployeeByClientID(Integer id) {
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Employee> criteriaQuery = builder.createQuery(Employee.class);
         Root<Employee> root = criteriaQuery.from(Employee.class);

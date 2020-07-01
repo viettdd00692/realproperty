@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="admin/layout">
+<head>
+    <title>Update Owner</title>
+    <style>
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div layout:fragment="header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Register Owner</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/admin/list-owner">List Owner</a></li>
+                        <li class="breadcrumb-item active">Update Owner</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section layout:fragment="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card card-primary">
+                        <form role="form" th:object="${updateOwnerForm}" th:action="@{/admin/update-owner}" method="post">
+                            <div class="card-body">
+                                <input type="hidden" th:field="*{id}">
+                                <div class="form-group">
+                                    <label th:for="fullname">Full Name</label>
+                                    <input type="text" class="form-control" required="required" th:field="*{fullname}" placeholder="Enter full name">
+                                </div>
+                                <div class="form-group">
+                                    <label th:for="email">Email</label>
+                                    <input type="email" class="form-control" required="required" th:field="*{email}" placeholder="Enter email">
+                                </div>
+                                <div class="form-group">
+                                    <label th:for="phone">Phone</label>
+                                    <input type="number" class="form-control" required="required" th:field="*{phone}" placeholder="Enter phone number">
+                                </div>
+                                <div class="form-group">
+                                    <label th:for="address">Address</label>
+                                    <input type="text" class="form-control" required="required" th:field="*{address}" placeholder="Enter address">
+                                </div>
+                                <div class="form-group">
+                                    <label th:for="status">Status</label>
+                                    <select class="form-control" required="required" th:field="*{status}">
+                                        <option th:value="Waiting">Waiting</option>
+                                        <option th:value="Onsales">Onsales</option>
+                                        <option th:value="Fulfill">Fulfill</option>
+                                        <option th:value="Remove">Remove</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <a href="/admin/list-owner" class="btn btn-default col-md-2 float-right"><b>Back</b></a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
