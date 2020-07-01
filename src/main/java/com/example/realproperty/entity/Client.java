@@ -52,8 +52,9 @@ public class Client implements Serializable {
     @JoinColumn(name = "property_id")
     private Property property;
 
-    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Employee> employees;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "employee_id")
+    private Employee employee;
 
     @OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Contract> contracts;
@@ -139,12 +140,12 @@ public class Client implements Serializable {
         this.property = property;
     }
 
-    public List<Employee> getEmployees() {
-        return employees;
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setEmployees(List<Employee> employees) {
-        this.employees = employees;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     public List<Contract> getContracts() {

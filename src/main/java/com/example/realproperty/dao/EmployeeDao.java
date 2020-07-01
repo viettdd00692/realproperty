@@ -12,6 +12,4 @@ public interface EmployeeDao {
     Employee getEmployeeByID(Integer id);
 
     List<Employee> getAllEmployee();
-
-    List<Employee> getAllEmployeeByClientID(Integer id);
 }

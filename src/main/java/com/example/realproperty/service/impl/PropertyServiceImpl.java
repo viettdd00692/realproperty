@@ -144,6 +144,18 @@ public class PropertyServiceImpl implements PropertyService {
     }
 
     @Override
+    public List<PropertyDTO> getAllAvailableProperty() {
+        List<Property> properties = propertyDao.getAllProperty();
+        List<PropertyDTO> propertyDTOs = new ArrayList<PropertyDTO>();
+        properties.forEach(property -> {
+            if (property.getStatus().equalsIgnoreCase("Available") || property.getStatus().equalsIgnoreCase("Negotiation")) {
+                propertyDTOs.add(toDto(property));
+            }
+        });
+        return propertyDTOs;
+    }
+
+    @Override
     public List<PropertyDTO> getAllPropertyByStatus(String status) {
         List<Property> properties = propertyDao.getAllProperty();
         List<PropertyDTO> propertyDTOs = new ArrayList<PropertyDTO>();

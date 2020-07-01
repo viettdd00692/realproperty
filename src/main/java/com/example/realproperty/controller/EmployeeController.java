@@ -1,7 +1,6 @@
 package com.example.realproperty.controller;
 
 import com.example.realproperty.model.EmployeeDTO;
-import com.example.realproperty.service.ClientService;
 import com.example.realproperty.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -24,9 +23,6 @@ public class EmployeeController {
 
     @Autowired
     private EmployeeService employeeService;
-
-    @Autowired
-    private ClientService clientService;
 
     private String UPLOAD_DIR = "D:\\SpringBoot\\realproperty\\src\\main\\resources\\static\\img\\admin\\";
 
@@ -97,7 +93,6 @@ public class EmployeeController {
 
     @GetMapping("/admin/update-employee/{id}")
     private String update(Model model, @PathVariable(name = "id") Integer id) {
-        model.addAttribute("listClient", clientService.getAllClient());
         model.addAttribute("updateEmployeeForm", employeeService.getEmployeeByID(id));
         return "admin/employee/updateEmployee";
     }
@@ -112,23 +107,9 @@ public class EmployeeController {
                 destinationFile.createNewFile();
                 inputFile.transferTo(destinationFile);
                 employeeDTO.setAvatar(originalFilename);
-                if (!employeeDTO.getStatus().equalsIgnoreCase("Resign")) {
-                    if (employeeDTO.getClientId() == null) {
-                        employeeDTO.setStatus("Standby");
-                    } else {
-                        employeeDTO.setStatus("Active");
-                    }
-                }
                 employeeService.updateEmployee(employeeDTO);
             } else {
                 employeeDTO.setAvatar(originalFilename);
-                if (!employeeDTO.getStatus().equalsIgnoreCase("Resign")) {
-                    if (employeeDTO.getClientId() == null) {
-                        employeeDTO.setStatus("Standby");
-                    } else {
-                        employeeDTO.setStatus("Active");
-                    }
-                }
                 employeeService.updateEmployee(employeeDTO);
             }
 
@@ -136,13 +117,6 @@ public class EmployeeController {
 
         } else {
             employeeDTO.setAvatar("");
-            if (!employeeDTO.getStatus().equalsIgnoreCase("Resign")) {
-                if (employeeDTO.getClientId() == null) {
-                    employeeDTO.setStatus("Standby");
-                } else {
-                    employeeDTO.setStatus("Active");
-                }
-            }
             employeeService.updateEmployee(employeeDTO);
         }
 

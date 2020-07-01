@@ -31,10 +31,6 @@ public class EmployeeDTO implements Serializable {
 
     private String status;
 
-    private Integer clientId;
-
-    private String clientName;
-
     public EmployeeDTO() {
     }
 
@@ -137,22 +133,6 @@ public class EmployeeDTO implements Serializable {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public Integer getClientId() {
-        return clientId;
-    }
-
-    public void setClientId(Integer clientId) {
-        this.clientId = clientId;
-    }
-
-    public String getClientName() {
-        return clientName;
-    }
-
-    public void setClientName(String clientName) {
-        this.clientName = clientName;
     }
 
 }

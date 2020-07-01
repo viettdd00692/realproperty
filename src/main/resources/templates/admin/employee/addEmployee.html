@@ -55,34 +55,40 @@
 
     <section layout:fragment="content">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="card card-primary">
-                        <form role="form" th:object="${addEmployeeForm}" th:action="@{/admin/add-employee}" method="post" enctype="multipart/form-data">
-                            <div class="card-body">
+            <div class="card">
+                <form role="form" th:object="${addEmployeeForm}" th:action="@{/admin/add-employee}" method="post" enctype="multipart/form-data">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label th:for="fullname">Full Name</label>
-                                    <input type="text" class="form-control" required="required" th:field="*{fullname}" placeholder="Enter full name">
+                                    <input type="text" class="form-control" required th:field="*{fullname}">
                                 </div>
                                 <div class="form-group">
                                     <label th:for="address">Address</label>
-                                    <input type="text" class="form-control" required="required" th:field="*{address}" placeholder="Enter address">
+                                    <input type="text" class="form-control" required th:field="*{address}">
                                 </div>
                                 <div class="form-group">
                                     <label th:for="phone">Phone</label>
-                                    <input type="number" class="form-control" required="required" th:field="*{phone}" placeholder="Enter phone number">
+                                    <input type="tel" pattern="[0-9]{10}" class="form-control" required th:field="*{phone}">
                                 </div>
                                 <div class="form-group">
                                     <label th:for="email">Email</label>
-                                    <input type="email" class="form-control" required="required" th:field="*{email}" placeholder="Enter email">
+                                    <input type="email" class="form-control" required th:field="*{email}">
+                                </div>
+                                <div class="form-group">
+                                    <label th:for="salary">Salary (VND)</label>
+                                    <input type="number" min="0" class="form-control" required th:field="*{salary}">
                                 </div>
                                 <div class="form-group">
                                     <label th:for="birthdate">Birthdate</label>
-                                    <input type="date" class="form-control" required="required" th:field="*{birthdate}" placeholder="Enter birthdate">
+                                    <input type="date" class="form-control" required th:field="*{birthdate}">
                                 </div>
+                            </div>
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label th:for="position">Position</label>
-                                    <select class="form-control" required="required" th:field="*{position}">
+                                    <select class="form-control" required th:field="*{position}">
                                         <option th:value="''"></option>
                                         <option th:value="'Quản lý'">Quản lý</option>
                                         <option th:value="'Nhân viên'">Nhân viên</option>
@@ -90,42 +96,38 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label th:for="salary">Salary</label>
-                                    <input type="number" class="form-control" required="required" th:field="*{salary}" placeholder="Enter salary">
-                                </div>
-                                <div class="form-group">
-                                    <label for="avatar">Avatar</label>
-                                    <div class="input-group">
-                                        <div class="custom-file">
-                                            <input type="file" required="required" name="file" class="custom-file-input" id="avatar">
-                                            <label class="custom-file-label" for="avatar">Choose file</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label th:for="joinDate">Join Date</label>
-                                    <input type="date" class="form-control" required="required" th:field="*{joinDate}" placeholder="Enter join date">
-                                </div>
-                                <div class="form-group">
-                                    <label th:for="resignDate">Resign Date</label>
-                                    <input type="date" class="form-control" th:field="*{resignDate}" placeholder="Enter resign date">
-                                </div>
-                                <div class="form-group">
                                     <label th:for="status">Status</label>
-                                    <select class="form-control" required="required" th:field="*{status}">
+                                    <select class="form-control" required th:field="*{status}">
                                         <option th:value="Standby">Standby</option>
                                         <option th:value="Active">Active</option>
                                         <option th:value="Resign">Resign</option>
                                     </select>
                                 </div>
+                                <div class="form-group">
+                                    <label for="avatar">Avatar</label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" required name="file" class="custom-file-input" id="avatar">
+                                            <label class="custom-file-label" for="avatar">Choose image</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label th:for="joinDate">Join Date</label>
+                                    <input type="date" class="form-control" required th:field="*{joinDate}">
+                                </div>
+                                <div class="form-group">
+                                    <label th:for="resignDate">Resign Date</label>
+                                    <input type="date" class="form-control" th:field="*{resignDate}">
+                                </div>
                             </div>
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                                <a href="/admin/list-employee" class="btn btn-default col-md-2 float-right"><b>Back</b></a>
-                            </div>
-                        </form>
+                        </div>
                     </div>
-                </div>
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <a class="btn btn-danger float-right" th:href="@{'/admin/list-employee'}" th:text="Back"></a>
+                    </div>
+                </form>
             </div>
         </div>
     </section>

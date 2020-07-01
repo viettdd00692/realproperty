@@ -32,52 +32,60 @@
 
     <section layout:fragment="content">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="card card-primary">
-                        <form role="form" th:object="${updateClientForm}" th:action="@{/admin/update-client}" method="post">
-                            <div class="card-body">
-                                <input type="hidden" th:field="*{id}">
+            <div class="card">
+                <form role="form" th:object="${updateClientForm}" th:action="@{/admin/update-client}" method="post">
+                    <input type="hidden" th:field="*{id}">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label th:for="fullname">Full Name</label>
-                                    <input type="text" class="form-control" required="required" th:field="*{fullname}" placeholder="Enter full name">
+                                    <input type="text" class="form-control" required th:field="*{fullname}">
                                 </div>
                                 <div class="form-group">
                                     <label th:for="email">Email</label>
-                                    <input type="email" class="form-control" required="required" th:field="*{email}" placeholder="Enter email">
+                                    <input type="email" class="form-control" required th:field="*{email}">
                                 </div>
                                 <div class="form-group">
                                     <label th:for="phone">Phone</label>
-                                    <input type="number" class="form-control" required="required" th:field="*{phone}" placeholder="Enter phone number">
-                                </div>
-                                <div class="form-group">
-                                    <label th:for="appointmentDate">Appointment Date</label>
-                                    <input type="date" class="form-control" required="required" th:field="*{appointmentDate}" placeholder="Enter appointment date">
-                                </div>
-                                <div class="form-group">
-                                    <label th:for="propertyId">Property</label>
-                                    <select class="form-control" th:field="*{propertyId}">
-                                        <option th:value="''"></option>
-                                        <option th:each="property: ${listProperty}" th:value="${property.id}" th:text="${property.id} + ' - ' + ${property.name}"></option>
-                                    </select>
+                                    <input type="tel" pattern="[0-9]{10}" class="form-control" required th:field="*{phone}">
                                 </div>
                                 <div class="form-group">
                                     <label th:for="status">Status</label>
-                                    <select class="form-control" required="required" th:field="*{status}">
+                                    <select class="form-control" required th:field="*{status}">
                                         <option th:value="Waiting">Waiting</option>
                                         <option th:value="Ongoing">Ongoing</option>
                                         <option th:value="Fulfill">Fulfill</option>
-                                        <option th:value="Remove" th:disabled="${countEmployee > 0}">Remove</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                                <a href="/admin/list-client" class="btn btn-default col-md-2 float-right"><b>Back</b></a>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label th:for="appointmentDate">Appointment Date</label>
+                                    <input type="date" class="form-control" required th:field="*{appointmentDate}">
+                                </div>
+                                <div class="form-group">
+                                    <label th:for="propertyId">Property</label>
+                                    <select class="form-control select2" th:field="*{propertyId}">
+                                        <option th:value="''" th:text="'Select property'"></option>
+                                        <option th:each="property: ${listProperty}" th:value="${property.id}" th:text="'(' + ${property.id} + ') ' + ${property.name}"></option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label th:for="employeeId">Employee</label>
+                                    <select class="form-control select2" th:field="*{employeeId}">
+                                        <option th:value="''" th:text="'Select employee'"></option>
+                                        <option th:each="employee: ${listEmployee}" th:value="${employee.id}" th:text="'(' + ${employee.id} + ') ' + ${employee.fullname}"></option>
+                                    </select>
+                                </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
-                </div>
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <a class="btn btn-danger float-right" th:href="@{'/admin/list-client'}" th:text="Back"></a>
+                    </div>
+                </form>
             </div>
         </div>
     </section>

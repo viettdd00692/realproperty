@@ -1,7 +1,6 @@
 package com.example.realproperty.service.impl;
 
 import com.example.realproperty.dao.ClientDao;
-import com.example.realproperty.dao.EmployeeDao;
 import com.example.realproperty.entity.Client;
 import com.example.realproperty.entity.Employee;
 import com.example.realproperty.entity.Property;
@@ -28,10 +27,13 @@ public class ClientServiceImpl implements ClientService {
         client.setEmail(clientDTO.getEmail());
         client.setPhone(clientDTO.getPhone());
         client.setAppointmentDate(clientDTO.getAppointmentDate());
+        client.setStatus(clientDTO.getStatus());
         if (clientDTO.getPropertyId() != null) {
             client.setProperty(new Property(clientDTO.getPropertyId()));
         }
-        client.setStatus(clientDTO.getStatus());
+        if (clientDTO.getEmployeeId() != null) {
+            client.setEmployee(new Employee(clientDTO.getEmployeeId()));
+        }
 
         clientDao.addClient(client);
         clientDTO.setId(client.getId());
@@ -40,17 +42,23 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public void updateClient(ClientDTO clientDTO) {
         Client client = clientDao.getClientByID(clientDTO.getId());
+
         if (client != null) {
             client.setFullname(clientDTO.getFullname());
             client.setEmail(clientDTO.getEmail());
             client.setPhone(clientDTO.getPhone());
             client.setAppointmentDate(clientDTO.getAppointmentDate());
+            client.setStatus(clientDTO.getStatus());
             if (clientDTO.getPropertyId() != null) {
                 client.setProperty(new Property(clientDTO.getPropertyId()));
             } else {
                 client.setProperty(null);
             }
-            client.setStatus(clientDTO.getStatus());
+            if (clientDTO.getEmployeeId() != null) {
+                client.setEmployee(new Employee(clientDTO.getEmployeeId()));
+            } else {
+                client.setEmployee(null);
+            }
 
             clientDao.updateClient(client);
         }
@@ -66,11 +74,17 @@ public class ClientServiceImpl implements ClientService {
         clientDTO.setEmail(client.getEmail());
         clientDTO.setPhone(client.getPhone());
         clientDTO.setAppointmentDate(client.getAppointmentDate());
+        clientDTO.setStatus(client.getStatus());
+        clientDTO.setCreatedAt(client.getCreatedAt());
+        clientDTO.setUpdatedAt(client.getUpdatedAt());
         if (client.getProperty() != null) {
             clientDTO.setPropertyId(client.getProperty().getId());
             clientDTO.setPropertyName(client.getProperty().getName());
         }
-        clientDTO.setStatus(client.getStatus());
+        if (client.getEmployee() != null) {
+            clientDTO.setEmployeeId(client.getEmployee().getId());
+            clientDTO.setEmployeeName(client.getEmployee().getFullname());
+        }
 
         return clientDTO;
     }
@@ -79,6 +93,7 @@ public class ClientServiceImpl implements ClientService {
     public List<ClientDTO> getAllClient() {
         List<Client> clients = clientDao.getAllClient();
         List<ClientDTO> clientDTOs = new ArrayList<ClientDTO>();
+
         clients.forEach(client -> {
             ClientDTO clientDTO = new ClientDTO();
 
@@ -87,14 +102,21 @@ public class ClientServiceImpl implements ClientService {
             clientDTO.setEmail(client.getEmail());
             clientDTO.setPhone(client.getPhone());
             clientDTO.setAppointmentDate(client.getAppointmentDate());
+            clientDTO.setStatus(client.getStatus());
+            clientDTO.setCreatedAt(client.getCreatedAt());
+            clientDTO.setUpdatedAt(client.getUpdatedAt());
             if (client.getProperty() != null) {
                 clientDTO.setPropertyId(client.getProperty().getId());
                 clientDTO.setPropertyName(client.getProperty().getName());
             }
-            clientDTO.setStatus(client.getStatus());
+            if (client.getEmployee() != null) {
+                clientDTO.setEmployeeId(client.getEmployee().getId());
+                clientDTO.setEmployeeName(client.getEmployee().getFullname());
+            }
 
             clientDTOs.add(clientDTO);
         });
+
         return clientDTOs;
     }
 

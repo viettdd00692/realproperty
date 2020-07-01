@@ -25,72 +25,46 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-6">
-                    <div class="card card-primary">
+                    <div class="card">
                         <div class="card-body box-profile">
                             <div class="text-center">
                                 <img class="profile-user-img img-fluid img-circle"
                                      th:src="@{'/employee-avatar/' + ${getEmployee.id}}"
                                      alt="User profile picture">
                             </div>
-
                             <h3 class="profile-username text-center" th:text="${getEmployee.fullname}"></h3>
-
                             <hr>
-
                             <strong><i class="fas fa-map-marker-alt mr-1"></i> Address</strong>
                             <p class="text-muted" th:text="${getEmployee.address}"></p>
-
                             <hr>
-
                             <strong><i class="fas fa-phone mr-1"></i> Phone</strong>
                             <p class="text-muted" th:text="${getEmployee.phone}"></p>
-
                             <hr>
-
                             <strong><i class="fas fa-envelope mr-1"></i> Email</strong>
                             <p class="text-muted" th:text="${getEmployee.email}"></p>
-
                             <hr>
-
                             <strong><i class="fas fa-birthday-cake mr-1"></i> Birthdate</strong>
                             <p class="text-muted" th:text="${#dates.format(getEmployee.birthdate, 'dd/MM/yyyy')}"></p>
-
                             <hr>
-
                             <strong><i class="fas fa-address-card mr-1"></i> Position</strong>
                             <p class="text-muted" th:text="${getEmployee.position}"></p>
-
                             <hr>
-
                             <strong><i class="fas fa-money-bill mr-1"></i> Salary</strong>
-                            <p class="text-muted" th:text="${getEmployee.salary}"></p>
-
+                            <p class="text-muted" th:text="${#numbers.formatDecimal(getEmployee.salary, 0, 'POINT', 0, 'COMMA')} + ' VND'"></p>
                             <hr>
-
-                            <div th:style="${getEmployee.clientId == null ? 'display:none' : 'display:block'}">
-                                <strong><i class="fas fa-user-alt mr-1"></i> Client</strong>
-                                <p class="text-muted" th:text="${getEmployee.clientName}"></p>
-
-                            <hr></div>
-
                             <strong><i class="fas fa-calendar-check mr-1"></i> Join Date</strong>
                             <p class="text-muted" th:text="${#dates.format(getEmployee.joinDate, 'dd/MM/yyyy')}"></p>
-
                             <hr>
-
                             <div th:style="${getEmployee.resignDate == null ? 'display:none' : 'display:block'}">
                                 <strong><i class="fas fa-calendar-times mr-1"></i> Resign Date</strong>
                                 <p class="text-muted" th:text="${#dates.format(getEmployee.resignDate, 'dd/MM/yyyy')}"></p>
-
-                            <hr></div>
-
+                                <hr>
+                            </div>
                             <strong><i class="fas fa-briefcase mr-1"></i> Status</strong>
                             <p class="text-muted" th:text="${getEmployee.status}"></p>
-
                             <hr>
-
-                            <a th:href="@{'/admin/update-employee/' + ${getEmployee.id}}" class="btn btn-primary col-md-2"><b>Edit</b></a>
-                            <a href="/admin/list-employee" class="btn btn-default col-md-2 float-right"><b>Back</b></a>
+                            <a class="btn btn-primary" th:href="@{'/admin/update-employee/' + ${getEmployee.id}}" th:text="Edit"></a>
+                            <a class="btn btn-danger float-right" th:href="@{'/admin/list-employee'}" th:text="Back"></a>
                         </div>
                     </div>
                 </div>

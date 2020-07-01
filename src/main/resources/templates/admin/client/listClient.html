@@ -61,8 +61,9 @@
                                     <th>Full Name</th>
                                     <th>Email</th>
                                     <th>Phone</th>
-                                    <th>Appointment Date</th>
+                                    <th>Date</th>
                                     <th>Property</th>
+                                    <th>Employee</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -74,14 +75,17 @@
                                     <td th:text="${client.email}"></td>
                                     <td th:text="${client.phone}"></td>
                                     <td th:text="${client.appointmentDate}"></td>
-                                    <td><a th:if="${client.propertyId != null}" th:href="@{'/admin/view-property/' + ${client.propertyId}}" th:text="${client.propertyId} + ' - ' + ${client.propertyName}"></a></td>
-                                    <td><span class="badge" th:classappend="${(client.status == 'Waiting' ? 'badge-warning' : '' +
-                                                                                   client.status == 'Ongoing' ? 'badge-info' : '' +
-                                                                                   client.status == 'Fulfill' ? 'badge-success' : '' +
-                                                                                   client.status == 'Remove' ? 'badge-danger' : '')}"><a th:text="${client.status}"></a></span></td>
+                                    <td><a th:if="${client.propertyId != null}" th:href="@{'/admin/view-property/' + ${client.propertyId}}" th:text="${client.propertyName}"></a></td>
+                                    <td><a th:if="${client.employeeId != null}" th:href="@{'/admin/view-employee/' + ${client.employeeId}}" th:text="${client.employeeName}"></a></td>
                                     <td>
-                                        <a th:href="@{'/admin/view-client/' + ${client.id}}"><button type="button" class="btn btn-info">View</button></a>
-                                        <a th:href="@{'/admin/update-client/' + ${client.id}}"><button type="button" class="btn btn-success">Edit</button></a>
+                                        <span class="badge badge-warning" th:if="${client.status == 'Waiting'}" th:text="${client.status}"></span>
+                                        <span class="badge badge-info" th:if="${client.status == 'Ongoing'}" th:text="${client.status}"></span>
+                                        <span class="badge badge-success" th:if="${client.status == 'Fulfill'}" th:text="${client.status}"></span>
+                                        <span class="badge badge-danger" th:if="${client.status == 'Remove'}" th:text="${client.status}"></span>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-info" th:href="@{'/admin/view-client/' + ${client.id}}" th:text="View"></a>
+                                        <a class="btn btn-success" th:href="@{'/admin/update-client/' + ${client.id}}" th:text="Edit"></a>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -91,8 +95,9 @@
                                     <th>Full Name</th>
                                     <th>Email</th>
                                     <th>Phone</th>
-                                    <th>Appointment Date</th>
+                                    <th>Date</th>
                                     <th>Property</th>
+                                    <th>Employee</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>

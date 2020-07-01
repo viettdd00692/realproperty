@@ -13,5 +13,5 @@ public interface EmployeeService {
 
     List<EmployeeDTO> getAllEmployee();
 
-    Integer countEmployeeHasClientID(Integer id);
+    List<EmployeeDTO> getAllStandbyEmployee();
 }

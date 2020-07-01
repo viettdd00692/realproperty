@@ -62,7 +62,6 @@
                                     <th>Address</th>
                                     <th>Phone</th>
                                     <th>Email</th>
-                                    <th>Client</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -74,13 +73,14 @@
                                     <td th:text="${employee.address}"></td>
                                     <td th:text="${employee.phone}"></td>
                                     <td th:text="${employee.email}"></td>
-                                    <td th:text="${employee.clientName}"></td>
-                                    <td><span class="badge" th:classappend="${(employee.status == 'Standby' ? 'badge-warning' : '' +
-                                                                               employee.status == 'Active' ? 'badge-info' : '' +
-                                                                               employee.status == 'Resign' ? 'badge-danger' : '')}"><a th:text="${employee.status}"></a></span></td>
                                     <td>
-                                        <a th:href="@{'/admin/view-employee/' + ${employee.id}}"><button type="button" class="btn btn-info">View</button></a>
-                                        <a th:href="@{'/admin/update-employee/' + ${employee.id}}"><button type="button" class="btn btn-success">Edit</button></a>
+                                        <span class="badge badge-warning" th:if="${employee.status == 'Standby'}" th:text="${employee.status}"></span>
+                                        <span class="badge badge-info" th:if="${employee.status == 'Active'}" th:text="${employee.status}"></span>
+                                        <span class="badge badge-danger" th:if="${employee.status == 'Resign'}" th:text="${employee.status}"></span>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-info" th:href="@{'/admin/view-employee/' + ${employee.id}}" th:text="View"></a>
+                                        <a class="btn btn-success" th:href="@{'/admin/update-employee/' + ${employee.id}}" th:text="Edit"></a>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -91,7 +91,6 @@
                                     <th>Address</th>
                                     <th>Phone</th>
                                     <th>Email</th>
-                                    <th>Client</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>

@@ -27,6 +27,10 @@ public class ClientDTO implements Serializable {
 
     private String propertyName;
 
+    private Integer employeeId;
+
+    private String employeeName;
+
     public ClientDTO() {
     }
 
@@ -113,6 +117,22 @@ public class ClientDTO implements Serializable {
 
     public void setPropertyName(String propertyName) {
         this.propertyName = propertyName;
+    }
+
+    public Integer getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(Integer employeeId) {
+        this.employeeId = employeeId;
+    }
+
+    public String getEmployeeName() {
+        return employeeName;
+    }
+
+    public void setEmployeeName(String employeeName) {
+        this.employeeName = employeeName;
     }
 
 }

@@ -1,7 +1,6 @@
 package com.example.realproperty.service.impl;
 
 import com.example.realproperty.dao.EmployeeDao;
-import com.example.realproperty.entity.Client;
 import com.example.realproperty.entity.Employee;
 import com.example.realproperty.model.EmployeeDTO;
 import com.example.realproperty.service.EmployeeService;
@@ -30,9 +29,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee.setPosition(employeeDTO.getPosition());
         employee.setSalary(employeeDTO.getSalary());
         employee.setAvatar(employeeDTO.getAvatar());
-        if (employeeDTO.getClientId() != null) {
-            employee.setClient(new Client(employeeDTO.getClientId()));
-        }
         employee.setJoinDate(employeeDTO.getJoinDate());
         employee.setResignDate(employeeDTO.getResignDate());
         employee.setStatus(employeeDTO.getStatus());
@@ -54,11 +50,6 @@ public class EmployeeServiceImpl implements EmployeeService {
             employee.setSalary(employeeDTO.getSalary());
             if (!employeeDTO.getAvatar().isEmpty()) {
                 employee.setAvatar(employeeDTO.getAvatar());
-            }
-            if (employeeDTO.getClientId() != null) {
-                employee.setClient(new Client(employeeDTO.getClientId()));
-            } else {
-                employee.setClient(null);
             }
             employee.setJoinDate(employeeDTO.getJoinDate());
             employee.setResignDate(employeeDTO.getResignDate());
@@ -82,10 +73,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeDTO.setPosition(employee.getPosition());
         employeeDTO.setSalary(employee.getSalary());
         employeeDTO.setAvatar(employee.getAvatar());
-        if (employee.getClient() != null) {
-            employeeDTO.setClientId(employee.getClient().getId());
-            employeeDTO.setClientName(employee.getClient().getFullname());
-        }
         employeeDTO.setJoinDate(employee.getJoinDate());
         employeeDTO.setResignDate(employee.getResignDate());
         employeeDTO.setStatus(employee.getStatus());
@@ -109,10 +96,6 @@ public class EmployeeServiceImpl implements EmployeeService {
             employeeDTO.setPosition(employee.getPosition());
             employeeDTO.setSalary(employee.getSalary());
             employeeDTO.setAvatar(employee.getAvatar());
-            if (employee.getClient() != null) {
-                employeeDTO.setClientId(employee.getClient().getId());
-                employeeDTO.setClientName(employee.getClient().getFullname());
-            }
             employeeDTO.setJoinDate(employee.getJoinDate());
             employeeDTO.setResignDate(employee.getResignDate());
             employeeDTO.setStatus(employee.getStatus());
@@ -123,9 +106,30 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Integer countEmployeeHasClientID(Integer id) {
-        List<Employee> employees = employeeDao.getAllEmployeeByClientID(id);
-        return employees.size();
+    public List<EmployeeDTO> getAllStandbyEmployee() {
+        List<Employee> employees = employeeDao.getAllEmployee();
+        List<EmployeeDTO> employeeDTOs = new ArrayList<EmployeeDTO>();
+        employees.forEach(employee -> {
+            if (employee.getStatus().equalsIgnoreCase("Standby")) {
+                EmployeeDTO employeeDTO = new EmployeeDTO();
+
+                employeeDTO.setId(employee.getId());
+                employeeDTO.setFullname(employee.getFullname());
+                employeeDTO.setAddress(employee.getAddress());
+                employeeDTO.setPhone(employee.getPhone());
+                employeeDTO.setEmail(employee.getEmail());
+                employeeDTO.setBirthdate(employee.getBirthdate());
+                employeeDTO.setPosition(employee.getPosition());
+                employeeDTO.setSalary(employee.getSalary());
+                employeeDTO.setAvatar(employee.getAvatar());
+                employeeDTO.setJoinDate(employee.getJoinDate());
+                employeeDTO.setResignDate(employee.getResignDate());
+                employeeDTO.setStatus(employee.getStatus());
+
+                employeeDTOs.add(employeeDTO);
+            }
+        });
+        return employeeDTOs;
     }
 
 }

@@ -1,7 +1,6 @@
 package com.example.realproperty.controller;
 
 import com.example.realproperty.model.ClientDTO;
-import com.example.realproperty.model.EmployeeDTO;
 import com.example.realproperty.model.PropertyDTO;
 import com.example.realproperty.service.ClientService;
 import com.example.realproperty.service.EmployeeService;
@@ -50,7 +49,7 @@ public class ClientController {
 
     @GetMapping("/admin/add-client")
     private String add(Model model) {
-        model.addAttribute("listProperty", propertyService.getAllProperty());
+        model.addAttribute("listProperty", propertyService.getAllAvailableProperty());
         model.addAttribute("addClientForm", new ClientDTO());
         return "admin/client/addClient";
     }
@@ -68,8 +67,8 @@ public class ClientController {
 
     @GetMapping("/admin/update-client/{id}")
     private String update(Model model, @PathVariable(name = "id") Integer id) {
-        model.addAttribute("listProperty", propertyService.getAllProperty());
-        model.addAttribute("countEmployee", employeeService.countEmployeeHasClientID(id));
+        model.addAttribute("listProperty", propertyService.getAllAvailableProperty());
+        model.addAttribute("listEmployee", employeeService.getAllStandbyEmployee());
         model.addAttribute("updateClientForm", clientService.getClientByID(id));
         return "admin/client/updateClient";
     }
