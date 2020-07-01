@@ -1,11 +1,13 @@
 package com.example.realproperty.config;
 
 public class MyConstants {
-    public static final String MY_EMAIL = "nghiadtd00712@fpt.edu.vn";
+
+    // điền mail gửi
+    public static final String MY_EMAIL = "yourmail@gmail.com";
+
+// điền pass của mail gửi
+    public static final String MY_PASSWORD = "Password";
 
 
-    public static final String MY_PASSWORD = "Tuannghia248@";
 
-
-//    public static final String FRIEND_EMAIL = "dinhtuannghia.248@gmail.com";
 }
