@@ -32,6 +32,12 @@
 
                             <hr>
 
+                            <div th:style="${getProperty.ownerId == null ? 'display:none' : 'display:block'}">
+                                <strong><i class="fas fa-user mr-1"></i> Owner</strong><br>
+                                <a th:href="@{'/admin/view-owner/' + ${getProperty.ownerId}}" th:text="${getProperty.ownerName}"></a>
+                                <hr>
+                            </div>
+
                             <strong><i class="fas fa-map-marker-alt mr-1"></i> Address</strong>
                             <p class="text-muted" th:text="${getProperty.address}"></p>
 
