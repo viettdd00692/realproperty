@@ -9,9 +9,9 @@ public interface EmployeeService {
 
     void updateEmployee(EmployeeDTO employeeDTO);
 
+    void updateEmployeeStatus(EmployeeDTO employeeDTO);
+
     EmployeeDTO getEmployeeByID(Integer id);
 
     List<EmployeeDTO> getAllEmployee();
-
-    List<EmployeeDTO> getAllStandbyEmployee();
 }

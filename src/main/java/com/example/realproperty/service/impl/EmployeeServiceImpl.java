@@ -60,6 +60,16 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
+    public void updateEmployeeStatus(EmployeeDTO employeeDTO) {
+        Employee employee = employeeDao.getEmployeeByID(employeeDTO.getId());
+        if (employee != null) {
+            employee.setStatus(employeeDTO.getStatus());
+
+            employeeDao.updateEmployee(employee);
+        }
+    }
+
+    @Override
     public EmployeeDTO getEmployeeByID(Integer id) {
         Employee employee = employeeDao.getEmployeeByID(id);
         EmployeeDTO employeeDTO = new EmployeeDTO();
@@ -101,33 +111,6 @@ public class EmployeeServiceImpl implements EmployeeService {
             employeeDTO.setStatus(employee.getStatus());
 
             employeeDTOs.add(employeeDTO);
-        });
-        return employeeDTOs;
-    }
-
-    @Override
-    public List<EmployeeDTO> getAllStandbyEmployee() {
-        List<Employee> employees = employeeDao.getAllEmployee();
-        List<EmployeeDTO> employeeDTOs = new ArrayList<EmployeeDTO>();
-        employees.forEach(employee -> {
-            if (employee.getStatus().equalsIgnoreCase("Standby")) {
-                EmployeeDTO employeeDTO = new EmployeeDTO();
-
-                employeeDTO.setId(employee.getId());
-                employeeDTO.setFullname(employee.getFullname());
-                employeeDTO.setAddress(employee.getAddress());
-                employeeDTO.setPhone(employee.getPhone());
-                employeeDTO.setEmail(employee.getEmail());
-                employeeDTO.setBirthdate(employee.getBirthdate());
-                employeeDTO.setPosition(employee.getPosition());
-                employeeDTO.setSalary(employee.getSalary());
-                employeeDTO.setAvatar(employee.getAvatar());
-                employeeDTO.setJoinDate(employee.getJoinDate());
-                employeeDTO.setResignDate(employee.getResignDate());
-                employeeDTO.setStatus(employee.getStatus());
-
-                employeeDTOs.add(employeeDTO);
-            }
         });
         return employeeDTOs;
     }

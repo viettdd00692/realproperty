@@ -1,32 +1,23 @@
-package com.example.realproperty.entity;
+package com.example.realproperty.model;
 
-import javax.persistence.*;
 import java.io.Serializable;
 
-@Entity
-@Table(name = "blog")
-public class Blog implements Serializable {
+public class BlogDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "title")
     private String title;
 
-    @Column(name = "image")
     private String image;
 
-    @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 
-    public Blog() {
-        super();
+    public BlogDTO() {
     }
 
-    public Blog(Integer id) {
+    public BlogDTO(Integer id) {
         super();
         this.id = id;
     }

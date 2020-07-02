@@ -1,6 +1,7 @@
 package com.example.realproperty.controller;
 
-import com.example.realproperty.service.EmployeeService;
+import com.example.realproperty.service.ClientService;
+import com.example.realproperty.service.ContractService;
 import com.example.realproperty.service.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,10 +12,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MainController {
 
     @Autowired
-    private EmployeeService employeeService;
+    private PropertyService propertyService;
 
     @Autowired
-    private PropertyService propertyService;
+    private ClientService clientService;
+
+    @Autowired
+    private ContractService contractService;
 
     @GetMapping("/")
     public String index(Model model) {
@@ -36,8 +40,10 @@ public class MainController {
 
     @GetMapping("/admin/dashboard")
     public String dashboard(Model model) {
-        int count = employeeService.getAllEmployee().size();
-        model.addAttribute("number", count);
+        model.addAttribute("totalPendingContract", contractService.getAllPendingContract().size());
+        model.addAttribute("totalCommission", contractService.totalCommission());
+        model.addAttribute("totalWaitingClient", clientService.getWaitingClient().size());
+        model.addAttribute("totalAppraiseProperty", propertyService.getAllPropertyByStatus("Appraise").size());
         return "admin/dashboard";
     }
 

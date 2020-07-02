@@ -34,7 +34,6 @@ public class ContractDTO implements Serializable {
     private String ownerEmail;
     private String ownerPhone;
     private String ownerAddress;
-    private Integer ownerRate;
 
     public ContractDTO() {
         super();
@@ -259,14 +258,6 @@ public class ContractDTO implements Serializable {
 
     public void setOwnerAddress(String ownerAddress) {
         this.ownerAddress = ownerAddress;
-    }
-
-    public Integer getOwnerRate() {
-        return ownerRate;
-    }
-
-    public void setOwnerRate(Integer ownerRate) {
-        this.ownerRate = ownerRate;
     }
 
 }

@@ -96,12 +96,22 @@
                             <hr>
 
                             <a th:href="@{'/admin/update-property/' + ${getProperty.id}}" class="btn btn-primary col-md-2"><b>Edit</b></a>
+                            <a th:href="@{'/admin/add-image/' + ${getProperty.id}}" class="btn btn-success"><b>Add image</b></a>
                             <a href="/admin/list-property" class="btn btn-default col-md-2 float-right"><b>Back</b></a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <img class="img-fluid" th:src="@{'/property-thumbnail/' + ${getProperty.id}}" alt="Thumbnail picture">
+                    <div class="card">
+                        <div class="card-body">
+                            <img class="img-fluid" th:src="@{'/property-thumbnail/' + ${getProperty.id}}" alt="Thumbnail picture">
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <img class="img-fluid pr-2 pb-2" style="width: 285px; height: 285px;" th:each="image: ${listImage}" th:src="@{'/property-image/' + ${image.id}}" alt="Property image">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

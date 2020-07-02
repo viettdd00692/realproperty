@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="admin/layout">
+<head>
+    <title>Add Image</title>
+</head>
+<body>
+    <div layout:fragment="header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Add Image</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
+                        <li class="breadcrumb-item"><a th:href="@{'/admin/view-property/' + ${getProperty.id}}">View Property</a></li>
+                        <li class="breadcrumb-item active">Add Image</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section layout:fragment="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card card-primary">
+                        <form role="form" th:object="${addImageForm}" th:action="@{/admin/add-image}" method="post" enctype="multipart/form-data">
+                            <div class="card-body">
+                                <input type="hidden" th:id="ownerId" th:name="propertyId" th:value="${getProperty.id}">
+                                <div class="form-group">
+                                    <label for="image">Image</label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" required="required" name="file" class="custom-file-input" id="image">
+                                            <label class="custom-file-label" for="image">Choose image</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <a class="btn btn-danger float-right" th:href="@{'/admin/view-property/' + ${getProperty.id}}" th:text="Back"></a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

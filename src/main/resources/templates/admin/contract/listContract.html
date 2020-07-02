@@ -57,6 +57,7 @@
                                     <th>Commission</th>
                                     <th>Client</th>
                                     <th>Property</th>
+                                    <th>Owner</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -67,13 +68,16 @@
                                     <td th:text="${contract.startDate}"></td>
                                     <td th:text="${contract.duration}"></td>
                                     <td th:text="${contract.commission}"></td>
-                                    <td><a th:if="${contract.clientId != null}" th:href="@{'/admin/view-client/' + ${contract.clientId}}" th:text="${contract.clientId} + ' - ' +${contract.clientName}"></a></td>
-                                    <td><a th:if="${contract.propertyId != null}" th:href="@{'/admin/view-property/' + ${contract.propertyId}}" th:text="${contract.propertyId} + ' - ' + ${contract.propertyName}"></a></td>
-                                    <td><span class="badge" th:classappend="${(contract.status == 'Pending' ? 'badge-warning' : '' +
-                                                                               contract.status == 'Complete' ? 'badge-success' : '' +
-                                                                               contract.status == 'Cancel' ? 'badge-danger' : '')}"><a th:text="${contract.status}"></a></span></td>
+                                    <td><a th:if="${contract.clientId != null}" th:href="@{'/admin/view-client/' + ${contract.clientId}}" th:text="${contract.clientName}"></a></td>
+                                    <td><a th:if="${contract.propertyId != null}" th:href="@{'/admin/view-property/' + ${contract.propertyId}}" th:text="${contract.propertyName}"></a></td>
+                                    <td><a th:if="${contract.ownerId != null}" th:href="@{'/admin/view-owner/' + ${contract.ownerId}}" th:text="${contract.ownerName}"></a></td>
                                     <td>
-                                        <a th:href="@{'/admin/update-contract/' + ${contract.id}}"><button type="button" class="btn btn-success">Edit</button></a>
+                                        <span class="badge badge-warning" th:if="${contract.status == 'Pending'}" th:text="${contract.status}"></span>
+                                        <span class="badge badge-success" th:if="${contract.status == 'Complete'}" th:text="${contract.status}"></span>
+                                        <span class="badge badge-danger" th:if="${contract.status == 'Cancel'}" th:text="${contract.status}"></span>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-success" th:classappend="${contract.status == 'Complete' ? 'disabled' : ''}" th:href="@{'/admin/update-contract/' + ${contract.id}}" th:text="Edit"></a>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -85,6 +89,7 @@
                                     <th>Commission</th>
                                     <th>Client</th>
                                     <th>Property</th>
+                                    <th>Owner</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>

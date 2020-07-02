@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="admin/layout">
+<head>
+    <title>Blog Detail</title>
+</head>
+<body>
+    <div layout:fragment="header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Profile</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/admin/list-blog">List Blog</a></li>
+                        <li class="breadcrumb-item active">Blog Detail</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section layout:fragment="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body box-profile">
+                            <strong><i class="fas fa-tag mr-1"></i> Title</strong>
+                            <p class="text-muted" th:text="${getBlog.title}"></p>
+                            <hr>
+                            <strong><i class="fas fa-image mr-1"></i> Image</strong>
+                            <img class="img-fluid" th:src="@{'/blog-image/' + ${getBlog.id}}" alt="Blog image">
+                            <hr>
+                            <strong><i class="fas fa-file-word mr-1"></i> Description</strong>
+                            <p class="text-muted" th:text="${getBlog.description}"></p>
+                            <hr>
+                            <a class="btn btn-primary" th:href="@{'/admin/update-blog/' + ${getBlog.id}}" th:text="Edit"></a>
+                            <a class="btn btn-danger float-right" th:href="@{'/admin/list-blog'}" th:text="Back"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

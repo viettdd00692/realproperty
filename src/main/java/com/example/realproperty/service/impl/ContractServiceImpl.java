@@ -3,6 +3,7 @@ package com.example.realproperty.service.impl;
 import com.example.realproperty.dao.ContractDao;
 import com.example.realproperty.entity.Client;
 import com.example.realproperty.entity.Contract;
+import com.example.realproperty.entity.Owner;
 import com.example.realproperty.entity.Property;
 import com.example.realproperty.model.ContractDTO;
 import com.example.realproperty.service.ContractService;
@@ -33,6 +34,9 @@ public class ContractServiceImpl implements ContractService {
         if (contractDTO.getPropertyId() != null) {
             contract.setProperty(new Property(contractDTO.getPropertyId()));
         }
+        if (contractDTO.getOwnerId() != null) {
+            contract.setOwner(new Owner(contractDTO.getOwnerId()));
+        }
 
         contractDao.addContract(contract);
         contractDTO.setId(contract.getId());
@@ -55,6 +59,11 @@ public class ContractServiceImpl implements ContractService {
                 contract.setProperty(new Property(contractDTO.getPropertyId()));
             } else {
                 contract.setProperty(null);
+            }
+            if (contractDTO.getOwnerId() != null) {
+                contract.setOwner(new Owner(contractDTO.getOwnerId()));
+            } else {
+                contract.setOwner(null);
             }
 
             contractDao.updateContract(contract);
@@ -85,11 +94,19 @@ public class ContractServiceImpl implements ContractService {
             contractDTO.setPropertyAddress(contract.getProperty().getAddress());
             contractDTO.setPropertyDescription(contract.getProperty().getDescription());
             contractDTO.setPropertyPrice(contract.getProperty().getPrice());
+            contractDTO.setPropertyRate(contract.getProperty().getRate());
             contractDTO.setPropertyOption(contract.getProperty().getOption());
             contractDTO.setPropertyType(contract.getProperty().getType());
             contractDTO.setPropertyBedroom(contract.getProperty().getBedroom());
             contractDTO.setPropertyBathroom(contract.getProperty().getBathroom());
             contractDTO.setPropertyArea(contract.getProperty().getArea());
+        }
+        if (contract.getOwner() != null) {
+            contractDTO.setOwnerId(contract.getOwner().getId());
+            contractDTO.setOwnerName(contract.getOwner().getFullname());
+            contractDTO.setOwnerEmail(contract.getOwner().getEmail());
+            contractDTO.setOwnerPhone(contract.getOwner().getPhone());
+            contractDTO.setOwnerAddress(contract.getOwner().getAddress());
         }
 
         return contractDTO;
@@ -121,16 +138,51 @@ public class ContractServiceImpl implements ContractService {
                 contractDTO.setPropertyAddress(contract.getProperty().getAddress());
                 contractDTO.setPropertyDescription(contract.getProperty().getDescription());
                 contractDTO.setPropertyPrice(contract.getProperty().getPrice());
+                contractDTO.setPropertyRate(contract.getProperty().getRate());
                 contractDTO.setPropertyOption(contract.getProperty().getOption());
                 contractDTO.setPropertyType(contract.getProperty().getType());
                 contractDTO.setPropertyBedroom(contract.getProperty().getBedroom());
                 contractDTO.setPropertyBathroom(contract.getProperty().getBathroom());
                 contractDTO.setPropertyArea(contract.getProperty().getArea());
             }
+            if (contract.getOwner() != null) {
+                contractDTO.setOwnerId(contract.getOwner().getId());
+                contractDTO.setOwnerName(contract.getOwner().getFullname());
+                contractDTO.setOwnerEmail(contract.getOwner().getEmail());
+                contractDTO.setOwnerPhone(contract.getOwner().getPhone());
+                contractDTO.setOwnerAddress(contract.getOwner().getAddress());
+            }
 
             contractDTOs.add(contractDTO);
         });
         return contractDTOs;
+    }
+
+    @Override
+    public List<ContractDTO> getAllPendingContract() {
+        List<Contract> contracts = contractDao.getAllContract();
+        List<ContractDTO> contractDTOs = new ArrayList<ContractDTO>();
+        contracts.forEach(contract -> {
+            if (contract.getStatus().equalsIgnoreCase("Pending")) {
+                ContractDTO contractDTO = new ContractDTO();
+                contractDTO.setId(contract.getId());
+                contractDTO.setStatus(contract.getStatus());
+                contractDTOs.add(contractDTO);
+            }
+        });
+        return contractDTOs;
+    }
+
+    @Override
+    public Integer totalCommission() {
+        List<Contract> contracts = contractDao.getAllContract();
+        Integer commission = 0;
+        for (int i = 0; i < contracts.size(); i++) {
+            if (contracts.get(i).getStatus().equalsIgnoreCase("Complete")) {
+                commission += contracts.get(i).getCommission();
+            }
+        }
+        return commission;
     }
 
 }

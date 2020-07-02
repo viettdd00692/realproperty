@@ -55,48 +55,25 @@ public class ApartmentController {
         clientDTO.setStatus("Waiting");
         clientService.addClient(clientDTO);
         redirect.addFlashAttribute("successMessage", "Send contact successfully!");
-//        SimpleMailMessage message = new SimpleMailMessage();
+
+//        MimeMessage message = emailSender.createMimeMessage();
 //
-//        message.setTo(clientDTO.getEmail());
-//        message.setSubject("Test Simple Email");
-//        message.setText("Hello, Im testing Simple Email");
+//        boolean multipart = true;
 //
-//        // Send Message!
+//        MimeMessageHelper helper = new MimeMessageHelper(message, multipart, "utf-8");
+//
+//        String htmlMsg = "<h3>Your contact is send successfully</h3>"
+//                +"<img src='https://www.doorman24.com/wp-content/uploads/2016/07/thankyou.jpg'>";
+//
+//        message.setContent(htmlMsg, "text/html");
+//
+//        helper.setTo(clientDTO.getEmail());
+//
+//        helper.setSubject("Real Property - Send contact successfully!");
+//
+//
 //        this.emailSender.send(message);
-        MimeMessage message = emailSender.createMimeMessage();
-
-        boolean multipart = true;
-
-        MimeMessageHelper helper = new MimeMessageHelper(message, multipart, "utf-8");
-
-        String htmlMsg = "<h3>Your contact is send successfully</h3>"
-                +"<img src='https://www.doorman24.com/wp-content/uploads/2016/07/thankyou.jpg'>";
-
-        message.setContent(htmlMsg, "text/html");
-
-        helper.setTo(clientDTO.getEmail());
-
-        helper.setSubject("Real Property - Send contact successfully!");
-
-
-        this.emailSender.send(message);
         return "redirect:{id}";
     }
 
-//    @ResponseBody
-//    @RequestMapping("/sendSimpleEmail")
-//    public String sendSimpleEmail() {
-//
-//        // Create a Simple MailMessage.
-//        SimpleMailMessage message = new SimpleMailMessage();
-//
-//        message.setTo(MyConstants.FRIEND_EMAIL);
-//        message.setSubject("Test Simple Email");
-//        message.setText("Hello, Im testing Simple Email");
-//
-//        // Send Message!
-//        this.emailSender.send(message);
-//
-//        return "Email Sent!";
-//    }
 }

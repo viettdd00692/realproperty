@@ -4,8 +4,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "blog")
-public class Blog implements Serializable {
+@Table(name = "image")
+public class Image implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -13,20 +13,18 @@ public class Blog implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "title")
-    private String title;
-
     @Column(name = "image")
     private String image;
 
-    @Column(name = "description", columnDefinition = "TEXT")
-    private String description;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "property_id")
+    private Property property;
 
-    public Blog() {
+    public Image() {
         super();
     }
 
-    public Blog(Integer id) {
+    public Image(Integer id) {
         super();
         this.id = id;
     }
@@ -39,14 +37,6 @@ public class Blog implements Serializable {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getImage() {
         return image;
     }
@@ -55,12 +45,12 @@ public class Blog implements Serializable {
         this.image = image;
     }
 
-    public String getDescription() {
-        return description;
+    public Property getProperty() {
+        return property;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setProperty(Property property) {
+        this.property = property;
     }
 
 }

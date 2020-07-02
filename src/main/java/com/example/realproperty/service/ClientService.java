@@ -12,4 +12,8 @@ public interface ClientService {
     ClientDTO getClientByID(Integer id);
 
     List<ClientDTO> getAllClient();
+
+    List<ClientDTO> getAllClientByEmployeeID(Integer id);
+
+    List<ClientDTO> getWaitingClient();
 }

@@ -85,7 +85,7 @@
                                     </td>
                                     <td>
                                         <a class="btn btn-info" th:href="@{'/admin/view-client/' + ${client.id}}" th:text="View"></a>
-                                        <a class="btn btn-success" th:href="@{'/admin/update-client/' + ${client.id}}" th:text="Edit"></a>
+                                        <a class="btn btn-success" th:classappend="${client.status == 'Fulfill' ? 'disabled' : ''}" th:href="@{'/admin/update-client/' + ${client.id}}" th:text="Edit"></a>
                                     </td>
                                 </tr>
                                 </tbody>

@@ -75,7 +75,7 @@
                                     <label th:for="employeeId">Employee</label>
                                     <select class="form-control select2" th:field="*{employeeId}">
                                         <option th:value="''" th:text="'Select employee'"></option>
-                                        <option th:each="employee: ${listEmployee}" th:value="${employee.id}" th:text="'(' + ${employee.id} + ') ' + ${employee.fullname}"></option>
+                                        <option th:each="employee: ${listEmployee}" th:value="${employee.id}" th:text="'(' + ${employee.id} + ') ' + ${employee.fullname} + ' - ' + ${employee.status}"></option>
                                     </select>
                                 </div>
                             </div>

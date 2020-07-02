@@ -1,6 +1,8 @@
 package com.example.realproperty.controller;
 
+import com.example.realproperty.model.ImageDTO;
 import com.example.realproperty.model.PropertyDTO;
+import com.example.realproperty.service.ImageService;
 import com.example.realproperty.service.OwnerService;
 import com.example.realproperty.service.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,9 @@ public class PropertyController {
 
     @Autowired
     private PropertyService propertyService;
+
+    @Autowired
+    private ImageService imageService;
 
     @Autowired
     private OwnerService ownerService;
@@ -99,6 +104,7 @@ public class PropertyController {
     @GetMapping("/admin/view-property/{id}")
     private String view(Model model, @PathVariable(name = "id") Integer id) {
         model.addAttribute("getProperty", propertyService.getPropertyByID(id));
+        model.addAttribute("listImage", imageService.getAllImageByPropertyID(id));
         return "admin/property/viewProperty";
     }
 
@@ -137,10 +143,58 @@ public class PropertyController {
         return "redirect:list-property";
     }
 
+    @GetMapping("/admin/add-image/{id}")
+    private String addImage(Model model, @PathVariable(name = "id") Integer id) {
+        model.addAttribute("getProperty", propertyService.getPropertyByID(id));
+        model.addAttribute("addImageForm", new ImageDTO());
+        return "admin/property/addImage";
+    }
+
+    @PostMapping("/admin/add-image")
+    private String addImage(@ModelAttribute(name = "addImageForm") ImageDTO imageDTO, @RequestParam("file") MultipartFile inputFile) throws IllegalStateException, IOException {
+        HttpHeaders headers = new HttpHeaders();
+        String originalFilename = inputFile.getOriginalFilename();
+        File destinationFile = new File(UPLOAD_DIR + File.separator + originalFilename);
+        if (!destinationFile.exists()) {
+            destinationFile.createNewFile();
+            inputFile.transferTo(destinationFile);
+            imageDTO.setImage(originalFilename);
+            imageService.addImage(imageDTO);
+        } else {
+            imageDTO.setImage(originalFilename);
+            imageService.addImage(imageDTO);
+        }
+
+        headers.add("File Uploaded Successfully - ", inputFile.getName());
+        return "redirect:view-property/" + imageDTO.getPropertyId();
+    }
+
     @GetMapping("/property-thumbnail/{id}")
     public ResponseEntity<byte[]> download(@PathVariable("id") Integer id) throws IOException {
         PropertyDTO propertyDTO = propertyService.getPropertyByID(id);
         File fileToUpload = new File(UPLOAD_DIR + "\\" + propertyDTO.getThumbnail());
+        InputStream inputImage = new FileInputStream(fileToUpload);
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        byte[] buffer = new byte[512];
+        int l = inputImage.read(buffer);
+        while (l >= 0) {
+            outputStream.write(buffer, 0, l);
+            l = inputImage.read(buffer);
+        }
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-type", "image/jpeg");
+        headers.add("Cache-Control", "no-cache, no-store, must-revalidate");
+        headers.add("Pragma", "no-cache");
+        headers.add("Expires", "0");
+
+        inputImage.close();
+        return new ResponseEntity<byte[]>(outputStream.toByteArray(), headers, HttpStatus.OK);
+    }
+
+    @GetMapping("/property-image/{id}")
+    public ResponseEntity<byte[]> downloadImage(@PathVariable("id") Integer id) throws IOException {
+        ImageDTO imageDTO = imageService.getImageByID(id);
+        File fileToUpload = new File(UPLOAD_DIR + "\\" + imageDTO.getImage());
         InputStream inputImage = new FileInputStream(fileToUpload);
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         byte[] buffer = new byte[512];

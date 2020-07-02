@@ -100,8 +100,7 @@
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th style="width: 20%">Name</th>
-                                    <th style="width: 25%">Address</th>
+                                    <th>Name</th>
                                     <th>Price</th>
                                     <th>Rate</th>
                                     <th>Owner</th>
@@ -113,17 +112,18 @@
                                 <tr th:each="property: ${listHouseSale}">
                                     <td th:text="${property.id}"></td>
                                     <td th:text="${property.name}"></td>
-                                    <td th:text="${property.address}"></td>
                                     <td th:text="'$' + ${#numbers.formatDecimal(property.price, 0, 'COMMA', 0, 'POINT')}"></td>
-                                    <td th:text="${property.rate != null ? property.rate + ' %' : ''}"></td>
+                                    <td><span th:if="${property.rate != null}" th:text="${property.rate} + ' %'"></span></td>
                                     <td><a th:href="@{'/admin/view-owner/' + ${property.ownerId}}" th:text="${property.ownerName}"></a></td>
-                                    <td><span class="badge" th:classappend="${(property.status == 'Appraise' ? 'badge-warning' : '' +
-                                                                                           property.status == 'Available' ? 'badge-success' : '' +
-                                                                                           property.status == 'Negotiation' ? 'badge-info' : '' +
-                                                                                           property.status == 'Sold' ? 'badge-danger' : '')}"><a th:text="${property.status}"></a></span></td>
                                     <td>
-                                        <a th:href="@{'/admin/view-property/' + ${property.id}}"><button type="button" class="btn btn-info">View</button></a>
-                                        <a th:href="@{'/admin/update-property/' + ${property.id}}"><button type="button" class="btn btn-success">Edit</button></a>
+                                        <span class="badge badge-warning" th:if="${property.status == 'Appraise'}" th:text="${property.status}"></span>
+                                        <span class="badge badge-success" th:if="${property.status == 'Available'}" th:text="${property.status}"></span>
+                                        <span class="badge badge-info" th:if="${property.status == 'Negotiation'}" th:text="${property.status}"></span>
+                                        <span class="badge badge-danger" th:if="${property.status == 'Sold'}" th:text="${property.status}"></span>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-info" th:href="@{'/admin/view-property/' + ${property.id}}" th:text="View"></a>
+                                        <a class="btn btn-success" th:classappend="${property.status == 'Sold' ? 'disabled' : ''}" th:href="@{'/admin/update-property/' + ${property.id}}" th:text="Edit"></a>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -131,7 +131,6 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
-                                    <th>Address</th>
                                     <th>Price</th>
                                     <th>Rate</th>
                                     <th>Owner</th>

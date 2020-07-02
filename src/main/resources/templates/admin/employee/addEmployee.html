@@ -57,6 +57,7 @@
         <div class="container-fluid">
             <div class="card">
                 <form role="form" th:object="${addEmployeeForm}" th:action="@{/admin/add-employee}" method="post" enctype="multipart/form-data">
+                    <input type="hidden" th:id="status" th:name="status" th:value="'Standby'">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
@@ -80,10 +81,6 @@
                                     <label th:for="salary">Salary (VND)</label>
                                     <input type="number" min="0" class="form-control" required th:field="*{salary}">
                                 </div>
-                                <div class="form-group">
-                                    <label th:for="birthdate">Birthdate</label>
-                                    <input type="date" class="form-control" required th:field="*{birthdate}">
-                                </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -96,14 +93,6 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label th:for="status">Status</label>
-                                    <select class="form-control" required th:field="*{status}">
-                                        <option th:value="Standby">Standby</option>
-                                        <option th:value="Active">Active</option>
-                                        <option th:value="Resign">Resign</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
                                     <label for="avatar">Avatar</label>
                                     <div class="input-group">
                                         <div class="custom-file">
@@ -111,6 +100,10 @@
                                             <label class="custom-file-label" for="avatar">Choose image</label>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="form-group">
+                                    <label th:for="birthdate">Birthdate</label>
+                                    <input type="date" class="form-control" required th:field="*{birthdate}">
                                 </div>
                                 <div class="form-group">
                                     <label th:for="joinDate">Join Date</label>

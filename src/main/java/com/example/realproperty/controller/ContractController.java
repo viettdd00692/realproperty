@@ -1,9 +1,12 @@
 package com.example.realproperty.controller;
 
+import com.example.realproperty.model.ClientDTO;
 import com.example.realproperty.model.ContractDTO;
+import com.example.realproperty.model.OwnerDTO;
 import com.example.realproperty.model.PropertyDTO;
 import com.example.realproperty.service.ClientService;
 import com.example.realproperty.service.ContractService;
+import com.example.realproperty.service.OwnerService;
 import com.example.realproperty.service.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -29,6 +32,9 @@ public class ContractController {
     @Autowired
     private PropertyService propertyService;
 
+    @Autowired
+    private OwnerService ownerService;
+
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         binder.registerCustomEditor(Date.class,
@@ -49,13 +55,23 @@ public class ContractController {
 
     @GetMapping("/admin/add-contract/{id}")
     private String add(Model model, @PathVariable(name = "id") Integer id) {
-        model.addAttribute("getClient", clientService.getClientByID(id));
-        PropertyDTO propertyDTO = propertyService.getPropertyByID(clientService.getClientByID(id).getPropertyId());
+        ClientDTO clientDTO = clientService.getClientByID(id);
+        PropertyDTO propertyDTO = propertyService.getPropertyByID(clientDTO.getPropertyId());
+        OwnerDTO ownerDTO = ownerService.getOwnerByID(propertyDTO.getOwnerId());
+
         if (propertyDTO.getOption().equalsIgnoreCase("Mua")) {
-            Integer comSell = (propertyDTO.getPrice() * 10) / 100;
-            model.addAttribute("comSell", comSell);
+            Integer comAttr = (propertyDTO.getPrice() * propertyDTO.getRate()) / 100;
+            model.addAttribute("comAttr", comAttr);
         }
+
+        if (propertyDTO.getOption().equalsIgnoreCase("Thuê") && propertyDTO.getRate() != null) {
+            Integer comAttr = (propertyDTO.getPrice() * propertyDTO.getRate());
+            model.addAttribute("comAttr", comAttr);
+        }
+
+        model.addAttribute("getClient", clientDTO);
         model.addAttribute("getProperty", propertyDTO);
+        model.addAttribute("getOwner", ownerDTO);
         model.addAttribute("addContractForm", new ContractDTO());
         return "admin/contract/addContract";
     }
@@ -68,9 +84,13 @@ public class ContractController {
 
     @GetMapping("/admin/update-contract/{id}")
     private String update(Model model, @PathVariable(name = "id") Integer id) {
+        ClientDTO clientDTO = clientService.getClientByID(contractService.getContractByID(id).getClientId());
+        PropertyDTO propertyDTO = propertyService.getPropertyByID(contractService.getContractByID(id).getPropertyId());
+        OwnerDTO ownerDTO = ownerService.getOwnerByID(contractService.getContractByID(id).getOwnerId());
+        model.addAttribute("getClient", clientDTO);
+        model.addAttribute("getProperty", propertyDTO);
+        model.addAttribute("getOwner", ownerDTO);
         model.addAttribute("updateContractForm", contractService.getContractByID(id));
-        model.addAttribute("getClient", clientService.getClientByID(contractService.getContractByID(id).getClientId()));
-        model.addAttribute("getProperty", propertyService.getPropertyByID(contractService.getContractByID(id).getPropertyId()));
         return "admin/contract/updateContract";
     }
 

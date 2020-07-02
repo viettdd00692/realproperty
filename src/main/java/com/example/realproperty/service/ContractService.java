@@ -12,4 +12,8 @@ public interface ContractService {
     ContractDTO getContractByID(Integer id);
 
     List<ContractDTO> getAllContract();
+
+    List<ContractDTO> getAllPendingContract();
+
+    Integer totalCommission();
 }

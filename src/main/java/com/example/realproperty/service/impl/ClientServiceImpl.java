@@ -120,4 +120,54 @@ public class ClientServiceImpl implements ClientService {
         return clientDTOs;
     }
 
+    @Override
+    public List<ClientDTO> getAllClientByEmployeeID(Integer id) {
+        List<Client> clients = clientDao.getAllClient();
+        List<ClientDTO> clientDTOs = new ArrayList<ClientDTO>();
+
+        clients.forEach(client -> {
+            if (client.getEmployee() != null && client.getEmployee().getId() == id) {
+                ClientDTO clientDTO = new ClientDTO();
+
+                clientDTO.setId(client.getId());
+                clientDTO.setFullname(client.getFullname());
+                clientDTO.setEmail(client.getEmail());
+                clientDTO.setPhone(client.getPhone());
+                clientDTO.setAppointmentDate(client.getAppointmentDate());
+                clientDTO.setStatus(client.getStatus());
+                clientDTO.setCreatedAt(client.getCreatedAt());
+                clientDTO.setUpdatedAt(client.getUpdatedAt());
+                if (client.getProperty() != null) {
+                    clientDTO.setPropertyId(client.getProperty().getId());
+                    clientDTO.setPropertyName(client.getProperty().getName());
+                }
+                if (client.getEmployee() != null) {
+                    clientDTO.setEmployeeId(client.getEmployee().getId());
+                    clientDTO.setEmployeeName(client.getEmployee().getFullname());
+                }
+
+                clientDTOs.add(clientDTO);
+            }
+        });
+
+        return clientDTOs;
+    }
+
+    @Override
+    public List<ClientDTO> getWaitingClient() {
+        List<Client> clients = clientDao.getAllClient();
+        List<ClientDTO> clientDTOs = new ArrayList<ClientDTO>();
+
+        clients.forEach(client -> {
+            if (client.getStatus().equalsIgnoreCase("Waiting")) {
+                ClientDTO clientDTO = new ClientDTO();
+                clientDTO.setId(client.getId());
+                clientDTO.setStatus(client.getStatus());
+                clientDTOs.add(clientDTO);
+            }
+        });
+
+        return clientDTOs;
+    }
+
 }

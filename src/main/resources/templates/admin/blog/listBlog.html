@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="admin/layout">
+<head>
+    <title>List Blog</title>
+</head>
+<body>
+    <li class="nav-item has-treeview menu-open" layout:fragment="sb-blog">
+        <a href="#" class="nav-link active">
+            <i class="nav-icon fas fa-newspaper"></i>
+            <p>
+                Blog
+                <i class="right fas fa-angle-left"></i>
+            </p>
+        </a>
+        <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="/admin/list-blog" class="nav-link active">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>List Blog</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/admin/add-blog" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Add New Blog</p>
+                </a>
+            </li>
+        </ul>
+    </li>
+
+    <div layout:fragment="header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">List Blog</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
+                        <li class="breadcrumb-item active">List Blog</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section layout:fragment="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Blog</h3>
+                            <a href="/admin/add-blog" class="btn btn-default float-right"><i class="fas fa-plus"></i></a>
+                        </div>
+                        <div class="card-body">
+                            <table id="dataTable" class="table table-bordered table-striped" data-order="[[ 0, &quot;desc&quot; ]]">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Title</th>
+                                    <th class="w-50 p-3">Description</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="blog: ${listBlog}">
+                                    <td th:text="${blog.id}"></td>
+                                    <td th:text="${blog.title}"></td>
+                                    <td th:text="${blog.description}"></td>
+                                    <td>
+                                        <a class="btn btn-info" th:href="@{'/admin/view-blog/' + ${blog.id}}" th:text="View"></a>
+                                        <a class="btn btn-success" th:href="@{'/admin/update-blog/' + ${blog.id}}" th:text="Edit"></a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Title</th>
+                                    <th>Description</th>
+                                    <th>Action</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

@@ -1,6 +1,7 @@
 package com.example.realproperty.controller;
 
 import com.example.realproperty.model.ClientDTO;
+import com.example.realproperty.model.EmployeeDTO;
 import com.example.realproperty.model.PropertyDTO;
 import com.example.realproperty.service.ClientService;
 import com.example.realproperty.service.EmployeeService;
@@ -28,6 +29,8 @@ public class ClientController {
 
     @Autowired
     private EmployeeService employeeService;
+
+    EmployeeDTO checkEmployee;
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {
@@ -57,30 +60,59 @@ public class ClientController {
     @PostMapping("/admin/add-client")
     private String add(@ModelAttribute(name = "addClientForm") ClientDTO clientDTO) {
         clientService.addClient(clientDTO);
+
         if (clientDTO.getPropertyId() != null) {
             PropertyDTO propertyDTO = propertyService.getPropertyByID(clientDTO.getPropertyId());
             propertyDTO.setStatus("Negotiation");
             propertyService.updatePropertyStatus(propertyDTO);
         }
+
         return "redirect:list-client";
     }
 
     @GetMapping("/admin/update-client/{id}")
     private String update(Model model, @PathVariable(name = "id") Integer id) {
         model.addAttribute("listProperty", propertyService.getAllAvailableProperty());
-        model.addAttribute("listEmployee", employeeService.getAllStandbyEmployee());
-        model.addAttribute("updateClientForm", clientService.getClientByID(id));
+        model.addAttribute("listEmployee", employeeService.getAllEmployee());
+        ClientDTO clientDTO = clientService.getClientByID(id);
+        if (clientDTO.getEmployeeId() != null) {
+            checkEmployee = employeeService.getEmployeeByID(clientDTO.getEmployeeId());
+        }
+        model.addAttribute("updateClientForm", clientDTO);
         return "admin/client/updateClient";
     }
 
     @PostMapping("/admin/update-client")
     private void update(@ModelAttribute(name = "updateClientForm") ClientDTO clientDTO, HttpServletResponse response) throws IOException {
         clientService.updateClient(clientDTO);
+
         if (clientDTO.getPropertyId() != null) {
             PropertyDTO propertyDTO = propertyService.getPropertyByID(clientDTO.getPropertyId());
             propertyDTO.setStatus("Negotiation");
             propertyService.updatePropertyStatus(propertyDTO);
         }
+
+        if (clientDTO.getEmployeeId() != null && checkEmployee == null) {
+            EmployeeDTO employeeDTO = employeeService.getEmployeeByID(clientDTO.getEmployeeId());
+            employeeDTO.setStatus("Active");
+            employeeService.updateEmployeeStatus(employeeDTO);
+        } else if (clientDTO.getEmployeeId() == null && checkEmployee != null) {
+            if (clientService.getAllClientByEmployeeID(checkEmployee.getId()).size() == 0) {
+                checkEmployee.setStatus("Standby");
+                employeeService.updateEmployeeStatus(checkEmployee);
+            }
+        } else if (clientDTO.getEmployeeId() != null && checkEmployee != null) {
+            EmployeeDTO employeeDTO = employeeService.getEmployeeByID(clientDTO.getEmployeeId());
+            employeeDTO.setStatus("Active");
+            employeeService.updateEmployeeStatus(employeeDTO);
+            if (checkEmployee.getId() != employeeDTO.getId()) {
+                if (clientService.getAllClientByEmployeeID(checkEmployee.getId()).size() == 0) {
+                    checkEmployee.setStatus("Standby");
+                    employeeService.updateEmployeeStatus(checkEmployee);
+                }
+            }
+        }
+
         response.sendRedirect("/admin/list-client");
     }
 

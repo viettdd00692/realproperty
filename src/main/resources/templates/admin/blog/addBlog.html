@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="admin/layout">
+<head>
+    <title>Add New Blog</title>
+</head>
+<body>
+    <li class="nav-item has-treeview menu-open" layout:fragment="sb-blog">
+        <a href="#" class="nav-link active">
+            <i class="nav-icon fas fa-newspaper"></i>
+            <p>
+                Blog
+                <i class="right fas fa-angle-left"></i>
+            </p>
+        </a>
+        <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="/admin/list-blog" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>List Blog</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/admin/add-blog" class="nav-link active">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Add New Blog</p>
+                </a>
+            </li>
+        </ul>
+    </li>
+
+    <div layout:fragment="header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0 text-dark">Add New Blog</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="/admin/dashboard">Home</a></li>
+                        <li class="breadcrumb-item active">Add New Blog</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section layout:fragment="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card card-primary">
+                        <form role="form" th:object="${addBlogForm}" th:action="@{/admin/add-blog}" method="post" enctype="multipart/form-data">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label th:for="title">Title</label>
+                                    <input type="text" class="form-control" required th:field="*{title}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="image">Image</label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" required name="file" class="custom-file-input" id="image">
+                                            <label class="custom-file-label" for="image">Choose image</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label th:for="description">Description</label>
+                                    <textarea rows="5" class="form-control" required th:field="*{description}"></textarea>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <a class="btn btn-danger float-right" th:href="@{'/admin/list-blog'}" th:text="Back"></a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
