@@ -6,12 +6,12 @@
 </head>
 <body>
 <nav th:replace="client/layout :: header"></nav>
+<span class="blog-title" th:text="${blog.title}"></span>
+<div class="text-popup">
 
-<div class="text-popup" th:object="${blog}">
-    <span class="blog-title" th:text="${blog.title}"></span>
 <!--    <p class="text-show-day">{{blog.CreatedString}}</p>-->
-    <img th:src="@{${'/img/client/' + blog.image}}" alt="#" class="model-content-img" />
-    <span class="blog-intro" th:text="${blog.des}"></span>
+    <img th:src="@{${'/img/admin/' + blog.image}}" alt="#" class="model-content-img" />
+    <span class="blog-intro" th:text="${blog.description}"></span>
 
 </div>
 

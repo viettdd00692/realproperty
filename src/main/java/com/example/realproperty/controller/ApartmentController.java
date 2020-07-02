@@ -3,6 +3,7 @@ package com.example.realproperty.controller;
 import com.example.realproperty.config.MyConstants;
 import com.example.realproperty.model.ClientDTO;
 import com.example.realproperty.service.ClientService;
+import com.example.realproperty.service.ImageService;
 import com.example.realproperty.service.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -22,6 +23,9 @@ import java.util.Date;
 
 @Controller
 public class ApartmentController {
+
+    @Autowired
+    private ImageService imageService;
 
     @Autowired
     public JavaMailSender emailSender;
@@ -45,6 +49,7 @@ public class ApartmentController {
         model.addAttribute("addClientForm", new ClientDTO());
         model.addAttribute("listSellProperty", propertyService.getSellProperty());
         model.addAttribute("listHireProperty", propertyService.getHireProperty());
+        model.addAttribute("listImage", imageService.getAllImageByPropertyID(id));
         return "client/apartmentdetail";
     }
 
@@ -56,23 +61,23 @@ public class ApartmentController {
         clientService.addClient(clientDTO);
         redirect.addFlashAttribute("successMessage", "Send contact successfully!");
 
-//        MimeMessage message = emailSender.createMimeMessage();
-//
-//        boolean multipart = true;
-//
-//        MimeMessageHelper helper = new MimeMessageHelper(message, multipart, "utf-8");
-//
-//        String htmlMsg = "<h3>Your contact is send successfully</h3>"
-//                +"<img src='https://www.doorman24.com/wp-content/uploads/2016/07/thankyou.jpg'>";
-//
-//        message.setContent(htmlMsg, "text/html");
-//
-//        helper.setTo(clientDTO.getEmail());
-//
-//        helper.setSubject("Real Property - Send contact successfully!");
-//
-//
-//        this.emailSender.send(message);
+        MimeMessage message = emailSender.createMimeMessage();
+
+        boolean multipart = true;
+
+        MimeMessageHelper helper = new MimeMessageHelper(message, multipart, "utf-8");
+
+        String htmlMsg = "<h3>Your contact is send successfully</h3>"
+                +"<img src='https://www.doorman24.com/wp-content/uploads/2016/07/thankyou.jpg'>";
+
+        message.setContent(htmlMsg, "text/html");
+
+        helper.setTo(clientDTO.getEmail());
+
+        helper.setSubject("Real Property - Send contact successfully!");
+
+
+        this.emailSender.send(message);
         return "redirect:{id}";
     }
 

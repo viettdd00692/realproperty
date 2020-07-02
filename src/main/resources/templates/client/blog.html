@@ -13,15 +13,16 @@
 
 <div class="container padding-top-60 blogBox">
     <div class="row">
-        <div class="col-md-4" th:each="blog: ${blogs}" style="margin-bottom:50px;">
+        <div class="col-md-4" th:each="blog: ${blogs}" style="margin-bottom:100px;">
             <div class="blog-box">
-                <img th:src="@{${'/img/client/' + blog.image}}" alt="#" class="img-fluid" />
+                <img th:src="@{${'/img/admin/' + blog.image}}" alt="#" class="img-fluid" />
             </div>
             <div class="blog-box-below">
                 <p class="text padding-top-20" th:text="${blog.title}"></p>
-                <p class="text2" th:text="${blog.des}"></p>
-               <div class="read-more-button"> <a th:href="@{/blogdetail?id={id}(id=${blog.id})}">Đọc tiếp</a></div>
+<!--                <p class="text2" th:text="${blog.description}"></p>-->
+
             </div>
+            <div class="read-more-button"> <a th:href="@{'/blogdetail/' + ${blog.id}}">Đọc tiếp</a></div>
         </div>
     </div>
 </div>

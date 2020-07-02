@@ -112,7 +112,7 @@
                 </div>
                 <div class="sevice-rating-content">
                     <div class="box-shadow section1">
-                        <img th:src="@{/img/client/vinhome.jpg}" class="background-img" alt="Alternate Text" />
+                        <img th:src="@{/img/client/1.png}" class="background-img" alt="Alternate Text" />
                         <a  class="btn box-shadow btn-service-rating" translate>Về các dịch vụ</a>
                     </div>
                 </div>
@@ -177,7 +177,7 @@
                     </div>
                     <div class="sevice-rating-content">
                         <div class="box-shadow section1">
-                            <img th:src="@{/img/client/vinhome.jpg}" class="background-img" alt="Alternate Text" />
+                            <img th:src="@{/img/client/2.png}" class="background-img" alt="Alternate Text" />
                             <a  class="btn box-shadow btn-service-rating" >Khám phá thêm</a>
                         </div>
                     </div>
@@ -265,36 +265,36 @@
                 <div class="list-news">
                     <div class="row">
                         <div class="col-md-6 big-news">
-                            <a style="display: block" class="big-news-thumbnail box-shadow">
-                                <img style="border-radius: 7px;" class="img-full" th:src="@{/img/client/vinhome.jpg}" alt="">
+                            <a th:href="@{'/blogdetail/' + ${blog[0].id}}" style="display: block" class="big-news-thumbnail box-shadow">
+                                <img style="border-radius: 7px;" class="img-full" th:src="@{${'/img/admin/' + blog[0].image}}" alt="">
                             </a>
-                            <a style="display: block" class="big-news-title">
-                                Kintsugi - Nghệ thuật mạ vàng gốm sứ
+                            <a th:href="@{'/blogdetail/' + ${blog[0].id}}" style="display: block" class="big-news-title" th:text="${blog[0].title}">
+
                             </a>
                         </div>
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-6 small-news">
-                                    <a style="display: block" class="small-news-thumbnail box-shadow">
-                                        <img style="border-radius: 7px;" class="img-full" th:src="@{/img/client/vinhome.jpg}" alt="">
+                                    <a th:href="@{'/blogdetail/' + ${blog[1].id}}" style="display: block" class="small-news-thumbnail box-shadow">
+                                        <img style="border-radius: 7px;" class="img-full" th:src="@{${'/img/admin/' + blog[1].image}}" alt="">
                                     </a>
-                                    <a  style="display: block" class="small-news-title txt-no-warp">
-                                        4 Best Night Markets in Hanoi to Visit
+                                    <a th:href="@{'/blogdetail/' + ${blog[1].id}}" style="display: block" class="small-news-title txt-no-warp" th:text="${blog[1].title}">
+
                                     </a>
                                 </div>
                                 <div class="col-md-6 small-news">
-                                    <a  style="display: block" class="small-news-thumbnail box-shadow">
-                                        <img style="border-radius: 7px;" class="img-full" th:src="@{/img/client/vinhome.jpg}" alt="">
+                                    <a th:href="@{'/blogdetail/' + ${blog[2].id}}" style="display: block" class="small-news-thumbnail box-shadow">
+                                        <img style="border-radius: 7px;" class="img-full" th:src="@{${'/img/admin/' + blog[2].image}}" alt="">
                                     </a>
-                                    <a ui-sref="blogdetail({id:blogList[2].Id, title: replaceString(blogList[2].Content.Title)})" style="display: block" class="small-news-title txt-no-warp">
-                                        Lễ hội Hoa Anh đào Nhật Bản
+                                    <a th:href="@{'/blogdetail/' + ${blog[2].id}}" style="display: block" class="small-news-title txt-no-warp" th:text="${blog[2].title}">
+
                                     </a>
                                 </div>
                                 <div class="col-xs-12 list-normal-news">
                                     <ul>
-                                        <li><a  class="txt-no-warp">5 Reasons for Renting a Serviced Apartments</a> </li>
-                                        <li><a  class="txt-no-warp">Câu chuyện thành công của Real Property</a></li>
-                                        <li><a  class="txt-no-warp">Đến với Việt Nam - thiên đường nhiệt đới dành cho bạn</a></li>
+                                        <li><a th:href="@{'/blogdetail/' + ${blog[3].id}}"  class="txt-no-warp" th:text="${blog[3].title}"></a> </li>
+                                        <li><a th:href="@{'/blogdetail/' + ${blog[4].id}}"  class="txt-no-warp" th:text="${blog[4].title}"></a> </li>
+                                        <li><a th:href="@{'/blogdetail/' + ${blog[5].id}}"  class="txt-no-warp" th:text="${blog[5].title}"></a> </li>
                                     </ul>
                                 </div>
                             </div>

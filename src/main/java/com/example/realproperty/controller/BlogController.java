@@ -22,6 +22,18 @@ public class BlogController {
 
     private String UPLOAD_DIR = "D:\\SpringBoot\\realproperty\\src\\main\\resources\\static\\img\\admin\\";
 
+    @GetMapping("/blog")
+    public String index(Model model) {
+        model.addAttribute("blogs", blogService.getAllBlog());
+        return "/client/blog";
+    }
+
+    @GetMapping("/blogdetail/{id}")
+    private String blogdetail(Model model, @PathVariable(name = "id") Integer id) {
+        model.addAttribute("blog", blogService.getBlogByID(id));
+        return "/client/blogdetail";
+    }
+
     @GetMapping("/admin/list-blog")
     private String list(Model model) {
         model.addAttribute("listBlog", blogService.getAllBlog());

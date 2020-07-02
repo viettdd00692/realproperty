@@ -8,7 +8,7 @@
 <nav th:replace="client/layout :: header"></nav>
 
 <div class="container-fluid header-apartment-detail">
-    <img th:src="@{/img/client/vinhome.jpg}" alt="Alternate Text" />
+    <img th:src="@{${'/img/admin/' + getProperty.thumbnail}}" alt="Alternate Text" />
 </div>
 <div th:if="${successMessage}" class="alert alert-success alert-dismissible fade show" role="alert">
     <span th:text="${successMessage}"></span>
@@ -90,14 +90,13 @@
         <div class="tour-this-home">
             <div class="title-apartment-detail">THĂM QUAN NHÀ</div>
         </div>
-        <div style="margin-bottom: 30px" class="w3-content w3-display-container">
+        <div style="margin-bottom: 30px" class="w3-content w3-display-container" >
 
-        <img class="mySlides" th:src="@{/img/client/vinhome.jpg}" style="width: 981px;
+<!--        <img class="mySlides" th:src="@{/img/client/vinhome.jpg}" style="width: 981px;-->
+<!--    height: 400px;">-->
+            <img th:each="image: ${listImage}" class="mySlides" th:src="@{'/property-image/' + ${image.id}}" style="width: 981px;
     height: 400px;">
-            <img class="mySlides" th:src="@{${'/img/admin/' + getProperty.thumbnail}}" style="width: 981px;
-    height: 400px;">
-<!--            <img class="mySlides" th:src="@{/img/client/vinhome.jpg}" style="width:100%">-->
-<!--            <img class="mySlides" th:src="@{/img/client/chungcu.png}" style="width:100%">-->
+
 
             <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
             <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>

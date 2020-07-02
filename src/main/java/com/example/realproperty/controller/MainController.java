@@ -1,5 +1,6 @@
 package com.example.realproperty.controller;
 
+import com.example.realproperty.service.BlogService;
 import com.example.realproperty.service.ClientService;
 import com.example.realproperty.service.ContractService;
 import com.example.realproperty.service.PropertyService;
@@ -20,11 +21,15 @@ public class MainController {
     @Autowired
     private ContractService contractService;
 
+    @Autowired
+    private BlogService blogService;
+
     @GetMapping("/")
     public String index(Model model) {
 
         model.addAttribute("listSellProperty", propertyService.getSellProperty());
         model.addAttribute("listHireProperty", propertyService.getHireProperty());
+        model.addAttribute("blog", blogService.getAllBlog());
         return "client/index";
     }
 
